@@ -1,0 +1,118 @@
+{
+  "projects": [
+    {
+      "label": "JPS",
+      "id": "jps",
+      "artifact": "jps",
+      "group": "org.openbase"
+    },
+    {
+      "label": "JUL",
+      "id": "jul",
+      "artifact": "jul",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO Authentication",
+      "id": "bco.authentication",
+      "artifact": "bco.authentication",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO Registry",
+      "id": "bco.registry",
+      "artifact": "bco.registry",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO Registry Editor",
+      "id": "bco.registry.editor",
+      "artifact": "bco.registry.editor",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO DAL",
+      "id": "bco.dal",
+      "artifact": "bco.dal",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO Ontology",
+      "id": "bco.ontology",
+      "artifact": "bco.ontology.lib",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO PSC",
+      "id": "bco.psc",
+      "artifact": "bco.psc",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO Manager",
+      "id": "bco.manager",
+      "artifact": "bco.manager",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO Eveson",
+      "id": "bco.eveson",
+      "artifact": "bco.eveson",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO BCozy",
+      "id": "bco.bcozy",
+      "artifact": "bco.bcozy",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO BComfy",
+      "id": "bco.bcomfy",
+      "artifact": "bco.bcomfy",
+      "group": "org.openbase"
+    },
+    {
+      "label": "BCO Stage",
+      "id": "bco.stage",
+      "artifact": "bco.stage",
+      "group": "org.openbase"
+    },
+    {
+      "label": "openHAB RSB Binding",
+      "id": "openhab-binding-rsb",
+      "artifact": "org.openhab.binding.rsb",
+      "group": "org.openhab.binding"
+    },
+    {
+      "label": "Generic Display",
+      "id": "generic-display",
+      "artifact": "generic-display",
+      "group": "org.openbase"
+    },
+    {
+      "label": "PlanetSudo",
+      "id": "planetsudo",
+      "artifact": "planetsudo",
+      "group": "org.openbase"
+    },
+    {
+      "label": "PlanetSudo Server",
+      "id": "planetsudo.server",
+      "artifact": "planetsudo.server",
+      "group": "org.openbase"
+    },
+    {
+      "label": "PlanetSudo AI",
+      "id": "planetsudo.ai",
+      "artifact": "planetsudo.ai",
+      "group": "org.openbase"
+    },
+    {
+      "label": "Jeoparnaire",
+      "id": "jeoparnaire",
+      "artifact": "jeoparnaire",
+      "group": "org.openbase"
+    }
+  ]
+}

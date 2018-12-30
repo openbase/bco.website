@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "www:dev": "vuepress dev www",
+    "www:build": "vuepress build www"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/vue-fontawesome": "^0.1.1",
+    "vuepress": "^0.14.2"
+  }
+}
