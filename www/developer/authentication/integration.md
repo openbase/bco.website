@@ -1,0 +1,17 @@
+This page on integration gives an overview of how the authentication module is working together with the other BCO modules. This page is also an introduction to this module.
+
+The following figure shows the communication performed between this module and others. 
+
+![](https://rawgithub.com/openbase/bco.authentication/master/docs/res/figures/architecture.svg)
+
+The arrows indicate the direction communication takes places. The authentication module basically communicates with the [Registry](https://github.com/openbase/bco.registry), [DAL](https://github.com/openbase/bco.dal) and any client application (in this case [BCozy](https://github.com/openbase/bco.bcozy)). 
+
+The links seen on the bottom right indicate requests from the client application that include [registering a user](./Registration), [logging in a user](./Authentication), and [accessing a user's settings](./Accessing-User-Settings). Heads up: these are the only actions client applications will perform with this module.
+
+It is important to clarify what *accessing user settings* is about. This module is only responsible for settings regarding the authentication. These are the password and the admin flag of a user. Other data like the username or the email address are stored by the `Registry`. For changing such data you must access the `Registry` directly via the very top links from `BCozy` to the `Registry`. Changing those settings is not explained within the wiki of this module. Visit the [Registries' wiki](https://github.com/openbase/bco.registry/wiki) for that.
+
+Now let's consider the links from `BCozy` to `DAL`. These links are used whenever you you want to perform an action like switching on a light bulb in your apartment. In this case the [SessionManager](https://github.com/openbase/bco.authentication/wiki/registration#the-sessionmanager) of this module is your best friend. Once you [logged in](./authentication#how-to-login-a-user) using the `SessionManager` the authentication and authorization of the action is done automatically in the background. You don't need to worry about that yourself anymore. 
+
+Lastly consider the links from the `Registry` and `DAL` to the authentication module. These links should not bother you as well. They are used to perform authentication on the server side. Both of these components perform a login as a special user and request a key from the AuthenticatorController. This way, whenever you perform an action or try to change entries in the Registry the `Registry` or `DAL` are able to test if you are authenticated with a valid session. Your request to perform such an action will be permitted if your session is valid and if your user has permissions for it. If not, you won't be able to perform such action and an appropriate exception is returned. For a more detailed explanation have a look at [development of authenticated services](https://github.com/openbase/bco.authentication/wiki/Development-of-authenticated-services).
+
+We hope this small introduction to the module helped you to get a rough overview and makes you more comfortable using it. We tried to hide the authentication and authorization process behind the curtains as much as possible. All you have to worry about is using the [SessionManager](https://github.com/openbase/bco.authentication/wiki/registration#the-sessionmanager) to [register a user](./Registration), [login a user](./Authentication), and [accessing a user's settings](./Accessing-User-Settings). 
