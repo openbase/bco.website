@@ -1,20 +1,26 @@
 module.exports = {
-    title: 'basecubeone.org',
-    description: 'Smart Technology Development Community',
+    title: 'Base Cube One',
+    description: 'Smart Environment Automation Framework',
     head: [
-        ['link', {rel: 'icon', href: '/images/openbase_logo.png'}],
+        ['link', {rel: 'icon', href: '/images/bco_logo_simple_small.png'}],
     ],
     themeConfig: {
-        logo: '/images/openbase_logo.svg',
+        logo: '/images/bco_logo_simple_white.png',
         nav: [
-            {text: 'Projects', link: '/projects/'},
-            {text: 'Contact', link: '/contact/'}
+            {text: 'Installation', link: '/install/'},
+            {text: 'Download', link: '/download/'},
+            {text: 'User', link: '/user/'},
+            {text: 'Developer', link: '/developer/'},
+            {text: 'Openbase', link: 'http://openbase.org'}
         ],
         displayAllHeaders: true,
         sidebar: [
             '/',
-            '/projects/',
-            '/contact/'
+            '/install/',
+            '/download/',
+            '/user/',
+            '/developer/',
+            '/developer/folder-structure'
         ],
         lastUpdated: 'Last Updated',
         repo: 'openbase',
@@ -25,5 +31,4 @@ module.exports = {
     },
     sidebar: 'auto',
     serviceWorker: true
-
 }

@@ -1,14 +1,29 @@
 ---
 home: true
-heroImage: /images/openbase_logo.png
-actionText: Projects
-actionLink: /projects/
+heroImage: /images/bco_logo_black_white.png
+actionText: Installation
+actionLink: /install/
 features:
-- title: Creativity
-  details: There is nothing more powerful than being creative while doing the things we love.
-- title: Cooperation
-  details: Focus on your expertise and let the community fill your knowledge gaps.
-- title: Open Source
-  details: Technology development to help humans and not to suite any business plan. 
+- title: Behaviour Based Automation
+  details: 
+- title: Location Architecture
+  details: 
+- title: Task Driven Automation
+  details: 
 ---
+
+# Platform Integration
+* openHAB 2.0
+* Google Assistant
+
+# Supported by
+* openbase
+  * <http://openbase.org>
+* Bielefeld University - Citec
+  * <https://cit-ec.de/en>
+  
+# Based on
+* Google Protocol Buffer
+* Robotic Service Bus
+* ...
 <Footer/>
