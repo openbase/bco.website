@@ -10,9 +10,9 @@ For running any java examples you only need to include the dal remote dependency
 
 ```xml
 <dependency>
-    <groupId>org.openbase.bco</groupId>
-    <artifactId>dal.remote</artifactId>
-    <version>[1.6,1.7-SNAPSHOT)</version>
+    <groupId>org.openbase</groupId>
+    <artifactId>bco.dal.remote</artifactId>
+    <version>[2.0-SNAPSHOT,2.1-alpha)</version>
 </dependency>
 ```
 

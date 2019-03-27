@@ -1,15 +1,4 @@
----
----
-# BCO User Documentation
-
-## Initial Setup
-
-1. [Download BCO Runtime](/user/download.md)
-2. [Install BCO Runtime](/user/installation.md)
-3. Install BCozy on your desktop pc
-4. Start BCozy and login:
-   * Use the default credetials (User:```admin``` Password:```admin```) for the initial login.
-   * Afterwards a assistant guides you through the initial setup (not implemented yet).
+# User Interfaces
 
 ## BCozy (Desktop Application)
 [![GUI Overview](/images/bcozy/bcozy_gui_overview.png)](bcozy.md)

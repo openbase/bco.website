@@ -8,18 +8,21 @@ The official bco website repository used to present the project and community gu
 
 ## Install
 
-### Ubuntu
+### Ubuntu / Debian
 
-1. Install notejs, nps and yarn
-<pre>sudo aptitude install npm</pre>
+1. Install notejs, nps, yarn
+
+```curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -```
+```echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list```
+```sudo apt-get update && sudo apt-get install nodejs npm yarn```
 2. Navigate into the project folder and perform:
-<pre>yarn install vuepress</pre>
+```yarn add vuepress```
 
 ### MacOs
 
-1. Install notejs, nps and yarn
+1. Install nodejs, nps and yarn
 2. Navigate into the project folder and perform:
 <pre>yarn install vuepress</pre>
 
 ## Run Local Webserver
-yarn run www:dev
+```yarn run www:dev```

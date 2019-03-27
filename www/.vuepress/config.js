@@ -2,33 +2,59 @@ module.exports = {
     title: 'Base Cube One',
     description: 'Smart Environment Automation Framework',
     head: [
-        ['link', {rel: 'icon', href: '/images/bco_logo_simple_small.png'}],
+        ['link', { rel: 'icon', href: '/images/bco_logo_simple_small.png' }],
     ],
     themeConfig: {
         logo: '/images/bco_logo_simple_white.png',
         nav: [
-            {text: 'Installation', link: '/install/'},
-            {text: 'Download', link: '/download/'},
-            {text: 'User', link: '/user/'},
-            {text: 'Developer', link: '/developer/'},
-            {text: 'Openbase', link: 'http://openbase.org'}
+            { text: 'Download', link: '/user/download' },
+            { text: 'Installation', link: '/user/installation' },
+            { text: 'User', link: '/user/' },
+            { text: 'Developer', link: '/developer/' },
+            { text: 'Openbase', link: 'http://openbase.org' }
         ],
         displayAllHeaders: true,
-        sidebar: [
-            '/',
-            '/install/',
-            '/download/',
-            '/user/',
-            '/developer/',
-            '/developer/folder-structure'
-        ],
+        sidebar: {
+            '/user/': [
+                '',
+                '/user/bcozy',
+                '/user/bcomfy'
+            ],
+
+            '/developer/': [
+                '',
+                '/developer/installation',
+                '/developer/startup-tools',
+                '/developer/directory-structure', 
+                '/developer/architecture',
+                '/developer/authentication/',
+                '/developer/contribution',
+                '/developer/ui/'
+            ],
+
+            /* fallback */
+            '/': [
+                '', /* / */
+                '/user/download',
+                '/user/installation',
+                '/user/',
+                '/developer/'
+            ]
+        },
         lastUpdated: 'Last Updated',
         repo: 'openbase',
         // if your docs are in a different repo from your main project:
         docsRepo: 'openbase/bco.website',
         editLinks: true,
-
+        serviceWorker: {
+            updatePopup: true // Boolean | Object, default to undefined.
+            // If set to true, the default text config will be: 
+            // updatePopup: { 
+            //    message: "New content is available.", 
+            //    buttonText: "Refresh" 
+            // }
+          }
     },
-    sidebar: 'auto',
+    //sidebar: 'auto',
     serviceWorker: true
 }
