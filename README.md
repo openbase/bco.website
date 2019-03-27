@@ -1,6 +1,9 @@
 # Openbase Website Repository
 The official bco website repository used to present the project and community guidelines.
 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/32f23ef3-627b-4e8c-ac68-52da56fe5b9e/deploy-status)](https://app.netlify.com/sites/basecubeone/deploys)
+
 ## Technical Details
 
 * used framework: https://vuepress.vuejs.org/
