@@ -62,7 +62,7 @@ bco-test --simulate
 
 You can test new components via the benchmark mode to prove how your components act during massive bco system load.
 During the benchmark, bco will start in simulation mode and high frequenly unit state changes are generated.
-::: tip WARN
+::: warn WARN
 Please never start the benchmark mode if you are connected to any physical devices to avoid hardware damage.
 :::
 ```
