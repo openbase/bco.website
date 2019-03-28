@@ -31,7 +31,7 @@ echo 'export prefix="$HOME/local/bco"' >> ~/.bashrc
 ```
 Add the ```bin``` folder to your global ```$PATH``` variable to support direct binary execution.
 ```
-echo 'export PATH="$PATH:$prefix/bin"' >> ~/.bashrc
+echo 'export PATH="$PATH:$prefix/bin:$prefix/usr/bin"' >> ~/.bashrc
 ```
 Reload your bash configuration
 ```
