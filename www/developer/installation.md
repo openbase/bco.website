@@ -12,6 +12,12 @@
 
 * Java JDK 11 (AZUL Zulu JDK recommented)
     * Download: <https://www.azul.com/downloads/zulu>
+    * Ubuntu Install Example
+      * Add Key: ```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9```
+      * Add Repo: sudo apt-add-repository 'deb http://repos.azulsystems.com/ubuntu stable main'
+      * Update Index: sudo apt-get update
+      * Install: sudo apt-get install zulu-11
+      * Make Default: ```echo 'export JAVA_HOME="/usr/lib/jvm/zulu-11-amd64/"' >> ~/.bashrc && . ~/.bashrc```
 * Maven
     * ```sudo apt-get install maven```
 * Git
