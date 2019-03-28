@@ -12,6 +12,12 @@
 
 * Java JDK 11 (AZUL Zulu JDK recommented)
     * Download: <https://www.azul.com/downloads/zulu>
+    * Ubuntu Install Example
+      * Add Key: ```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9```
+      * Add Repo: sudo apt-add-repository 'deb http://repos.azulsystems.com/ubuntu stable main'
+      * Update Index: sudo apt-get update
+      * Install: sudo apt-get install zulu-11
+      * Make Default: ```echo 'export JAVA_HOME="/usr/lib/jvm/zulu-11-amd64/"' >> ~/.bashrc && . ~/.bashrc```
 * Maven
     * ```sudo apt-get install maven```
 * Git
@@ -95,15 +101,64 @@ cd ~/workspace/openbase
 
 ## Repository Download 
 
-Download the bco core repository into your development workspace:
+Download the bco core repository into your development workspace.
 ```
 cd ~/workspace/openbase
-git clone -b latest-stable https://github.com/openbase/bco.git
+git clone -b master https://github.com/openbase/bco.git
 ```
+::: tip INFO
+We recommend to checkout and install the ```master``` branch in case you start the development of new components.
+The ```latest-stable``` branch is still linking against BCO 1.6 which will be soon replaced by BCO 2.0.
+Be aware to [setup the snapshot repository](##setup-snapshot-repository) before building the ```master``` branch.
+:::
 This core repository provides all binaries and libraries. If you plan to extend or bugfix any BCO core components, you can download all submodules (exclusive for bco development) via the following command:
 ```
 cd ~/workspace/openbase/bco
 ./workspace-prepare.sh
+```
+
+## Setup Snapshot Repository
+::: tip INFO
+This step is only required if you are using a non release branch (e.g. master) or link against it.
+:::
+
+BCO is using the maven as build tool. All dependencies are deployed at the central maven repositories and will be downloaded without any specific configuration for stable releases. In case you want to build a bco snapshot release or your project depends on any snapshots you have to add the following public repository configuration to your global maven settings file (```~/.m2/settings.xml```).
+
+```xml
+<?xml version="1.0"?>
+<settings>
+<!-- ... -->
+    <profiles>
+        <profile>
+            <id>openbase</id>
+            <properties>
+                <downloadJavadocs>true</downloadJavadocs>
+                <downloadSources>true</downloadSources>
+            </properties>
+        </profile>
+        <profile>
+            <id>sonatype</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>sonatype-oss-public</id>
+                    <url>https://oss.sonatype.org/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>daily</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>interval:60</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+<!-- ... -->
+</settings>
 ```
 
 ## Installation
@@ -113,7 +168,7 @@ Now, you should be able to start the installation. During this, all bco core com
 ./install.sh
 ```
 
-## How to Restore an Existing / Demo Database
+## How to Restore a Backup or Demo Database
 
 To restore an already existintg bco setup, just place the related ```db``` directory within ```~/.config/bco/var/registry```. Sometimes its useful during development to play around with an already complex environment setup. The following steps explain how to setup such an example database. 
 ```
