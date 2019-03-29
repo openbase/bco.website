@@ -5,7 +5,7 @@
 
 ## Table Of Contents
 
-* [Development Installation Guide](installation.md)
+* [Developer Installation Guide](installation.md)
 * [System Startup and Tools](startup-tools.md)
 * [Directory Structure](directory-structure.md)
 * [Architecture](architecture.md)

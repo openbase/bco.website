@@ -1,4 +1,4 @@
-# Development Installation Guide
+# Developer Installation Guide
 
 ## Supported Platforms
 * BCO Runtime
@@ -10,7 +10,7 @@
 
 ## Requirements
 
-* Java JDK 11 (AZUL Zulu JDK recommented)
+* Java JDK 11 (AZUL Zulu JDK recommended)
     * Download: <https://www.azul.com/downloads/zulu>
     * Ubuntu Install Example
       * Add Key: ```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9```
@@ -49,7 +49,7 @@ chmod -R 750 $prefix
 
 ## Setup Cor-Lab Debian Repository
 
-This repository provides a collection of precompiled libs and tools for rsb. This includes transport layers like spread as well as dev-libs for using rsb in python or c++. To register the repository to your local debian package manager follow the instructions on [http://packages.cor-lab.de/](http://packages.cor-lab.de/)
+This repository provides a collection of pre-compiled libs and tools for rsb. This includes transport layers like spread as well as dev-libs for using rsb in python or c++. To register the repository to your local debian package manager follow the instructions on [http://packages.cor-lab.de/](http://packages.cor-lab.de/)
 * example for ubuntu xenial
   ```
   echo 'deb http://packages.cor-lab.de/ubuntu/ xenial main' | sudo tee -a /etc/apt/sources.list
@@ -167,14 +167,14 @@ Now, you should be able to start the installation. During this, all bco core com
 
 ## How to Restore a Backup or Demo Database
 
-To restore an already existintg bco setup, just place the related ```db``` directory within ```~/.config/bco/var/registry```. Sometimes its useful during development to play around with an already complex environment setup. The following steps explain how to setup such an example database. 
+To restore an already existing bco setup, just place the related ```db``` directory within ```~/.config/bco/var/registry```. Sometimes its useful during development to play around with an already complex environment setup. The following steps explain how to setup such an example database. 
 ```
 mkdir -p ~/.config/bco/var/registry
 cd ~/.config/bco/var/registry
 git clone https://github.com/csra/bco.registry.csra-db db
 ```
 ::: tip INFO
-In general we recomment to use GIT to versioning your database. But please make sure the external BCO maintained DBs (template/class) are excluded via ```.gitigrone```.
+In general we recommend to use GIT to versioning your database. But please make sure the external BCO maintained DBs (template/class) are excluded via ```.gitigrone```.
 :::
 ```
 // ~/.config/bco/var/registry/db/.gitignore
