@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "www:dev": "vuepress dev www",
-    "www:build": "vuepress build www"
+    "serve": "vuepress dev www",
+    "build": "vuepress build www"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.2",

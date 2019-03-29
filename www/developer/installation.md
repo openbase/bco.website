@@ -106,9 +106,9 @@ git clone -b master https://github.com/openbase/bco.git
 ::: tip INFO
 We recommend to checkout and install the ```master``` branch in case you start the development of new components.
 The ```latest-stable``` branch is still linking against BCO 1.6 which will be soon replaced by BCO 2.0.
-Be aware to [setup the snapshot repository](##setup-snapshot-repository) before building the ```master``` branch.
+Be aware to [setup the snapshot repository](#setup-snapshot-repository) before building the ```master``` branch.
 :::
-This core repository provides all binaries and libraries. If you plan to extend or bugfix any BCO core components, you can download all submodules (exclusive for bco development) via the following command:
+This core repository provides all binaries and libraries. If you plan to extend or bugfix any BCO core components, you can download all sub-modules (exclusive for bco development) via the following command:
 ```
 cd ~/workspace/openbase/bco
 ./workspace-prepare.sh

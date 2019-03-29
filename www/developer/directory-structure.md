@@ -1,7 +1,7 @@
 ---
 ---
 
-# BCO Folder Structure
+# Folder Structure
 
 The following folders are used by bco:
 

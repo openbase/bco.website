@@ -4,7 +4,7 @@
 
 [Registry Editor]()
 
-![Control Example Off](/images/bco-registry-editor.png)
+![UI Example](/images/bco-registry-editor.png)
 
 ::: tip TODO
 Write documentation

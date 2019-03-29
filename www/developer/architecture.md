@@ -1,6 +1,6 @@
-# BCO Software Architecture
+# Software Architecture
 
-## Domotic Abstraction Layer (DAL)
+## DAL - Domotic Abstraction Layer
 
 ![DALayer](/images/DALayer.png)
 
@@ -37,13 +37,18 @@
 ## Actions
 ![System Architecture](/images/ActionStateTransitions.svg)
 
+### Priorities
+
+![System Architecture](/images/ActionPriorityTableV2Borderless.svg)
+
+
 ## Software Components
 
 ![System Architecture](/images/BCOSystemArchitecture.svg)
 
 ## Core Framework
 
-### BCO Registry
+### Registry
 [![Build Status](https://travis-ci.org/openbase/bco.registry.svg?branch=master)](https://travis-ci.org/openbase/bco.registry?branch=master)
 [![Build Status](https://travis-ci.org/openbase/bco.registry.svg?branch=latest-stable)](https://travis-ci.org/openbase/bco.registry?branch=latest-stable)
 
@@ -58,7 +63,7 @@
 
 Repository: <https://github.com/openbase/bco.registry.git>
 
-### BCO DAL
+### DAL - Domotic Abstraction Layer
 [![Build Status](https://travis-ci.org/openbase/bco.dal.svg?branch=master)](https://travis-ci.org/openbase/bco.dal?branch=master)
 [![Build Status](https://travis-ci.org/openbase/bco.dal.svg?branch=latest-stable)](https://travis-ci.org/openbase/bco.dal?branch=latest-stable)
 
@@ -73,13 +78,13 @@ Repository: <https://github.com/openbase/bco.registry.git>
 
 Repository: <https://github.com/openbase/bco.dal.git>
 
-### BCO Device Manager
+### Device Manager
 [![Build Status](https://travis-ci.org/openbase/bco.device.svg?branch=master)](https://travis-ci.org/openbase/bco.device?branch=master)
 [![Build Status](https://travis-ci.org/openbase/bco.device.svg?branch=latest-stable)](https://travis-ci.org/openbase/bco.device?branch=latest-stable)
 
 Repository: <https://github.com/openbase/bco.device.git>
 
-### BCO App Manager
+### App Manager
 [![Build Status](https://travis-ci.org/openbase/bco.app.svg?branch=master)](https://travis-ci.org/openbase/bco.app?branch=master)
 [![Build Status](https://travis-ci.org/openbase/bco.app.svg?branch=latest-stable)](https://travis-ci.org/openbase/bco.app?branch=latest-stable)
 

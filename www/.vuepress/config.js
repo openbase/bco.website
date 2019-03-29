@@ -29,6 +29,7 @@ module.exports = {
                 '/developer/architecture',
                 '/developer/authentication/',
                 '/developer/contribution',
+                '/developer/code-examples',
                 '/developer/ui/'
             ],
 

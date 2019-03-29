@@ -31,8 +31,8 @@ The official bco website repository used to present the project and community gu
 * Setup Vuepress
     * Via brew: ```brew install nodejs npm yarn```
     * Navigate into the project folder and perform:
-```yarn install vuepress```
+```yarn add vuepress```
 
 ## Run Local Webserver
 Navigate into the project folder and perform:
-```yarn run www:dev```
+```yarn serve```

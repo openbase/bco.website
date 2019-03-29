@@ -25,5 +25,4 @@ features:
 # Based on
 * [Google Protocol Buffer](https://developers.google.com/protocol-buffers/)
 * [Robotics Service Bus](http://docs.cor-lab.de//rsb-manual/0.17/html/index.html)
-* ...
 <Footer/>

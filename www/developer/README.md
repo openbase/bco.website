@@ -19,7 +19,7 @@
 * Developer Interfaces
   * [BCO Registry Editor](ui/bco-registry-editor.md): Tool to introspect, add, register and delete units, templates and class entries. 
   * [BCO Stage](https://www.techfak.uni-bielefeld.de/csra/nightly/components/pointing_smart_control.html): 3D Environment Visualization
-  * [BCO Visual Remote](ui/bco-visual-remote): Generic control interface to access all services of a unit.
+  * [BCO Visual Remote](ui/bco-visual-remote.md): Generic control interface to access all services of a unit.
   * [BCO Action Inspector](ui/bco-action-inspector.md): Used to make the current action - responsibilities visible.
 * Addons
   * [PSC - Pointing Smart Control](addon/bco-psc.md): Control your environment via pointing gestures.
@@ -40,7 +40,7 @@
 ::: tip INFO
 Your research project is using Base Cube One but not listed here?
 We would love to know all details about it and support you during your development.
-Please contact us to get in touch.
+Please [contact us](https://openbase.org/contact/) to get in touch.
 :::
 
 
