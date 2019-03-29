@@ -42,7 +42,7 @@ module.exports = {
             ]
         },
         lastUpdated: 'Last Updated',
-        repo: 'openbase/bco.website',
+        repo: 'openbase',
         // if your docs are in a different repo from your main project:
         docsRepo: 'openbase/bco.website',
         docsDir: 'www',
@@ -60,6 +60,6 @@ module.exports = {
         lineNumbers: true
     },
 
-    sidebar: 'auto',
+    //sidebar: 'auto',
     serviceWorker: true
 }

@@ -195,3 +195,6 @@ They have been integrated into a self developed container, the `SVGIcon` class.
 These icons can be used for normal application buttons and labels but they can also be for the various device panes to illustrate their functions. The `SVGIcon` allows to combine two material design icons into one object by stacking them above one another. One can achieve nice effects if an icon is provided as an outline and as a filled variant this way. Furthermore the `SVGIcon` class offers methods to set and change (animated) the color and even to change the fore/background icon during runtime. 
 
 _The drawback of this solution is that one can only use the icons of the supported fonts by FontAwesomeFX. Even though it is really a nice way to integrate professional icons into an application and offer the opportunity to scale them as much as you need because they are vector based._
+
+
+[Source Code](https://github.com/openbase/bco.bcozy)

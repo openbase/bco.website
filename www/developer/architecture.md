@@ -34,9 +34,12 @@
 * The position of a unit is anchored to the base of its 3d bounding box.
 * Bounding box base should be aligned to the unit position which means the bounding box offset (left_front_bottom) should not be used!
 
-# Software Components
+## Actions
+![System Architecture](/images/ActionStateTransitions.svg)
 
-![GUI Overview](/images/BCO_Architecture_Paramite.png)
+## Software Components
+
+![System Architecture](/images/BCOSystemArchitecture.svg)
 
 ## Core Framework
 

@@ -12,7 +12,7 @@ features:
   details: Too many smart things are fighting in your home? BCO solves such interference depending on the current situation. In addition, human actions are always prioritized to ensure a pleasantly smart home experience.
 ---
 
-![GUI Overview](/images/bcozy/bcozy_gui_overview.png)
+![GUI Overview](/images/bcozy/bcozy.png)
 
 # Platform Integrations
 * [openHAB 2](https://openhab.org)
