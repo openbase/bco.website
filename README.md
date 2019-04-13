@@ -5,13 +5,13 @@ The official bco website repository used to present the project and community gu
 [![Netlify Status](https://api.netlify.com/api/v1/badges/32f23ef3-627b-4e8c-ac68-52da56fe5b9e/deploy-status)](https://app.netlify.com/sites/basecubeone/deploys)
 
 Online: https://basecubeone.org
-Master: 
+Master: https://master.openbase.netlify.com/
 
 
 ## Technical Details
 
 * used framework: https://vuepress.vuejs.org/
-* build and served via: https://master.openbase.netlify.com/
+* build and served via: https://openbase.netlify.com/
 
 ## Install
 
