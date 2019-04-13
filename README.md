@@ -4,7 +4,7 @@ The official bco website repository used to present the project and community gu
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/32f23ef3-627b-4e8c-ac68-52da56fe5b9e/deploy-status)](https://app.netlify.com/sites/basecubeone/deploys)
 
-Online: https://basecubeone.org
+Online: https://basecubeone.org  
 Master: https://master.openbase.netlify.com/
 
 
