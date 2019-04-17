@@ -90,7 +90,7 @@ host    = 192.168.x.x
 
 ## BCO Installation
 
-Create a new developer directory if it not already exists (e.g. ``~/workspace/openbase``) and change into these directory.
+Create a new development directory if it not already exists (e.g. ``~/workspace/openbase``) and change into these directory.
 ```
 mkdir -p ~/workspace/openbase
 cd ~/workspace/openbase
@@ -108,11 +108,7 @@ We recommend to checkout and install the ```master``` branch in case you start t
 The ```latest-stable``` branch is still linking against BCO 1.6 which will be soon replaced by BCO 2.0.
 Be aware to [setup the snapshot repository](#setup-snapshot-repository) before building the ```master``` branch.
 :::
-This core repository provides all binaries and libraries. If you plan to extend or bugfix any BCO core components, you can download all sub-modules (exclusive for bco development) via the following command:
-```
-cd ~/workspace/openbase/bco
-./workspace-prepare.sh
-```
+This core repository provides all binaries and libraries needed to start and setup BCO. Additionally, the sourcecode of the bco core components is provided as well via sub-modules (exclusive for bco core development). Those are empty by default and only required for BCO core development. More details about how to build the entire project form scatch can be found at the last installation section. 
 
 ## Setup Snapshot Repository
 ::: tip INFO
@@ -185,3 +181,39 @@ device-class-db
 service-template-db
 unit-template-db
 ```
+
+## BCO Core Component Development Preparations
+
+::: info
+This section is only required if you plan to extend or bugfix any BCO core components.
+:::
+
+Before diving into the BCO core development the sourcecode needs to be downloaded and compiled for each submodule. Because BCO presists of many submodules provided by different repositories you can use the openbase developer tools to simplify the handling. Therefore, the first step is to download and install those tools via:
+```
+cd ~/workspace/openbase
+git clone -b master https://github.com/openbase/developer.tools.git
+cd developer.tools
+./install.sh
+```
+Than we prepare the workspace and download the latest submodule soucecode.
+```
+cd ~/workspace/openbase/bco
+./workspace-prepare.sh
+./workspace-update.sh
+```
+If the workspace is prepared, we can use the ```all``` script to ease all submodule operations. It just executes the given command for all submodules. Therefore, the following command can be used to compile and install all summodule binaries into oure workspace:
+```
+cd ~/workspace/openbase/bco
+all ./install.sh
+```
+::: info
+The initial installation can take a while, so relax and let the scripts to the work.
+:::
+::: warn
+Once you start building BCO via its submodules you should avoid to use the ```install.sh``` script on repository top level. Otherwise you might overwrite and therefore downgrade your binaries placed in the ```bin``` folder of your ```$prefix```.
+:::
+
+Once you inst
+
+
+
