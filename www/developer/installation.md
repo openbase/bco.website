@@ -185,23 +185,26 @@ unit-template-db
 ## BCO Core Component Development Preparations
 
 ::: info
-This section is only required if you plan to extend or bugfix any BCO core components.
+This section is only required if you plan to extend or bug-fix any BCO core components.
 :::
 
-Before diving into the BCO core development the sourcecode needs to be downloaded and compiled for each submodule. Because BCO presists of many submodules provided by different repositories you can use the openbase developer tools to simplify the handling. Therefore, the first step is to download and install those tools via:
+Before diving into the BCO core development the sourcecode needs to be downloaded and compiled for each submodule.
+Because BCO persists of many submodules provided by different repositories you can use the openbase developer tools to simplify the handling.
+Therefore, the first step is to download and install those tools via:
 ```
 cd ~/workspace/openbase
 git clone -b master https://github.com/openbase/developer.tools.git
 cd developer.tools
 ./install.sh
 ```
-Than we prepare the workspace and download the latest submodule soucecode.
+Then the workspace needs to be prepared by download the latest submodule source-code.
 ```
 cd ~/workspace/openbase/bco
 ./workspace-prepare.sh
 ./workspace-update.sh
 ```
-If the workspace is prepared, we can use the ```all``` script to ease all submodule operations. It just executes the given command for all submodules. Therefore, the following command can be used to compile and install all summodule binaries into oure workspace:
+If the workspace is prepared, we can use the ```all``` script to ease all submodule operations. It just executes the given command for all submodules.
+Therefore, the following command can be used to compile and to install all submodule binaries into the workspace:
 ```
 cd ~/workspace/openbase/bco
 all ./install.sh
@@ -209,11 +212,13 @@ all ./install.sh
 ::: info
 The initial installation can take a while, so relax and let the scripts to the work.
 :::
+
 ::: warn
-Once you start building BCO via its submodules you should avoid to use the ```install.sh``` script on repository top level. Otherwise you might overwrite and therefore downgrade your binaries placed in the ```bin``` folder of your ```$prefix```.
+Once you start building BCO via its submodules you should avoid to use the ```install.sh``` script on repository top level.
+Otherwise you might overwrite and downgrade your binaries placed in the ```bin``` folder of your ```$prefix```.
 :::
 
-Once you inst
-
+Now everything should be ready to start the development. We recommend to use IntelliJ as IDE for BCO.
+The repository includes an IntelliJ project configuration so just open ```~/workspace/openbase/bco``` in the IDE.
 
 
