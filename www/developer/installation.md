@@ -184,7 +184,7 @@ unit-template-db
 
 ## BCO Core Component Development Preparations
 
-::: info
+::: tip INFO
 This section is only required if you plan to extend or bug-fix any BCO core components.
 :::
 
@@ -209,7 +209,7 @@ Therefore, the following command can be used to compile and to install all submo
 cd ~/workspace/openbase/bco
 all ./install.sh
 ```
-::: info
+::: tip INFO
 The initial installation can take a while, so relax and let the scripts to the work.
 :::
 
