@@ -2,7 +2,9 @@
 
 This examples can be used as kick-off before jumping into the bco development. They pick up the basic functions like how to query, control and access any units.
 
-Note: Please make sure spread and bco are started within your network before executing the howtos.
+::: tip Note
+Please make sure spread and bco are started within your network before executing the howtos.
+:::
 
 ## Java DAL Remote
 

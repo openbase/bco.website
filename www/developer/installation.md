@@ -98,7 +98,7 @@ cd ~/workspace/openbase
 
 ## Repository Download 
 
-Download the bco core repository into your development workspace.
+Download the bco main repository into your development workspace.
 ```
 cd ~/workspace/openbase
 git clone -b master https://github.com/openbase/bco.git
@@ -108,14 +108,18 @@ We recommend to checkout and install the ```master``` branch in case you start t
 The ```latest-stable``` branch is still linking against BCO 1.6 which will be soon replaced by BCO 2.0.
 Be aware to [setup the snapshot repository](#setup-snapshot-repository) before building the ```master``` branch.
 :::
-This core repository provides all binaries and libraries needed to start and setup BCO. Additionally, the sourcecode of the bco core components is provided as well via sub-modules (exclusive for bco core development). Those are empty by default and only required for BCO core development. More details about how to build the entire project form scatch can be found at the last installation section. 
+This main repository provides all binaries and libraries needed to start and setup BCO.
+Additionally, the sourcecode of the bco core components is provided as well via sub-modules (exclusive for bco core development).
+Those are empty by default and only required for BCO core development.
+More details about how to build the entire project form scratch can be found at [BCO Core Component Development Preparations](#bco-core-component-development-preparations). 
 
 ## Setup Snapshot Repository
 ::: tip INFO
 This step is only required if you are using a non release branch (e.g. master) or link against it.
 :::
 
-BCO is using the maven as build tool. All dependencies are deployed at the central maven repositories and will be downloaded without any specific configuration for stable releases. In case you want to build a bco snapshot release or your project depends on any snapshots you have to add the following public repository configuration to your global maven settings file (```~/.m2/settings.xml```).
+BCO is using maven as build tool. All dependencies are deployed at the central maven repositories and will be downloaded without any specific configuration for stable releases.
+In case you want to build a bco snapshot release or your project depends on any snapshots you have to add the following public repository configuration to your global maven settings file (```~/.m2/settings.xml```).
 
 ```xml
 <?xml version="1.0"?>
@@ -124,6 +128,9 @@ BCO is using the maven as build tool. All dependencies are deployed at the centr
     <profiles>
         <profile>
             <id>openbase</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <downloadJavadocs>true</downloadJavadocs>
                 <downloadSources>true</downloadSources>
@@ -156,21 +163,21 @@ BCO is using the maven as build tool. All dependencies are deployed at the centr
 
 ## Installation
 
-Now, you should be able to start the installation. During this, all bco core components are installed to the previously defined ```$prefix```. To perform the installation (or update the components later on) execute the installation script provided by the bco folder.
+Now you should be able to start the installation.
+During this, all bco core components are installed to the previously defined ```$prefix```.
+To perform the installation (or update the components later on) execute the installation script provided by the bco folder.
 ```
 ./install.sh
 ```
 
-## How to Restore a Backup or Demo Database
+## Database Setup
 
-To restore an already existing bco setup, just place the related ```db``` directory within ```~/.config/bco/var/registry```. Sometimes its useful during development to play around with an already complex environment setup. The following steps explain how to setup such an example database. 
-```
-mkdir -p ~/.config/bco/var/registry
-cd ~/.config/bco/var/registry
-git clone https://github.com/csra/bco.registry.csra-db db
-```
-::: tip INFO
-In general we recommend to use GIT to versioning your database. But please make sure the external BCO maintained DBs (template/class) are excluded via ```.gitigrone```.
+A fresh and empty database is generated during the first start of BCO.
+This database is placed at ```~/.config/bco/var/registry/db``` and only contains a root location and some system user as well as the default admin.
+Please use the ``bco-registry-editor`` to add further units to the bco db.
+
+::: warning INFO
+In general we recommend to use GIT to versioning your database. But please make sure the external BCO maintained DBs (template/class) are excluded via ```.gitignore```.
 :::
 ```
 // ~/.config/bco/var/registry/db/.gitignore
@@ -181,6 +188,19 @@ device-class-db
 service-template-db
 unit-template-db
 ```
+
+### How to setup a Demo Database
+Sometimes its useful during development to play around with an already complex environment setup.
+The following steps explain how to setup such an example database. 
+```
+mkdir -p ~/.config/bco/var/registry
+cd ~/.config/bco/var/registry
+git clone https://github.com/csra/bco.registry.csra-db db
+```
+
+### How to Restore a Backup
+
+To restore an already existing bco setup, just place the related ```db``` directory within ```~/.config/bco/var/registry```.
 
 ## BCO Core Component Development Preparations
 
@@ -203,7 +223,8 @@ cd ~/workspace/openbase/bco
 ./workspace-prepare.sh
 ./workspace-update.sh
 ```
-If the workspace is prepared, we can use the ```all``` script to ease all submodule operations. It just executes the given command for all submodules.
+If the workspace is prepared, we can use the ```all``` script to ease all submodule operations.
+It just executes the given command for all submodules.
 Therefore, the following command can be used to compile and to install all submodule binaries into the workspace:
 ```
 cd ~/workspace/openbase/bco
@@ -213,12 +234,13 @@ all ./install.sh
 The initial installation can take a while, so relax and let the scripts to the work.
 :::
 
-::: warn
+Now everything should be ready to start the development. We recommend to use IntelliJ as IDE for BCO.
+The main repository includes an IntelliJ project configuration so just open ```~/workspace/openbase/bco``` in the IDE.
+
+::: danger INFO
 Once you start building BCO via its submodules you should avoid to use the ```install.sh``` script on repository top level.
 Otherwise you might overwrite and downgrade your binaries placed in the ```bin``` folder of your ```$prefix```.
 :::
 
-Now everything should be ready to start the development. We recommend to use IntelliJ as IDE for BCO.
-The repository includes an IntelliJ project configuration so just open ```~/workspace/openbase/bco``` in the IDE.
 
 
