@@ -24,6 +24,7 @@
 * Addons
   * [PSC - Pointing Smart Control](addon/bco-psc.md): Control your environment via pointing gestures.
   * [BCO Cloud](addon/bco-cloud.md): The bco cloud acts as gateway for third party integrations.
+  * [BCO Persistence](addon/bco-persistence.md): Addon to store the history of all service state changes.
   * [BCO Ontology](addon/bco-ontology.md): The ontology is a fully synchronized semantic representation of the smart environment state.
   * [Eveson - Event Sonification](addon/bco-eveson.md): An auditive display of your smart environment.
 * [Dependencies](dependencies.md)
