@@ -23,8 +23,8 @@ For running any java examples you only need to include the dal remote dependency
 
 Request the unit
 ```java
-    LOGGER.info("request the scene with the label \"WatchingTV\"");
-    testScene = Units.getUnitByLabel("WatchingTV", true, Units.SCENE);
+    LOGGER.info("request the scene with the alias \"Scene-9\"");
+    testScene = Units.getUnitByAlias("Scene-9", true, Units.SCENE);
 ```
 Control the unit
 ```java
@@ -37,16 +37,16 @@ Control the unit
 
 Request the unit
 ```java
-    LOGGER.info("request the light unit with the label \"TestUnit_0\"");
-    testLight = Units.getUnitByLabel("TestUnit_0", true, Units.LIGHT_COLORABLE);
+    LOGGER.info("request the light unit with the alias \"ColorableLight-0\"");
+    testLight = Units.getUnitByAlias("ColorableLight-7", true, Units.LIGHT_COLORABLE);
 ```
 Control the unit
 ```java
     LOGGER.info("switch the light on");
     testLight.setPowerState(PowerState.State.ON);
 
-    LOGGER.info("switch light color to blue");
-    testLight.setColor(Color.BLUE);
+    LOGGER.info("switch light color to red");
+    testLight.setColor(HSBColor.newBuilder().setHue(0d).setSaturation(1d).setBrightness(1d).build());
 ```
 
 ### How to observe a location specific reed contact
