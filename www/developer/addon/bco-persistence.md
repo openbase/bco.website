@@ -2,13 +2,13 @@
 
 This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector``` app can be used to store the history of unit service state changes. This can for example be useful to compute and monitor the current economy level of the smart environment.
 
-##How to setup InfluxDB
+## How to setup InfluxDB
 
     Visit https://v2.docs.influxdata.com/v2.0/get-started/ to get startet with InfluxDB 2.0.  
     After you setup your initial user, bucket and organization you are able to use the database.
 
-##How to setup setup the ```BCO Influxdb Connector``` via ```bco-registry-editor```.
-1. ###App Class
+##  How to setup setup the ```BCO Influxdb Connector``` via ```bco-registry-editor```.
+1. ### App Class
  To use the InfluxDbConnector you need to create a new InfluxDbConnector App class if it does not already exist.  <br/><br/>
  Therefore you need to use:   <br/><br/>
 ~~~BASH
@@ -34,7 +34,7 @@ To define the new class as an InfluxDB Connector you need to add the label and a
     
       
    
-3. ###Available Meta Config
+3. ### Available Meta Config
  The unit needs more parameters to work, so you need to add this MetaConfig parameters:
 
       * INFLUXDB_URL → Url of your InfluxDB
