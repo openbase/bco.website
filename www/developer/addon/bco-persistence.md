@@ -34,19 +34,19 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
       
    
 3. ### Available Meta Config
- The unit needs more parameters to work, so you need to add this MetaConfig parameters:
+  You also need to add this values to the MetaConfig of your new unit.
 
-      * INFLUXDB_URL → Url of your InfluxDB
-      * INFLUXDB_BUCKET → Name of the bucket where your data will be saved
-      * INFLUXDB_BATCH_TIME → Time limit after your batch is written to the database
-      * INFLUXDB_BATCH_LIMIT → Max size of your batch
-      * INFLUXDB_TOKEN → Token which has the rights to read/write into your database
-      * INFLUXDB_ORG → Org for the bucket
+       * INFLUXDB_URL → Url of your InfluxDB
+       * INFLUXDB_BUCKET → Name of the bucket where your data will be saved
+       * INFLUXDB_BATCH_TIME → Time limit after your batch is written to the database
+       * INFLUXDB_BATCH_LIMIT → Max size of your batch
+       * INFLUXDB_TOKEN → Token which has the rights to read/write into your database
+       * INFLUXDB_ORG → Org for the bucket
 
-Info: At the moment the MetaConfig can't save '=' in the values so the '==' at the end of the token is missing.  
-It will be automatically attached in the code.  
-      An example config could look like this:
-![metaconfig](img/metaconfig.png)
+  Info: At the moment the MetaConfig can't save '=' in the values so the '==' at the end of the token is missing.  
+  It will be automatically attached in the code.  
+  An example config could look like this:
+  ![metaconfig](img/metaconfig.png)
 
 
   
