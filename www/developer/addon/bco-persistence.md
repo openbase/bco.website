@@ -4,8 +4,8 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
 
 ## How to setup InfluxDB
 
-    Visit https://v2.docs.influxdata.com/v2.0/get-started/ to get startet with InfluxDB 2.0.  
-    After you setup your initial user, bucket and organization you are able to use the database.
+ Visit https://v2.docs.influxdata.com/v2.0/get-started/ to get startet with InfluxDB 2.0.  
+ After you setup your initial user, bucket and organization you are able to use the database.
 
 ##  How to setup setup the ```BCO Influxdb Connector``` via ```bco-registry-editor```.
 1. ### App Class
@@ -21,7 +21,7 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
 
 2.   ###UnitRegistry  
  To get a unit from the new class you need to register it.  
- Therefore you need to choose: UnitRegistry → App
+ Therefore you need to choose: UnitRegistry → App  
  ![add_unit](img/add_unit.png)
  
  Now add a new unit with rightlick → Add
@@ -42,7 +42,7 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
       * INFLUXDB_TOKEN → Token which has the rights to read/write into your database
       * INFLUXDB_ORG → Org for the bucket
 
-Info: At the moment the MetaConfig can't save '=' in the values so the '==' at the end of the token is missing.
+Info: At the moment the MetaConfig can't save '=' in the values so the '==' at the end of the token is missing.  
 It will be automatically attached in the code.  
       An example config could look like this:
 ![metaconfig](img/metaconfig.png)
