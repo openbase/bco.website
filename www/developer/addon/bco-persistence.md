@@ -45,7 +45,9 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
 
   Info: At the moment the MetaConfig can't save '=' in the values so the '==' at the end of the token is missing.  
   It will be automatically attached in the code.  
+  
   An example config could look like this:
+  
   ![metaconfig](img/metaconfig.png)
 
 
