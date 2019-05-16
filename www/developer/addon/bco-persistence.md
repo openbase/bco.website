@@ -34,7 +34,7 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
       
    
 3. ### Available Meta Config
-  You also need to add these values to the MetaConfig of your new unit.
+   You also need to add these values to the MetaConfig of your new unit.
 
        * INFLUXDB_URL → Url of your InfluxDB
        * INFLUXDB_BUCKET → Name of the bucket where your data will be saved
@@ -43,12 +43,12 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
        * INFLUXDB_TOKEN → Token which has the rights to read/write into your database
        * INFLUXDB_ORG → Org for the bucket
 
-  Info: At the moment the MetaConfig can't save '=' in the values so the '==' at the end of the token is missing.  
-  It will be automatically attached in the code.  
+   Info: At the moment the MetaConfig can't save '=' in the values so the '==' at the end of the token is missing.  
+   It will be automatically attached in the code.  
   
-  An example config could look like this:
+   An example config could look like this:
   
-  ![metaconfig](img/metaconfig.png)
+   ![metaconfig](img/metaconfig.png)
 
 
   
