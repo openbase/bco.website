@@ -19,16 +19,17 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
    To define the new class as an InfluxDB Connector you need to add the label and apply:  <br/><br/>
    ![add_class_entry](img/influxdB_add_class.png)
 
-2.   ###UnitRegistry  
- To get a unit from the new class you need to register it.  
- Therefore you need to choose: UnitRegistry → App  
- ![add_unit](img/add_unit.png)
+2. ### UnitRegistry  
+   To get a unit from the new class you need to register it.  
+   Therefore you need to choose: UnitRegistry → App  
+   
+   ![add_unit](img/add_unit.png)
  
- Now add a new unit with rightlick → Add
+   Now add a new unit with rightlick → Add
 
- To add the InfluxDB connector class to the new unit, select InfluxDB Connector as AppClassId and press apply.
+   To add the InfluxDB connector class to the new unit, select InfluxDB Connector as AppClassId and press apply.
 
- ![add_unit_class](img/new_unit.png)
+   ![add_unit_class](img/new_unit.png)
     
       
    
