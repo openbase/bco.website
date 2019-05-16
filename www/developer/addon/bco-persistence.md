@@ -9,15 +9,15 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
 
 ##  How to setup setup the ```BCO Influxdb Connector``` via ```bco-registry-editor```.
 1. ### App Class
- To use the InfluxDbConnector you need to create a new InfluxDbConnector App class if it does not already exist.  
- Therefore you need to use:  
+    To use the InfluxDbConnector you need to create a new InfluxDbConnector App class if it does not already exist.  
+    Therefore you need to use:  
   
- Now you need to select: ClassRegistry → App  
- ![add_class](img/bco_registry_add_class.png) 
- There you have to rightclick and choose "Add".  
+   Now you need to select: ClassRegistry → App  
+   ![add_class](img/bco_registry_add_class.png) 
+   There you have to rightclick and choose "Add".  
    
- To define the new class as an InfluxDB Connector you need to add the label and apply:  <br/><br/>
- ![add_class_entry](img/influxdB_add_class.png)
+   To define the new class as an InfluxDB Connector you need to add the label and apply:  <br/><br/>
+   ![add_class_entry](img/influxdB_add_class.png)
 
 2.   ###UnitRegistry  
  To get a unit from the new class you need to register it.  
