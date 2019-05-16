@@ -53,7 +53,12 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
 
   
 
-3. How to query influx db.
+## How to query influx db.
+
+
+InfluxDB 2.0 uses Flux as the query language.
+A good guide how to get started with Flux is provided by https://v2.docs.influxdata.com/v2.0/query-data/get-started/.
+  
 4. How to create a grafana widget monitoring the current power history
    1. Grafana is...
 
