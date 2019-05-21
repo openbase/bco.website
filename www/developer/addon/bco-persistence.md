@@ -39,7 +39,9 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
             DEFAULT: openbase
        * INFLUXDB_TOKEN → Token with read and write access to your database
        
-    You can find your influxdb token here:
+
+    When you log into your chonograph interface (default: http://localhost:9999 ), you will find your tokens here:
+
     ![influxd_token](/images/influxd_token.png)
 
   
