@@ -61,9 +61,9 @@ A good guide how to get started with Flux is provided by https://v2.docs.influxd
    It is already included in influxdb 2.0.
    With Chronograf you can quickly see your data and build dashboards.
    
-   Therefore, you need to log into your Chronograf and select the Data Explorer:             ![data_explorer](/images/data_explorer.png)
+   Therefore, you need to log into your Chronograf and select the Data Explorer.
    
-   If you  have run ```bco-test --simulate``` and collected some data in your bucket, you should see some values.
+   If you  have run ```bco-test --simulate``` and collected some data in your bucket, you should see some measurements.
    ![query_data](/images/chronograf_explorer.png)
    
    This query selects from the measurement ```power_consumption_state_service``` the field ```consumption``` data from the tag alias ```PowerConsumptionSensor-11```.  
