@@ -4,8 +4,12 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
 
 ## How to setup InfluxDB
 
- Visit https://v2.docs.influxdata.com/v2.0/get-started/ to get startet with InfluxDB 2.0.  
+ [Get started](https://v2.docs.influxdata.com/v2.0/get-started/) with InfluxDB v2.0 to collect your data.  
  After you setup your initial user, bucket and organization you are able to use the database.
+ 
+    * DEFAULT bucket: bco-persistence  
+    * DEFAULT org: openbase
+
 
 ##  How to setup setup the ```BCO Influxdb Connector``` via ```bco-registry-editor```.
 
@@ -40,7 +44,7 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
        * INFLUXDB_TOKEN → Token with read and write access to your database
        
 
-    When you log into your chonograph interface (default: http://localhost:9999 ), you will find your tokens here:
+    When you log into your Chronograf interface (default: http://localhost:9999 ), you will find your tokens here:
 
     ![influxd_token](/images/influxd_token.png)
 
@@ -52,10 +56,28 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
 InfluxDB 2.0 uses Flux as a functional data scripting language.
 A good guide how to get started with Flux is provided by https://v2.docs.influxdata.com/v2.0/query-data/get-started/.
   
-## How to create a grafana widget monitoring the current power history
-   1. Grafana is...
+## How to create a Chronograf widget 
+   Chronograf    is the user interface and administrative component of the InfluxDB platform.
+   It is already included in influxdb 2.0.
+   With Chronograf you can quickly see your data and build dashboards.
+   
+   Therefore, you need to log into your Chronograf and select the Data Explorer:             ![data_explorer](/images/data_explorer.png)
+   
+   If you  have run ```bco-test --simulate``` and collected some data in your bucket, you should see some values.
+   ![query_data](/images/chronograf_explorer.png)
+   
+   This query selects from the measurement ```power_consumption_state_service``` the field ```consumption``` data from the tag alias ```PowerConsumptionSensor-11```.  
+   It creates this query in Flux:
+   ![flux-query](/images/flux_query.png)
+   
+   There are more options to visualize the data like raw_data, histogram table etc.
+   You can also save your graphs into dashboards.
+   
+   If you want know about the possibilities of chronograf you can have a look at the official documentation here [Chronograf documentation](https://docs.influxdata.com/chronograf/v1.7/)
+   
+   
 
 
-[Source Code](https://github.com/openbase/bco.app ....)
+[Source Code](https://github.com/openbase/bco.app/tree/master/influxdbconnector)
 
-![Grafana Widget Screenshot](/images/grafana.jpg)
+
