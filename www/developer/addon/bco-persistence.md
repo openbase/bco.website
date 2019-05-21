@@ -29,9 +29,9 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
    
        * INFLUXDB_URL → Url of your InfluxDB  
             DEFAULT: http://localhost:9999
-       * INFLUXDB_BUCKET → Name of the bucket where your data will be saved 
+       * INFLUXDB_BUCKET → Name of the bucket where your data will be stored
             DEFAULT: bco-persistence
-       * INFLUXDB_BATCH_TIME → Time limit after your batch is written to the database
+       * INFLUXDB_BATCH_TIME → Time limit(ms) after your batch is written to the database
             DEFAULT: 1000
        * INFLUXDB_BATCH_LIMIT → Max size of your batch 
             DEFAULT: 100
