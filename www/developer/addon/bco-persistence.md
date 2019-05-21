@@ -8,46 +8,36 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
  After you setup your initial user, bucket and organization you are able to use the database.
 
 ##  How to setup setup the ```BCO Influxdb Connector``` via ```bco-registry-editor```.
-1. ### App Class
-    To use the InfluxDbConnector you need to create a new InfluxDbConnector App class if it does not already exist.  
-    Therefore, you need to use:  
-  
-   Now you need to select: ClassRegistry → App  
-   ![add_class](img/bco_registry_add_class.png) 
-   There you have to right click and choose "Add".  
-   
-   To define the new class as an InfluxDB Connector you need to add the label and apply:  <br/><br/>
-   ![add_class_entry](img/influxdB_add_class.png)
 
-2. ### UnitRegistry  
-   To get a unit of the new class you need to register it.  
+1. ### UnitRegistry  
+   To get a unit of the InfluxDbConnector class you need to register it.  
    Therefore, you need to choose: UnitRegistry → App  
    
-   ![add_unit](img/add_unit.png)
+   ![add_unit](/images/add_unit.png)
  
-   Now add a new unit with right lick → Add
+   Now add a new unit with right click → Add
 
    To add the InfluxDB connector class to the new unit, select InfluxDB Connector as AppClassId and press apply.
 
-   ![add_unit_class](img/new_unit.png)
+   ![add_unit_class](/images/new_unit.png)
     
       
    
 3. ### Available Meta Config
-   You also need to add these values to the MetaConfig of your new unit.
-
-       * INFLUXDB_URL → Url of your InfluxDB
-       * INFLUXDB_BUCKET → Name of the bucket where your data will be saved
+   You also need to add some values to the MetaConfig of your new unit.
+   If you want to use the default values all values except INFLUXDB_TOKEN are not necessary.
+   
+       * INFLUXDB_URL → Url of your InfluxDB  
+            DEFAULT: http://localhost:9999
+       * INFLUXDB_BUCKET → Name of the bucket where your data will be saved 
+            DEFAULT: bco-persistence
        * INFLUXDB_BATCH_TIME → Time limit after your batch is written to the database
-       * INFLUXDB_BATCH_LIMIT → Max size of your batch
-       * INFLUXDB_TOKEN → Token which has the rights to read/write into your database
-       * INFLUXDB_ORG → Org for the bucket
-
-  
-   An example config could look like this:
-  
-   ![metaconfig](img/metaconfig.png)
-
+            DEFAULT: 1000
+       * INFLUXDB_BATCH_LIMIT → Max size of your batch 
+            DEFAULT: 100
+       * INFLUXDB_ORG → Org for the bucket 
+            DEFAULT: openbase
+        * INFLUXDB_TOKEN → Token with read and write access to your databaseL
 
   
 
