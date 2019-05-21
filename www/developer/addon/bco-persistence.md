@@ -37,7 +37,10 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
             DEFAULT: 100
        * INFLUXDB_ORG → Org for the bucket 
             DEFAULT: openbase
-        * INFLUXDB_TOKEN → Token with read and write access to your databaseL
+       * INFLUXDB_TOKEN → Token with read and write access to your database
+       
+    You can find your influxdb token here:
+    ![influxd_token](/images/influxd_token.png)
 
   
 
