@@ -11,26 +11,30 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
     * DEFAULT org: openbase
 
 
-##  How to setup setup the ```BCO Influxdb Connector``` via ```bco-registry-editor```.
+##  How to setup the BCO Influxdb Connector App.
 
-1. ### UnitRegistry  
-   To get a unit of the InfluxDbConnector class you need to register it.  
-   Therefore, you need to choose: UnitRegistry → App  
+The ```BCO Influxdb Connector``` is a BCO app which stores all unit changes into the influxdb.
+
+1. ### Register the new App at the UnitRegistry  
+   To install the InfluxDbConnector you need to register it by using the ```bco-registry-editor```.
+   So please make sure you are connected to your BCO instance and start the ```bco-registry-editor```.
+   Than, you need to navigate to: UnitRegistry → App  
    
-   ![add_unit](/images/add_unit.png)
+   ![add_unit](/images/persistence/add_unit.png)
  
    Now add a new unit with right click → Add
 
    To add the InfluxDB connector class to the new unit, select InfluxDB Connector as AppClassId and press apply.
 
-   ![add_unit_class](/images/new_unit.png)
-    
-      
+   ![add_unit_class](/images/persistence/new_unit.png)
    
-3. ### Available Meta Config
-   You also need to add some values to the MetaConfig of your new unit.
-   If you want to use the default values all values except INFLUXDB_TOKEN are not necessary.
-   
+2. ### Authenticate and Configure the App via Meta Configs
+   Next, you have to setup a authentication token in order to be able to store new data into influxdb.
+   Therefore lookup the token via the Chronograf interface (default: <http://localhost:9999> ). You will find your tokens here:
+   ![influxd_token](/images/persistence/influxd_token.png)
+   Than copy the token and past it into a new MetaConfig entry of the ```BCO Influxdb Connector``` via the ```bco-registry-editor``` e.g. ```INFLUXDB_TOKEN = PASTE_TOKEN_HERE```
+   In case you choose the default values during the influxdb setup and you run influxdb on the same host as influxdb is running, all values except ```INFLUXDB_TOKEN``` are optionally.
+
        * INFLUXDB_URL → Url of your InfluxDB  
             DEFAULT: http://localhost:9999
        * INFLUXDB_BUCKET → Name of the bucket where your data will be stored
@@ -42,40 +46,29 @@ This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector```
        * INFLUXDB_ORG → Org for the bucket 
             DEFAULT: openbase
        * INFLUXDB_TOKEN → Token with read and write access to your database
-       
-
-    When you log into your Chronograf interface (default: http://localhost:9999 ), you will find your tokens here:
-
-    ![influxd_token](/images/influxd_token.png)
-
-  
 
 ## How to query influx db.
-
-
 InfluxDB 2.0 uses Flux as a functional data scripting language.
-A good guide how to get started with Flux is provided by https://v2.docs.influxdata.com/v2.0/query-data/get-started/.
-  
+A good guide how to get started with Flux is provided by the official [Influxdb Documentation](https://v2.docs.influxdata.com/v2.0/query-data/get-started/).
+
 ## How to create a Chronograf widget 
-   Chronograf    is the user interface and administrative component of the InfluxDB platform.
+   Chronograf is the user interface and administrative component of the InfluxDB platform.
    It is already included in influxdb 2.0.
    With Chronograf you can quickly see your data and build dashboards.
    
    Therefore, you need to log into your Chronograf and select the Data Explorer.
    
    If you  have run ```bco-test --simulate``` and collected some data in your bucket, you should see some measurements.
-   ![query_data](/images/chronograf_explorer.png)
+   ![query_data](/images/persistence/chronograf_explorer.png)
    
    This query selects from the measurement ```power_consumption_state_service``` the field ```consumption``` data from the tag alias ```PowerConsumptionSensor-11```.  
    It creates this query in Flux:
-   ![flux-query](/images/flux_query.png)
+   ![flux-query](/images/persistence/flux_query.png)
    
    There are more options to visualize the data like raw_data, histogram table etc.
    You can also save your graphs into dashboards.
    
-   If you want know about the possibilities of chronograf you can have a look at the official documentation here [Chronograf documentation](https://docs.influxdata.com/chronograf/v1.7/)
-   
-   
+   If you want know about the possibilities of chronograf you can have a look at the official documentation here [Chronograf Documentation](https://docs.influxdata.com/chronograf/v1.7/)
 
 
 [Source Code](https://github.com/openbase/bco.app/tree/master/influxdbconnector)
