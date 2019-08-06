@@ -7,8 +7,8 @@ The following directories are used by BCO:
 
 ## Installation Prefix
 
-The default installation prefix of bco points to ``/usr`` where than the **Binary**, **Libary** and the **Shared Data** folder are based on.
-This default loaction is for example be used by the provided debian package to deploy the runtime enviroument. 
+The default installation prefix of bco points to ``/usr`` where than the **Binary**, **Library** and the **Shared Data** folder are based on.
+This default location is for example be used by the provided debian package to deploy the runtime environment. 
 
 This prefix can individually configured via the ``$PREFIX`` system variable.
 Those can be set to any location with user write permissions.
@@ -62,6 +62,6 @@ This path is based on the ``$BCO_HOME`` variable and points to the credential st
 ## Individual Configuration
 
 The system variables``$BCO_HOME`` and ``$PREFIX`` can be used to overwrite the bco home and prefix locations.
-This as well as the other paths can be additioanlly overwritten via command line arguments.
-For this have a closer look at the help page provided by each shipped bco binary e.g ``bco --help``. 
+This as well as the other paths can be additionally overwritten via command line arguments.
+For this have a closer look at the help page provided by each shipped bco binary e.g ``bco --help``.
 One example could be to alternate the registry db location via ``bco --db /my/own/db``.
