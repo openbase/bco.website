@@ -77,14 +77,17 @@ sudo apt-get install librsc0.18 librsb0.18 rsb0.18 rst0.18 cl-rsb rsb-tools-cpp0
 ## RSB Configuration
 
 By default, bco connects to a setup running on your local host. The following steps are required to connect to a BCO remote host instance:
-Create the configuration file ```touch ~/.config/rsb.conf``` and add the following lines to deactivate the socket, enable the spread transport protocol and to define the spread host. 
+Create the configuration file ```touch ~/.config/rsb.conf``` and add the following lines to deactivate the socket, enable the spread transport protocol and to define the spread host (by setting its ip in the lines below, this can also be localhost if you run everything locally).
+::: warning INFO
+Set the ip in the line ```host    = 192.168.x.x``` to match your spread host.
+It can also be set to localhost if you run everything locally (```host    = localhost```).
+:::
 ```
 [transport.socket]
 enabled = 0
     
 [transport.spread]
 enabled = 1
-#host    = localhost
 host    = 192.168.x.x
 ```
 
