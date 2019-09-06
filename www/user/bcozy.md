@@ -18,13 +18,15 @@ The GUI is designed to be controlled by a mouse or by a simple touchscreen inter
 The biggest part of the GUI is the room plan. Once it is loaded, the current plan is shown as a 2D map of the environment. Different aspects of the plan are visualized in different shapes and grey shades. Solid walls consist of a bright white border and are painted in a bright grey. Windows that are placed within walls are slightly cross-striped with different grey tones. Doors that can be opened have the same background color as a room and have hatched outlines. Areas within a room are highlighted with a slightly brighter grey.
 
 ### Location Plan Layers
-Bcozy provides three different view modes for different purposes. To switch between these views there is a select button in the bottom right corner of the location view which pops up the different options when it is clicked.
+Bcozy provides four different view modes for different purposes. To switch between these views there is a select button in the bottom right corner of the location view which pops up the different options when it is clicked.
 
 ![Change view options](/images/bcozy/bcozy_view_change.png) 
 
 The couch symbol is connected to the default view. It is described below (see Room plan interaction). The thermometer opens the _maintenance layer_. It gives an overview over all maintenance-related units, namely batteries, tamper detectors, temperature sensors and smoke detectors. The units are displayed if they have a defined position. The display is not dependent on the selected room, all units are visible, whether their room is selected or not.
 
 The _editing layer_ can be opened with a click on the eye symbol. It displays all units from all rooms of all types, given they have a position and a defined symbol. Some units might not be visible if their type is not implemented yet. In future versions of Bcozy this layer is supposed to allow a re-positioning of the units.
+
+The _power consumption layer_ can be opened with a click on the battery symbol. It displays the power comsumption in a configurable way.
 
 ![Editing layer](/images/bcozy/bcozy_gui_editinglayer.png) 
 
@@ -48,6 +50,31 @@ This kind of grouping is only applied on this layer.
 
 ![Grouped light button expanded](/images/bcozy/bcozy_gui_groupedlamp_extended.png)
 
+## Viewing Power Consumption
+
+The _energy comsumption layer_ displays current and recent power consumption. There are different views which themselves can be configured further. Per default the line chart will be displayed. It is possible to configure the visualization via the right sidebar. 
+
+![Configure visualization on energy UI layer](..) → Bild mit Ansicht der sidebarpane und beschreibung welches Element wozu gehört
+
+Overall there are four different configurations possible: Changing the visualization with the first drop down menu, changing the displayed unit via the second, changing the tracked consumer with the third part and configuring the displayed date range with the last elements. Different visualizations are not capable of utilizing all of these configurational options, so depending on the chosen chart type more or less configuration elements are displayed.
+
+### Visualization Type Selection
+
+The dropdown menu regarding the choice of chart type displayed allows to choose from classical charts like the line chart, bar chart and pie chart and the tree visualization as well as the heatmap.
+
+![A line chart displaying the past power consumption](..) → Bild mit Linechart
+
+The tree visualization shows the current power draw in a metaphor as the trees health. The more power is consumed the less leaves the tree bears. Also, the leaves begin to brown with increasing consumption. Overall, there are eight possible states of the tree displayed.
+
+![Different seasons of the tree chart](..) → Bild mit allen 8 verschiedenen Zuständen des Baums
+
+### Consumer Selection
+
+The consumer selection consists of a checkbox for displaying the global consumption and two optionally displayed dropdown menus for selection a location or a single consumer to query.
+
+### Date Range Selection
+
+The selection of the displayed date range allows to select start and end date of the displayed time range. When the _Current Consumption_ checkbox is selected the datepickers are not shown and the averaged consumption of the past hour is visualized. The interval of displayed data points is automatically chosen to improve usability.
 
 ## Main Menu
 On the left side of the interface the main menu is placed. The menu has two different appearances. These are the expanded standard view where every element is fully shown and the retracted view where just the icons of the menu sections are still visible to have a wider view of the floor plan.
