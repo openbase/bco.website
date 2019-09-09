@@ -68,6 +68,10 @@ The tree visualization shows the current power draw in a metaphor as the trees h
 
 ![Different seasons of the tree chart](..) → Bild mit allen 8 verschiedenen Zuständen des Baums
 
+The heatmap displays consumption of the consumers in the room plan. Depending on the consumption of the consumer his location in the room plan shines from  green over yellow to red.
+
+![The heatmap displaying a current power consumption](..)-> Bild von heatmap mit wasserkocher an
+
 ### Consumer Selection
 
 The consumer selection consists of a checkbox for displaying the global consumption and two optionally displayed dropdown menus for selection a location or a single consumer to query.
