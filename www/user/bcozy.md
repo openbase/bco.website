@@ -66,7 +66,7 @@ The dropdown menu regarding the choice of chart type displayed allows to choose 
 
 The tree visualization shows the current power draw in a metaphor as the trees health. The more power is consumed the less leaves the tree bears. Also, the leaves begin to brown with increasing consumption. Overall, there are eight possible states of the tree displayed.
 
-![Different seasons of the tree chart](..) → Bild mit allen 8 verschiedenen Zuständen des Baums
+![Different seasons of the tree chart](/images/bcozy/power_terminal/allSeasons.png)
 
 The heatmap displays consumption of the consumers in the room plan. Depending on the consumption of the consumer his location in the room plan shines from  green over yellow to red.
 
