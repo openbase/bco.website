@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/openbase/bco.bcozy.svg?branch=master)](https://travis-ci.org/openbase/bco.bcozy?branch=master)
 [![Build Status](https://travis-ci.org/openbase/bco.bcozy.svg?branch=latest-stable)](https://travis-ci.org/openbase/bco.bcozy?branch=latest-stable)
 This documentation provides an overview of the BCozy software and its implementation.
-The program structure, several elements and implementation details are explained to allow a better understanding of the software for future development and enhancements. 
+The program structure, several elements and implementation details are explained to allow a better understanding of the software for future development and enhancements.
 
 The following image displays a full class diagram of every class that is implemented.
 
@@ -45,7 +45,7 @@ _Right now the collapsed main menu state has not been implemented for the pane y
 To consolidate general application settings the `SettingsPane` provides a vertical layout to which control elements can be added. The vertical layout is embedded in a TitledPane to allow hiding the settings whenever they are not needed. At the moment two drop-down menus provide the option to choose the application language and the application theme. For more details about that have a look at the sections (Special topics > Multilanguage support and Special topics > Theme support).
 
 _The TitledPane should have been replaced by a self developed `CustomTitledPane`. This is due to problems when resizing the application. Since there were problems during development and styling of the `CustomTitledPane` it was not changed yet._
- 
+
 ## Context Menu
 The `ContextMenu` class contains a vertical layout to structure all `UnitPane` instances in there. These instances are grouped in `TitledPaneContainers` to consolidate panes for the same functions. A hidden vertical scrollbar (realized with a HiddenSidesPane from the ControlsFX framework) allows a discreet scrolling and avoids distraction if it is not needed.
 
@@ -67,7 +67,7 @@ The main structure is a combination of two panes, a central pane and a sub pane.
 <img src="/images/bcozy/temperatureController.png" width="400">
 <img src="/images/bcozy/temperatureSensor.png" width="400">
 
-The second pane, the sub pane, is used to show more information and, if possible, to adjust the unit. By double clicking on the central pane the system scrolls the sub pane up or down. By default, the central pane is visible only and thereby the user has a better overview above the list of units. The content in both panes are specified to the individual unit. For example the colorable light has two selection areas for color choosing and the dimmer light has a slider for the brightness and the power consumption unit has a information textfield. 
+The second pane, the sub pane, is used to show more information and, if possible, to adjust the unit. By double clicking on the central pane the system scrolls the sub pane up or down. By default, the central pane is visible only and thereby the user has a better overview above the list of units. The content in both panes are specified to the individual unit. For example the colorable light has two selection areas for color choosing and the dimmer light has a slider for the brightness and the power consumption unit has a information textfield.
 
 The table below shows all implemented unit panes with information about the visible information and the settings, which can be regulated.
 
@@ -121,7 +121,7 @@ The interaction of zooming is achieved by making use of the `setOnScroll(...)` m
 When the user performs a double click into a specific tile or region, the location pane performs a smooth transition towards this location, which means that scaling and translation factor will be adjusted in a continuous matter. A `ParallelTransistion` is used to achieve this. Multiple transitions can be added to the `ParallelTransition` which will then be executed in parallel. In this case a `ScaleTransistion` and a `TranslateTransition` are calculated and afterwards executed together via the `play()` method.
 
 ## Layers on the Location Pane
-On top of the `LocationPane` three different layers can be displayed. They provide the user with additional elements to control units directly on the map. 
+On top of the `LocationPane` three different layers can be displayed. They provide the user with additional elements to control units directly on the map.
 The default layer shows lightbulb-shaped buttons that control light units. There are two types of units: room-level units and single lamp units. Both are `UnitConfigs`, but the first is a `LocationConfig`, that means it represents all units in one room. When such a button is clicked, all lamps in one room are switched on or off. The single units represent one instance of unit, for example of the type UnitType.COLORABLE_LIGHT.
 Once a room is selected, the single units are displayed for this room. This was realized with a binding to the `selectedLocationId` of the `LocationPane`.
 
@@ -134,7 +134,7 @@ The `BackgroundPane` controls which of the layers is visible. This is implemente
 In order to connect to the registry, each controller has similar methods like the `LocationController` to fetch and store unit configurations. Each unit is used to create a `UnitButton` (see below).
 These configurations also include a position for the unit. This position has to be transformed before in can be displayed on the map. The transformation takes place in the controllers before each unit is used to instantiate unit buttons. All controllers include data observers so changes to the registry are immediately realized in the GUI.
 
-The layer themselves are realised by instances of the UnitSymbolsPane (for the default layer) or the SimpleUnitSymbolsPane. The difference is that the default layer includes a grouping mechanism for units on the same position and that it displayes room-level units for the rooms that are not selected. 
+The layer themselves are realised by instances of the UnitSymbolsPane (for the default layer) or the SimpleUnitSymbolsPane. The difference is that the default layer includes a grouping mechanism for units on the same position and that it displayes room-level units for the rooms that are not selected.
 Both contain maps that store the buttons as well as methods for adding data and updating the view. The UnitSymbolsPane takes care of the grouping of buttons automatically.
 
 ### Unit Buttons
@@ -144,14 +144,21 @@ Depending on the underlying type, the buttons look and behave differently. For e
 
 If the `UnitsPaneController` notices that two units have the same position, it generates instances of the `UnitButtonGrouped`. This is a wrapper for several units that share a position. It can be clicked, then it expands and displays the usual `UnitButtons` side by side.
 
+### Heatmap
+The heatmap values are calculated with following formula:
+Du[i,j,t] = u[i+1,j,t] + u[i-1,j,t] + u[i,j+1,t] + u[i,j-1,t] - 4*u[i,j,t]/h^2
+The new grid value is then calculated as follows:
+u[i,j,t+1] = u[i,j,t] + dt * Du[i,j,t]
+Where dt is the timestep, and h is the grid-wide. When choosing dt and h the Courant-Friedrichs-Lewy-condition must be observed: dt/h^2 <= 1/4.
+
 ## Menu Header
-Currently the `MenuHeader` class only holds an instance of the `ClockLabel` to display the system time in the upper middle of the application screen. The menu header is placed in the top position of a BorderPane which is implemented in the `ForegroundPane` class. 
+Currently the `MenuHeader` class only holds an instance of the `ClockLabel` to display the system time in the upper middle of the application screen. The menu header is placed in the top position of a BorderPane which is implemented in the `ForegroundPane` class.
 
 ## InfoPane / Footer
 The class `InfoPane` is located at the bottom part of the BorderPane in the `ForegroundPane`. It contains no elements which are always visible and it is only used for info messages, especially for mouse-over information and selection hints.
 
 ## Foreground Pane
-The `ForegroundPane` is placed on top of the `BackgroundPane` within a StackPane in the `BCozy` class. As already described above, the top, bottom, left and right parts are filled with the menus or informative labels. The center is transparent and allows mouse events to pass through to the `BackgroundPane`. It contains the `CenterPane` which holds some floating controls that are placed within an StackPane and positioned by the alignment options. The upper one allows the user to switch to a fullscreen mode and the lower one opens a self implemented pop-up menu. This menu allows the user to switch between different view modes (for example: temperature heat map, motion detection and general settings). 
+The `ForegroundPane` is placed on top of the `BackgroundPane` within a StackPane in the `BCozy` class. As already described above, the top, bottom, left and right parts are filled with the menus or informative labels. The center is transparent and allows mouse events to pass through to the `BackgroundPane`. It contains the `CenterPane` which holds some floating controls that are placed within an StackPane and positioned by the alignment options. The upper one allows the user to switch to a fullscreen mode and the lower one opens a self implemented pop-up menu. This menu allows the user to switch between different view modes (for example: temperature heat map, motion detection and general settings).
 
 _The view modes were not implemented yet but the pop-up menu for switching is still shown even though it does not have any function._
 
@@ -159,7 +166,7 @@ _The view modes were not implemented yet but the pop-up menu for switching is st
 The BCozy software includes some special features. On the one hand it offers the user the possibility to individualize the graphical user interface. On the other hand it supports the user by controlling the units and allows a continuity for a good overview of this interface.
 
 ## Self Developed Widgets
-All implemented widget contents are based on the inheritance of a model from a self developed `widgetPane` class. It creates a `VBox` with a `BorderPane` as central pane and a `Pane` as sub pane. The layout is geared to the `TitledPane` of JavaFx, but this own implementation has the advantage to be full representable. Central and sub panes get the content of the specific widget type and can be designed to the own requirements. 
+All implemented widget contents are based on the inheritance of a model from a self developed `widgetPane` class. It creates a `VBox` with a `BorderPane` as central pane and a `Pane` as sub pane. The layout is geared to the `TitledPane` of JavaFx, but this own implementation has the advantage to be full representable. Central and sub panes get the content of the specific widget type and can be designed to the own requirements.
 
 The sub pane can scroll up and down via timeline animations to hide or show more information. A `mouseListener` on the widget head activates the scroll effect by detection of a double click. At this juncture the listener differentiate between double and single click. Latter activates content of the head itself like power on/off. To get an individual widget with the superclass, different widget types can be set. That means for example with/without sub pane (inclusive scroll effect), with/without reaction via click on the central pane.
 
@@ -177,22 +184,22 @@ To be able to update the language during runtime an observer pattern was impleme
 To be able to implement Observers which can be registered for the language updates, the classes `ObserverButton`, `ObserverLabel` and `ObserverTitledPane` were introduced. They store the language identifier which is the same as in the property files and implements the update-Method which is obligatory for an Observer.
 Additionally the `JPLanguage` class was developed to allow saving and loading of a default language for the application.
 
-_The `JPLanguage` is not fully integrated yet. It may be merged with the `LanguageSelection` class in the future. Currently the available languages are also hardcoded in the settings pane. A more generic way would be to load all available language property files from a specific directory._ 
+_The `JPLanguage` is not fully integrated yet. It may be merged with the `LanguageSelection` class in the future. Currently the available languages are also hardcoded in the settings pane. A more generic way would be to load all available language property files from a specific directory._
 
 ## Theme Support
 To support an easy way to style the application depended on the user needs CSS Styling has been used as much as possible to define the look and feel of the application.
 JavaFX supports CSS styling and provides ways for loading CSS files or using CSS specifications inline in the normal java code.
 In the `BCozy` class, two stylesheets (css files) are added to the scene of the primary stage. This way they are available for all children of the scene which are all the view elements within our application.
-The division of the css files has the following reason: One stylesheet defines the shapes and sizes of all graphical elements of the BCozy program. The other stylesheet defines only the color and perhaps further features as fonts and so on. This way two stylesheets for different look and feels were developed but they only change the colors of the elements. It is always a trade-off between maintainability and flexibility. If one provides all css code in one file, the flexibility is huge but if one has to maintain two complete files it will be very hard to keep all changes synchronous in both files. By dividing the files and allowing the user to change only the parts in which he is actually interested in, maintainability is increased because layout changes regarding size and shape could be made in one central file. 
+The division of the css files has the following reason: One stylesheet defines the shapes and sizes of all graphical elements of the BCozy program. The other stylesheet defines only the color and perhaps further features as fonts and so on. This way two stylesheets for different look and feels were developed but they only change the colors of the elements. It is always a trade-off between maintainability and flexibility. If one provides all css code in one file, the flexibility is huge but if one has to maintain two complete files it will be very hard to keep all changes synchronous in both files. By dividing the files and allowing the user to change only the parts in which he is actually interested in, maintainability is increased because layout changes regarding size and shape could be made in one central file.
 Furthermore extracting sizes, shapes, colors, fonts and so on from the java code into the css code helps the developers to focus on their main tasks and allows designers to style the application independently.
 If the theme is changed from within the application, this is done in the settings pane from the main menu. It triggers the static `changeTheme` function in the `BCozy` class which removes the current stylesheet from the scene and applys the new one. This changes the appearance of the application immediately and all is done in the background of the JavaFx framework.
 
-_During development the `light.css` theme was focused. Therefore the `dark.css` theme may be improved in future changes. Additionally just like the language selection the theme selection is also hardcoded in the `SettingsPane`. It would be more generic to load the theme files from a specific repository and dynamically create a list of the available themes._ 
+_During development the `light.css` theme was focused. Therefore the `dark.css` theme may be improved in future changes. Additionally just like the language selection the theme selection is also hardcoded in the `SettingsPane`. It would be more generic to load the theme files from a specific repository and dynamically create a list of the available themes._
 
 ## Material Design Icons
 To allow a scalable and appealing design an external framework was used to integrate material design icons from different sources. FontAwesomeFX 8.6 provides icons from 4 different fonts which are smoothly and arbitrarily scalable.
 They have been integrated into a self developed container, the `SVGIcon` class.
-These icons can be used for normal application buttons and labels but they can also be for the various device panes to illustrate their functions. The `SVGIcon` allows to combine two material design icons into one object by stacking them above one another. One can achieve nice effects if an icon is provided as an outline and as a filled variant this way. Furthermore the `SVGIcon` class offers methods to set and change (animated) the color and even to change the fore/background icon during runtime. 
+These icons can be used for normal application buttons and labels but they can also be for the various device panes to illustrate their functions. The `SVGIcon` allows to combine two material design icons into one object by stacking them above one another. One can achieve nice effects if an icon is provided as an outline and as a filled variant this way. Furthermore the `SVGIcon` class offers methods to set and change (animated) the color and even to change the fore/background icon during runtime.
 
 _The drawback of this solution is that one can only use the icons of the supported fonts by FontAwesomeFX. Even though it is really a nice way to integrate professional icons into an application and offer the opportunity to scale them as much as you need because they are vector based._
 
