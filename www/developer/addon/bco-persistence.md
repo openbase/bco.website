@@ -33,19 +33,19 @@ The ```BCO Influxdb Connector``` is a BCO app which stores all unit changes into
    Therefore lookup the token via the Chronograf interface (default: <http://localhost:9999> ). You will find your tokens here:
    ![influxd_token](/images/persistence/influxd_token.png)
    Than copy the token and past it into a new MetaConfig entry of the ```BCO Influxdb Connector``` via the ```bco-registry-editor``` e.g. ```INFLUXDB_TOKEN = PASTE_TOKEN_HERE```
-   In case you choose the default values during the influxdb setup and you run influxdb on the same host as influxdb is running, all values except ```INFLUXDB_TOKEN``` are optionally.
 
-       * INFLUXDB_URL → Url of your InfluxDB  
+       * INFLUXDB_URL → Url of your InfluxDB  (required)
             DEFAULT: http://localhost:9999
-       * INFLUXDB_BUCKET → Name of the bucket where your data will be stored
+       * INFLUXDB_BUCKET → Name of the bucket where your data will be stored  (required)
             DEFAULT: bco-persistence
-       * INFLUXDB_BATCH_TIME → Time limit(ms) after your batch is written to the database
+       * INFLUXDB_BATCH_TIME → Time limit(ms) after your batch is written to the database  (required)
             DEFAULT: 1000
-       * INFLUXDB_BATCH_LIMIT → Max size of your batch 
+       * INFLUXDB_BATCH_LIMIT → Max size of your batch  (required)
             DEFAULT: 100
-       * INFLUXDB_ORG → Org for the bucket 
+       * INFLUXDB_ORG → Org for the bucket  (required)
             DEFAULT: openbase
-       * INFLUXDB_TOKEN → Token with read and write access to your database
+       * INFLUXDB_ORG_ID → Id of the Org
+       * INFLUXDB_TOKEN → Token with read and write access to your database  (required)
 
 ## How to query influx db.
 InfluxDB 2.0 uses Flux as a functional data scripting language.
@@ -54,7 +54,7 @@ A good guide how to get started with Flux is provided by the official [Influxdb 
 ## How to create a Chronograf widget 
    Chronograf is the user interface and administrative component of the InfluxDB platform.
    It is already included in influxdb 2.0.
-   With Chronograf you can quickly see your data and build dashboards.
+   With Chronograf you can quickly see your data and build dashboards.  
    
    Therefore, you need to log into your Chronograf and select the Data Explorer.
    
@@ -62,13 +62,17 @@ A good guide how to get started with Flux is provided by the official [Influxdb 
    ![query_data](/images/persistence/chronograf_explorer.png)
    
    This query selects from the measurement ```power_consumption_state_service``` the field ```consumption``` data from the tag alias ```PowerConsumptionSensor-11```.  
-   It creates this query in Flux:
+   It creates this query in Flux (you can see the query when you select the 'Script Editor'):
    ![flux-query](/images/persistence/flux_query.png)
    
    There are more options to visualize the data like raw_data, histogram table etc.
    You can also save your graphs into dashboards.
    
    If you want know about the possibilities of chronograf you can have a look at the official documentation here [Chronograf Documentation](https://docs.influxdata.com/chronograf/v1.7/)
+   
+## Heartbeat
+   The database contains a measurement 'heartbeat' with the field 'alive'. If the influxdb connector app is started, the value one is written into this field. Every 15 minutes the value one is written into the field again. When the app is closed a zero value is written into the field.  This can be used to check when the database was functional and stored data.
+So you can consider possible downtimes during queries and calculations.
 
 
 [Source Code](https://github.com/openbase/bco.app/tree/master/influxdbconnector)
