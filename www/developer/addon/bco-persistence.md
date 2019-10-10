@@ -33,19 +33,19 @@ The ```BCO Influxdb Connector``` is a BCO app which stores all unit changes into
    Therefore lookup the token via the Chronograf interface (default: <http://localhost:9999> ). You will find your tokens here:
    ![influxd_token](/images/persistence/influxd_token.png)
    Than copy the token and past it into a new MetaConfig entry of the ```BCO Influxdb Connector``` via the ```bco-registry-editor``` e.g. ```INFLUXDB_TOKEN = PASTE_TOKEN_HERE```
+   In case you choose the default values during the influxdb setup and you run influxdb on the same host as influxdb is running, all values except ```INFLUXDB_TOKEN``` are optionally.
 
-       * INFLUXDB_URL → Url of your InfluxDB  (required)
+       * INFLUXDB_URL → Url of your InfluxDB  
             DEFAULT: http://localhost:9999
-       * INFLUXDB_BUCKET → Name of the bucket where your data will be stored  (required)
+       * INFLUXDB_BUCKET → Name of the bucket where your data will be stored  
             DEFAULT: bco-persistence
-       * INFLUXDB_BATCH_TIME → Time limit(ms) after your batch is written to the database  (required)
+       * INFLUXDB_BATCH_TIME → Time limit(ms) after your batch is written to the database  
             DEFAULT: 1000
-       * INFLUXDB_BATCH_LIMIT → Max size of your batch  (required)
+       * INFLUXDB_BATCH_LIMIT → Max size of your batch  
             DEFAULT: 100
-       * INFLUXDB_ORG → Org for the bucket  (required)
+       * INFLUXDB_ORG → Org for the bucket  
             DEFAULT: openbase
-       * INFLUXDB_ORG_ID → Id of the Org
-       * INFLUXDB_TOKEN → Token with read and write access to your database  (required)
+       * INFLUXDB_TOKEN → Token with read and write access to your database  
 
 ## How to query influx db.
 InfluxDB 2.0 uses Flux as a functional data scripting language.
@@ -76,5 +76,38 @@ So you can consider possible downtimes during queries and calculations.
 
 
 [Source Code](https://github.com/openbase/bco.app/tree/master/influxdbconnector)
+
+## Service Aggregation
+It is possible to perform a service aggregaton, therefore there is a new function queryAggregatedServiceState of a unit. This function needs a QueryType as a parameter.
+Important attributes of the QueryType for the service aggregation are:
+
+    * measurement 
+    * service type
+    * time_range_stop
+    * time_range_stop
+    * aggregation_window
+
+To get an overview of the QueryType look here: [Query](https://github.com/openbase/type/blob/master/src/main/proto/openbase/type/domotic/database/Query.proto)
+
+The method returns an [AggregatedServiceState](https://github.com/openbase/type/blob/master/src/main/proto/openbase/type/domotic/state/AggregatedServiceState.proto).
+Which contains the service_type, the query and the aggregated_service_type.
+Depending on whether the requested service_type is an enum or not, the aggregated_service_type consists of percentages of how often which status was active, or of the average values.
+
+If you want to know how to build the Query and how to call the method and how the return value looks like check here: [HowToQueryAggregatedState](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToQueryAggregatedState.java)
+
+## Query Database
+You can also send raw queries to the database via the units with the queryRecord function.
+This function needs also a [QueryType](https://github.com/openbase/type/blob/master/src/main/proto/openbase/type/domotic/database/Query.proto) as a parameter.
+However, the only attribute that must be filled is the raw_query.
+
+The method returns an [RecordCollection](https://github.com/openbase/type/blob/master/src/main/proto/openbase/type/domotic/database/RecordCollection.proto)  which consists of [Records](https://github.com/openbase/type/blob/master/src/main/proto/openbase/type/domotic/database/Record.proto).
+
+In the [Chronograf](#how-to-create-a-chronograf-widget) and the [Query-Section](#how-to-query-influx-db) it is explained how a raw query looks like and how it can be built.
+
+An example queryRecord call is explained here: [HowToQueryUnitLongTermStateUpdates](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToQueryUnitLongTermStateUpdates.java).
+
+
+
+
 
 
