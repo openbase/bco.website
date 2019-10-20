@@ -156,7 +156,7 @@ In the source code the grid is implemented as an two-dimensional array. The two-
 $Du[i,j,t] = u[i+1,j,t] + u[i-1,j,t] + u[i,j+1,t] + u[i,j-1,t] - 4*u[i,j,t]/h^2$
 The new grid value is then calculated as follows:
 $u[i,j,t+1] = u[i,j,t] + dt * Du[i,j,t]$
-Where dt is the timestep, and h is the grid-wide. When choosing dt and h the Courant-Friedrichs-Lewy-condition must be observed: dt/h^2 <= 1/4. In the used heatmap formula the grid-wide is set to 1 and the timestep to 0,1.
+Where dt is the timestep, and h is the grid-wide. When choosing dt and h the Courant-Friedrichs-Lewy-condition must be observed: $dt/h^2 <= 1/4$. In the used heatmap formula the grid-wide is set to 1 and the timestep to 0,1.
 The used library to create the image of the heatmap given a grid is the open source hansolo charts library.
 
 ## Menu Header
