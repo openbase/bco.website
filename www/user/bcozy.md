@@ -22,7 +22,7 @@ Bcozy provides four different view modes for different purposes. To switch betwe
 
 ![Change view options](/images/bcozy/bcozy_view_change.png)
 
-The running symbol is connected to the default view. It is described below (see Room plan interaction). The thermometer opens the _maintenance layer_. It gives an overview over all maintenance-related units, namely batteries, tamper detectors, temperature sensors and smoke detectors. The units are displayed if they have a defined position. The display is not dependent on the selected room, all units are visible, whether their room is selected or not.
+The person symbol is connected to the default view. It is described below (see Room plan interaction). The thermometer opens the _maintenance layer_. It gives an overview over all maintenance-related units, namely batteries, tamper detectors, temperature sensors and smoke detectors. The units are displayed if they have a defined position. The display is not dependent on the selected room, all units are visible, whether their room is selected or not.
 
 The _editing layer_ can be opened with a click on the eye symbol. It displays all units from all rooms of all types, given they have a position and a defined symbol. Some units might not be visible if their type is not implemented yet. In future versions of Bcozy this layer is supposed to allow a re-positioning of the units.
 
