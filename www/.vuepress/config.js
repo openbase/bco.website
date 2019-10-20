@@ -4,6 +4,18 @@ module.exports = {
     head: [
         ['link', {rel: 'icon', href: '/images/bco_logo_simple_small.png'}],
     ],
+    plugins: [
+    [
+      'vuepress-plugin-mathjax',
+      {
+        target: 'svg',
+        macros: {
+          '*': '\\times',
+          '\\Z': '\\mathbb{Z}'
+        },
+      },
+    ],
+    ],
     themeConfig: {
         logo: '/images/bco_logo_simple_white.png',
         nav: [

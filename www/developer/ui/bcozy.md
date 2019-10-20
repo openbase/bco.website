@@ -140,7 +140,7 @@ Both contain maps that store the buttons as well as methods for adding data and 
 There is a fourth selectable layer, the power consumption layer. If selected it swaps the disiplayed location pane out for a visualization tool displaying power consumption.
 
 ### Power Consumption Layer
-There is a fourth selectable layer, the power consumption layer. If selected it swaps the displayed location pane for a visualization tool displaying power consumption. Customization of the shown visualization is possible via the sidebar. 
+There is a fourth selectable layer, the power consumption layer. If selected it swaps the displayed location pane for a visualization tool displaying power consumption. Customization of the shown visualization is possible via the sidebar.
 There are three different configurations that the user can adjust: Displayed time interval in `DateRange`, the displayed representation of power usage in `Unit` and the type of chart shown in `VisualizationType`. For improved user experience the time `Interval` represented by a single datum is chosen automatically. The `PowerTerminalSidebarPaneController` manages the user input on the sidebar. It updates the selection state in the `ChartStateModel`; the current configuration of the visualization is always updated by changes in the corresponding properties in `ChartStateModel`. Adjusting the displayed visualization is mainly handled by the `PowerChartVisualizationController`. It listens to the provided chart state properties and ensures the visualization is intialized and updated corresponding to the users choices. For the sake of modularity, the visualization controller manages an object of the interface `ChartController` which abstracts from differences in handling charts. The visualization controller swaps out the different interface implementing chart controllers in case of a switch of visualization types. The chart controllers contain the update function which uses the `PowerTerminalDBService` as a high level interface to query the database for power consumption data.
 
 ### Unit Buttons
@@ -151,11 +151,13 @@ Depending on the underlying type, the buttons look and behave differently. For e
 If the `UnitsPaneController` notices that two units have the same position, it generates instances of the `UnitButtonGrouped`. This is a wrapper for several units that share a position. It can be clicked, then it expands and displays the usual `UnitButtons` side by side.
 
 ### Heatmap
-The heatmap values are calculated with following formula:
-Du[i,j,t] = u[i+1,j,t] + u[i-1,j,t] + u[i,j+1,t] + u[i,j-1,t] - 4*u[i,j,t]/h^2
+The main idea of the heatmap is to visualize sensor values on a regular grid. This grid is an overlay on the location map.
+In the source code the grid is implemented as an two-dimensional array. The two-dimensional array takes sensor values and position of the sensors as input and then the values of the array are calculated with following formula:
+$Du[i,j,t] = u[i+1,j,t] + u[i-1,j,t] + u[i,j+1,t] + u[i,j-1,t] - 4*u[i,j,t]/h^2$
 The new grid value is then calculated as follows:
-u[i,j,t+1] = u[i,j,t] + dt * Du[i,j,t]
-Where dt is the timestep, and h is the grid-wide. When choosing dt and h the Courant-Friedrichs-Lewy-condition must be observed: dt/h^2 <= 1/4.
+$u[i,j,t+1] = u[i,j,t] + dt * Du[i,j,t]$
+Where dt is the timestep, and h is the grid-wide. When choosing dt and h the Courant-Friedrichs-Lewy-condition must be observed: dt/h^2 <= 1/4. In the used heatmap formula the grid-wide is set to 1 and the timestep to 0,1.
+The used library to create the image of the heatmap given a grid is the open source hansolo charts library.
 
 ## Menu Header
 Currently the `MenuHeader` class only holds an instance of the `ClockLabel` to display the system time in the upper middle of the application screen. The menu header is placed in the top position of a BorderPane which is implemented in the `ForegroundPane` class.
