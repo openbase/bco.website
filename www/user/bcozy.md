@@ -68,6 +68,8 @@ The tree visualization shows the current power draw in a metaphor as the trees h
 
 ![Different seasons of the tree chart](/images/bcozy/power_terminal/allSeasons.png)
 
+### Heatmap
+
 The heatmap displays consumption of the consumers in the room plan. Depending on the consumption of the consumer his location in the room plan shines from  green over yellow to red. So the heatmap helps to identify areas of high power consumption density. This feedback can be useful to detect malfunction or other unintended operation behaviour of devices.
 
 ![The heatmap displaying a current power consumption](/images/bcozy/power_terminal/heatmap.png)
