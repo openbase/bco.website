@@ -58,11 +58,23 @@ The _energy comsumption layer_ displays current and recent power consumption. Th
 
 Overall there are four different configurations possible: Changing the visualization with the first drop down menu, changing the displayed unit via the second, changing the tracked consumer with the third part and configuring the displayed date range with the last elements. Different visualizations are not capable of utilizing all of these configurational options, so depending on the chosen chart type more or less configuration elements are displayed.
 
-### Visualization Type Selection
+The dropdown menu regarding the choice of chart type displayed allows to choose from different visualization types.
 
-The dropdown menu regarding the choice of chart type displayed allows to choose from classical charts like the line chart, bar chart and pie chart and the tree visualization as well as the heatmap.
+### Classical Charts
+
+There are three different classical chart types. The line chart displays power consumption as a line chart; the user can choose time-range, unit and consumer of the visualization. 
 
 ![A line chart displaying the past power consumption](/images/bcozy/power_terminal/linechart.png)
+
+The bar chart displays power consumption as a bar chart; the user can choose time-range, unit and consumer of the visualization.
+
+![A bar chart displaying the past power consumption](/images/bcozy/power_terminal/barchart.png)
+
+The pie chart in its current state only displays the most recent consumption as a number inside a circle; the user can choose unit and consumer of the visualization.
+
+![A pie chart displaying the current consumption](/images/bcozy/power_terminal/piechart.png)
+
+### Tree
 
 The tree visualization shows the current power draw in a metaphor as the trees health. The more power is consumed the less leaves the tree bears. Also, the leaves begin to brown with increasing consumption. Overall, there are eight possible states of the tree displayed.
 
