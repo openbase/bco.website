@@ -137,8 +137,6 @@ These configurations also include a position for the unit. This position has to 
 The layer themselves are realised by instances of the UnitSymbolsPane (for the default layer) or the SimpleUnitSymbolsPane. The difference is that the default layer includes a grouping mechanism for units on the same position and that it displayes room-level units for the rooms that are not selected.
 Both contain maps that store the buttons as well as methods for adding data and updating the view. The UnitSymbolsPane takes care of the grouping of buttons automatically.
 
-There is a fourth selectable layer, the power consumption layer. If selected it swaps the disiplayed location pane out for a visualization tool displaying power consumption.
-
 ### Power Consumption Layer
 There is a fourth selectable layer, the power consumption layer. If selected it swaps the displayed location pane for a visualization tool displaying power consumption. Customization of the shown visualization is possible via the sidebar.
 There are three different configurations that the user can adjust: Displayed time interval in `DateRange`, the displayed representation of power usage in `Unit` and the type of chart shown in `VisualizationType`. For improved user experience the time `Interval` represented by a single datum is chosen automatically. The `PowerTerminalSidebarPaneController` manages the user input on the sidebar. It updates the selection state in the `ChartStateModel`; the current configuration of the visualization is always updated by changes in the corresponding properties in `ChartStateModel`. Adjusting the displayed visualization is mainly handled by the `PowerChartVisualizationController`. It listens to the provided chart state properties and ensures the visualization is intialized and updated corresponding to the users choices. For the sake of modularity, the visualization controller manages an object of the interface `ChartController` which abstracts from differences in handling charts. The visualization controller swaps out the different interface implementing chart controllers in case of a switch of visualization types. The chart controllers contain the update function which uses the `PowerTerminalDBService` as a high level interface to query the database for power consumption data.
@@ -149,6 +147,9 @@ There are three different configurations that the user can adjust: Displayed tim
 Depending on the underlying type, the buttons look and behave differently. For example, the ColorableLights include an additional pane that opens upon a right click.
 
 If the `UnitsPaneController` notices that two units have the same position, it generates instances of the `UnitButtonGrouped`. This is a wrapper for several units that share a position. It can be clicked, then it expands and displays the usual `UnitButtons` side by side.
+
+### Treechart
+The treechart selects from eight different pictures one that visualizes the current power draw best. It has eight treshold values defined as static object fields. These outline the intervals in which the different pictures are shown. An If-else-if sequence pinpoints the power draw into one of these intervals and sets the according picture.
 
 ### Heatmap
 The main idea of the heatmap is to visualize sensor values on a regular grid. This grid is an overlay on the location map.
