@@ -9,7 +9,7 @@ After successfully initializing BCozy the GUI with its elements should be visibl
 
 ## Description of GUI Elements
 The GUI is separated into three main parts. Additionally, there are small bars on top and on the bottom of the interface. The upper bar is designed to show the current time to the user and the lower bar to show some extra information related to the current mouse or touch reference explained in the info bar chapter.
-The main part of the GUI is the room plan that is located in the middle of the screen. Actually it is covering the whole interface, so it seems like the two menus on the left and on the right side are floating on top of it. The two menus are the main menu on the left side and the Unit-control menu on the right side.
+The main part of the GUI is the room plan that is located in the middle of the screen. Actually it is covering the whole interface, so it seems like the two menus on the left and on the right side are floating on top of it. The two menus are the main menu on the left side and the unit menu on the right side.
 The GUI is designed to be controlled by a mouse or by a simple touchscreen interface. Therefore most of the actions are click based and do not require a keyboard.
 
 ![GUI Overview](/images/bcozy/bcozy_gui_overview.png)
@@ -139,7 +139,6 @@ To switch the language to another defined language you can click on the language
 
 <img src="/images/bcozy/bcozy_language_selection.png" alt="Switch language menu" width="800" />
 
-
 ### How to Change the Password
 Your password can be changed by expanding the _Change Password Panel_ by clicking on its label.
 This will provide you with three input fields where you will have to enter your old password at first and your new password twice afterwards.
@@ -232,8 +231,7 @@ Adding a new authorization group can be achieved by entering the desired name an
 
 <img src="/images/bcozy/bcozy_usergroups_2.png" alt="Authorization Groups Interface Detailed" width="800" />
 
-
-## Unit Control Menu
+## Unit Menu
 To interact with the smart home system, the right menu should be used. In this menu all currently available BCO units can be found to get information about the current state or to manipulate the smart home. In the following an explanation is given on how to interact with the units and which information the units provide.
 
 ### Interaction with BCO Units
