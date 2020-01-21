@@ -18,6 +18,15 @@ For running any java examples you only need to include the dal remote dependency
 </dependency>
 ```
 
+### How to query unit configurations
+* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToQueryUnits.java)
+
+Query units
+```java
+    LOGGER.info("query lights");
+    final List<UnitConfig> lightUnitConfigList = Registries.getUnitRegistry().getUnitConfigsByLocationIdAndUnitType(locationId, unitType);
+```
+
 ### How to activate a scene
 * [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToActivateASceneViaDAL.java)
 
