@@ -86,11 +86,19 @@ final List<UnitConfig> targetUnitConfigs =
     Registries.getUnitRegistry().getUnitConfigsByLabel(unitLabel);
 ```
 
+### How to check the infrastructure flag of a unit
 
-## Java RSB
+The infrastructure flag can be used to determine if a unit is related to any important environment services. E.g. an internet router/ water boiler / voice assistant is connected to a powerplug. If its related `POWER_SWITCH` unit is marked as infrastructure (MetaConfig Entry: `INFRASTRUCTURE = true`) it will not be affected by any location based control actions (e.g. switch off all power switches in the living room). The following code shows how to check the infrastructure flag of a unit:
 
-### How to observe service state changes
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToObserveServiceStateChangesViaRSB.java)
+```java
+// Check infrastructure flag via UnitRemote
+ColorableLightRemote unit = Units.getUnit("myUnitId", false, Units.COLORABLE_LIGHT);
+unit.isInfrastructure();
+
+// Check infrastructure flag via RemoteAction
+RemoteAction action = new RemoteAction(...);
+action.getTargetUnit().isInfrastructure();
+```
 
 ## Python RSB
 
