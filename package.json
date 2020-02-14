@@ -10,6 +10,6 @@
     "vuepress": "^0.14.10"
   },
   "dependencies": {
-    "yarn": "^1.13.0"
+    "yarn": "^1.22.0"
   }
 }
