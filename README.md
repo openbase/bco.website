@@ -28,14 +28,14 @@ Master: https://master.basecubeone.org
     ```sudo apt-get update && sudo apt-get install nodejs npm yarn```
 
     * Navigate into the project folder and install vuepress  
-    ```yarn add vuepress```
+    ```yarn install```
 
 ### MacOs
 
 * Setup Vuepress
     * Via brew: ```brew install nodejs npm yarn```
     * Navigate into the project folder and perform:
-```yarn add vuepress```
+```yarn install```
 
 ## Run Local Webserver
 Navigate into the project folder and perform:
