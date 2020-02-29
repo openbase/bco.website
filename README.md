@@ -24,7 +24,7 @@ Master: https://master.basecubeone.org
     * Register Yarn Debian Repository  
     ```echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list```
 
-    * Install notejs, nps, yarn  
+    * Install nodejs, npm, yarn  
     ```sudo apt-get update && sudo apt-get install nodejs npm yarn```
 
     * Navigate into the project folder and install vuepress  
