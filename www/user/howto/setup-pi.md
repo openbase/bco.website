@@ -18,6 +18,7 @@
 * `sudo make install`
 ### install OpenHAB
 * follow instructions from https://www.openhab.org/docs/installation/openhabian.html#other-linux-systems-add-openhabian-just-like-any-other-software
+* `sudo chmod ug+rws /etc/openhab2/sitemaps`
 
 ## Register Openbase Debian Repository
 
