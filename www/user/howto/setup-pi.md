@@ -18,13 +18,18 @@
 * `sudo make install`
 ### install OpenHAB
 * follow instructions from https://www.openhab.org/docs/installation/openhabian.html#other-linux-systems-add-openhabian-just-like-any-other-software
-* 
 
-todo: explain spread setup
+## Register Openbase Debian Repository
 
-## Register Debian Repository
+Register the repository public key
+* `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A0E4E7A057C6CF8D`
+
+Register the repository
+* `echo "deb https://dl.bintray.com/openbase/deb unstable main" | sudo tee -a /etc/apt/sources.list`
 
 ## Install BCO
+
+* `sudo apt instal bco`
 
 ## First Start
 
