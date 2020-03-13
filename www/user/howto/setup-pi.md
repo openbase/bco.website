@@ -30,7 +30,7 @@ Register the repository
 
 ## Install BCO
 
-* `sudo apt instal bco`
+* `sudo apt install bco`
 
 ## First Start
 
