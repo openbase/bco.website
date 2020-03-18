@@ -20,13 +20,16 @@
 * follow instructions from https://www.openhab.org/docs/installation/openhabian.html#other-linux-systems-add-openhabian-just-like-any-other-software
 * `sudo chmod ug+rws /etc/openhab2/sitemaps`
 
-## Register Openbase Debian Repository
+## Register openbase Debian Repository
 
 Register the repository public key
 * `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A0E4E7A057C6CF8D`
 
 Register the repository
 * `echo "deb https://dl.bintray.com/openbase/deb unstable main" | sudo tee -a /etc/apt/sources.list`
+
+Update your package list
+* `sudo apt update`
 
 ## Install BCO
 
