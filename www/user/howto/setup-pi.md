@@ -26,7 +26,10 @@ Register the repository public key
 * `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AAF438A589C2F541`
 
 Register the repository (adjust distribution name if required to one of the following: wheezy, stretch, bionic, buster)
-* `echo "deb https://dl.bintray.com/openbase/deb buster unstable" | sudo tee -a /etc/apt/sources.list`
+* `echo "deb https://dl.bintray.com/openbase/deb buster main" | sudo tee -a /etc/apt/sources.list`
+
+In case you want to support the development of openbase applications as beta-tester, you can register the testing repo in order to receive alpha and beta releases. Those are maybe not that stable but feedback is always welcome.
+* `echo "deb https://dl.bintray.com/openbase/deb buster testing" | sudo tee -a /etc/apt/sources.list`
 
 Update your package list
 * `sudo apt update`
