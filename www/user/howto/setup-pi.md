@@ -68,6 +68,13 @@ sudo usermod -a -G tty openhab
 sudo usermod -a -G openhab ${DEFAULT_USER}
 ```
 
+### Setup Z-Wave USB Stick
+**Skip this step is you do not have a Z-Wave USB Stick**.
+At this point, make sure your Z-Wave USB Stick is plugged in and that it is available under the following path:
+```
+export ZWAVE_STICK=--device=/dev/ttyACM0
+```
+
 ### Create Openhab Docker
 ```bash
 sudo docker run \
@@ -82,7 +89,7 @@ sudo docker run \
     -e USER_ID=$(id -u openhab) \
     -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
-    --device=/dev/ttyACM0 \
+    $ZWAVE_STICK \
     openhab/openhab:latest
 ```
 
@@ -143,7 +150,7 @@ sudo chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 
 ## Setup Portainer as Docker Management Tool
 
-The official installation can be found at: (https://www.portainer.io/installation/)
+The official installation can be found at: [Portainer Doc](https://www.portainer.io/installation/)
 Or use this shortcut for the pi: 
 ```bash
 sudo docker volume create portainer_data
