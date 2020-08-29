@@ -46,7 +46,7 @@ sudo docker run \
         -p 4803:4803 \
         -d \
         --restart=always \
-        openbaseorg/spread:latest
+        openbaseorg/spread:version-5.0.2-armhf
 ```
 
 ## Openhab Setup
