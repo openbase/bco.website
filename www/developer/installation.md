@@ -63,24 +63,17 @@ This repository provides a collection of pre-compiled libs and tools for rsb. Th
 [Spread](http://www.spread.org/download.html) is the recommended and most stable transport protocol for bco.
 
 * Installation via Cor-Lab Debian Repository
-    * ```sudo apt-get install spread librsbspread0.18```
+    * ```sudo apt-get install spread```
 * Official Installation Guide
     * <http://www.spread.org/download.html>
-    
-## RSB Libs and Tools (Optional)
-
-The rsb python and c++ libs can be installed via the cor-lab debian repository as well as the rsb developer tools:
-```
-sudo apt-get install librsc0.18 librsb0.18 rsb0.18 rst0.18 cl-rsb rsb-tools-cpp0.18 rsb-tools-cl0.18
-```
 
 ## RSB Configuration
 
-By default, bco connects to a setup running on your local host. The following steps are required to connect to a BCO remote host instance:
-Create the configuration file ```touch ~/.config/rsb.conf``` and add the following lines to deactivate the socket, enable the spread transport protocol and to define the spread host (by setting its ip in the lines below, this can also be localhost if you run everything locally).
+By default, all bco components try to establish a connection to a spread daemon running on your local machine. The following steps are required to connect to a spread daemon running on a remote machine:
+Create the configuration file ```touch ~/.config/rsb.conf``` and add the following lines to deactivate the socket, enable the spread transport protocol and to define the spread host (by set up its IP in the lines below).
 ::: warning INFO
-Set the ip in the line ```host    = 192.168.x.x``` to match your spread host.
-It can also be set to localhost if you run everything locally (```host    = localhost```).
+Set the IP in the line ```host    = 192.168.x.x``` to match your spread host.
+It can also be set to ```localhost``` if you run everything locally (```host    = localhost```).
 :::
 ```
 [transport.socket]
@@ -93,13 +86,25 @@ host    = 192.168.x.x
 
 ## BCO Installation
 
-Create a new development directory if it not already exists (e.g. ``~/workspace/openbase``) and change into these directory.
+After preparing the toolchain and middleware we need to prepare our workspace.
+Create a new development directory if it not already exist (e.g. ``~/workspace/openbase``) and change into these directory.
 ```
 mkdir -p ~/workspace/openbase
 cd ~/workspace/openbase
 ```
 
-## Repository Download 
+### Openbase Developer Tool Installation
+
+There exist different openbase tools which help to to simplify the installation and maintenance of bco.
+Therefore, before downloading bco we should install those tools via:
+```
+cd ~/workspace/openbase
+git clone -b master https://github.com/openbase/developer.tools.git
+cd developer.tools
+./install.sh
+```
+
+### Main Repository Download 
 
 Download the bco main repository into your development workspace.
 ```
@@ -111,18 +116,14 @@ We recommend to checkout and install the ```master``` branch in case you start t
 The ```latest-stable``` branch is still linking against BCO 1.6 which will be soon replaced by BCO 2.0.
 Be aware to [setup the snapshot repository](#setup-snapshot-repository) before building the ```master``` branch.
 :::
-This main repository provides all binaries and libraries needed to start and setup BCO.
-Additionally, the sourcecode of the bco core components is provided as well via sub-modules (exclusive for bco core development).
-Those are empty by default and only required for BCO core development.
-More details about how to build the entire project form scratch can be found at [BCO Core Component Development Preparations](#bco-core-component-development-preparations). 
 
-## Setup Snapshot Repository
+### Setup Snapshot Repository
 ::: tip INFO
 This step is only required if you are using a non release branch (e.g. master) or link against it.
 :::
 
 BCO is using maven as build tool. All dependencies are deployed at the central maven repositories and will be downloaded without any specific configuration for stable releases.
-In case you want to build a bco snapshot release or your project depends on any snapshots you have to add the following public repository configuration to your global maven settings file (```~/.m2/settings.xml```).
+In case you want to build a bco nightly release or your project depends on any snapshots you have to add the following public repository configuration profile to your maven settings file (```~/.m2/settings.xml```).
 
 ```xml
 <?xml version="1.0"?>
@@ -164,24 +165,54 @@ In case you want to build a bco snapshot release or your project depends on any 
 </settings>
 ```
 
-## Installation
+### Download and Prepare BCO Submodules
 
-Now you should be able to start the installation.
-During this, all bco core components are installed to the previously defined ```$prefix```.
-To perform the installation (or update the components later on) execute the installation script provided by the bco folder.
+BCO is split into different sub-module and each of these sub-module is stored in its own repository while the main repository just bundles all sub-module repositories via ```git-modules```. The ```./prepare.sh``` script supports you to download the sourcecode of each sub-modules.
+Therefore, please execute
 ```
+cd ~/workspace/openbase/bco
+./prepare.sh
+./update.sh
+```
+in order to prepare all sub-modules and download their sourcecode. Once the preperation is done, all sub-modules should be available in the  ```module``` directory.
+
+If the workspace is prepared, we can use the ```all``` script provided by the developer tools to ease all submodule operations.
+The ```all``` command just executes the given command for all sub-modules.
+Therefore, the following command can be used to compile all submodule and to install their binaries into the target directory defined by the ```$prefix``` variable.
+```
+cd ~/workspace/openbase/bco
+all ./install.sh
+```
+::: tip INFO
+The initial installation can take a while, so grab a coffee and relax while the scripts to the hard work.
+:::
+
+Now everything should be ready to start the development of new bco components and apps. We recommend to use IntelliJ as IDE for BCO.
+The main repository includes an IntelliJ project configuration so just open ```~/workspace/openbase/bco``` in the IDE or just execute ```idea ~/workspace/openbase/bco``` in case IntelliJ is provided by your shell.
+
+### Update
+
+You can update bco including all sub-modules by executing ```./update.sh```. Just make sure all local changes are committed and pushed before performing the update. After updating all components you can compile and install all changes via the ```./install.sh``` script. Therefore, a full update can be performed as followed:
+```
+./update.sh
 ./install.sh
 ```
 
 ## Database Setup
 
 A fresh and empty database is generated during the first start of BCO.
-This database is placed at ```~/.config/bco/var/registry/db``` and only contains a root location and some system user as well as the default admin.
-Please use the ``bco-registry-editor`` to add further units to the bco db.
+This database is placed at ```~/.config/bco/var/registry/db``` and only contains a root location and some system user accounts as well as the default admin account.
+::: warning INFO
+Please do not modify any database entries by hand as long as you exactly know what you are doing since manual modifications can lead into an inconsistent database.
+:::
+Once bco is started you can add further units by adding them via the ``bco-registry-editor``. User accounts can be created and passwords changed via ``bco-console``. 
 
+In general bco takes care of all class and template database entries. Those will be updated during each startup of bco as long as an internet connection is provided.
+In case you want to backup your individual setup entries just create a local git repository in the database folder and upload it to any git remote repository of your choice.
 ::: warning INFO
 In general we recommend to use GIT to versioning your database. But please make sure the external BCO maintained DBs (template/class) are excluded via ```.gitignore```.
 :::
+However, please make sure that the bco class and template repositories are not part of the git. Do to so, just create the following ```.gitignore``` file.    
 ```
 // ~/.config/bco/var/registry/db/.gitignore
 activity-template-db
@@ -205,45 +236,12 @@ git clone https://github.com/csra/bco.registry.csra-db db
 
 To restore an already existing bco setup, just place the related ```db``` directory within ```~/.config/bco/var/registry```.
 
-## BCO Core Component Development Preparations
+## Additional Tools
 
-::: tip INFO
-This section is only required if you plan to extend or bug-fix any BCO core components.
-:::
+### RSB Libs and Tools (Optional)
 
-Before diving into the BCO core development the sourcecode needs to be downloaded and compiled for each submodule.
-Because BCO persists of many submodules provided by different repositories you can use the openbase developer tools to simplify the handling.
-Therefore, the first step is to download and install those tools via:
+The rsb python and c++ libs can be installed via the cor-lab debian repository as well as the rsb developer tools:
 ```
-cd ~/workspace/openbase
-git clone -b master https://github.com/openbase/developer.tools.git
-cd developer.tools
-./install.sh
+sudo apt-get install librsc0.18 librsb0.18 rsb0.18 rst0.18 cl-rsb rsb-tools-cpp0.18 rsb-tools-cl0.18
 ```
-Then the workspace needs to be prepared by download the latest submodule source-code.
-```
-cd ~/workspace/openbase/bco
-./workspace-prepare.sh
-./workspace-update.sh
-```
-If the workspace is prepared, we can use the ```all``` script to ease all submodule operations.
-It just executes the given command for all submodules.
-Therefore, the following command can be used to compile and to install all submodule binaries into the workspace:
-```
-cd ~/workspace/openbase/bco
-all ./install.sh
-```
-::: tip INFO
-The initial installation can take a while, so relax and let the scripts to the work.
-:::
-
-Now everything should be ready to start the development. We recommend to use IntelliJ as IDE for BCO.
-The main repository includes an IntelliJ project configuration so just open ```~/workspace/openbase/bco``` in the IDE.
-
-::: danger INFO
-Once you start building BCO via its submodules you should avoid to use the ```install.sh``` script on repository top level.
-Otherwise you might overwrite and downgrade your binaries placed in the ```bin``` folder of your ```$prefix```.
-:::
-
-
 
