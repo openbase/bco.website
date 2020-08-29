@@ -83,7 +83,7 @@ sudo docker run \
     -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
     --device=/dev/ttyACM0 \
-    openhab/openhab:2.5
+    openhab/openhab:latest
 ```
 
 ## BCO Setup
@@ -143,16 +143,22 @@ sudo chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 
 ## Setup Portainer as Docker Management Tool
 
-https://www.portainer.io/installation/
+The official installation can be found at: (https://www.portainer.io/installation/)
+Or use this shortcut for the pi: 
+```bash
+sudo docker volume create portainer_data
+sudo docker run \
+    -d -p 8000:8000 \
+    -p 9000:9000 \
+    --name portainer \
+    --restart=always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v portainer_data:/data portainer/portainer
+```
+After the installation has finished, you can access portainer via port 9000 (e.g.: [http://raspberrypi:9000](http://raspberrypi:9000))
+
 
 # Outdated Stuff
-
-## Tool Setup
-
-Switch to python 3
-
-`sudo ln -fs /usr/bin/python3 /usr/bin/python`
-
 
 ## Install Middleware
 
