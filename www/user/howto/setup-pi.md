@@ -53,7 +53,7 @@ sudo docker run \
 
 Openhab User und Gruppe anlegen
 ```bash
-sudo adduser --system --shell /sbin/nologin openhab
+sudo adduser --system --shell /usr/sbin/nologin openhab
 sudo addgroup --system openhab
 sudo usermod -a -G openhab openhab
 ```
@@ -90,7 +90,7 @@ sudo docker run \
 
 ### BCO User und Gruppe anlegen
 ```bash
-sudo adduser --system --shell /sbin/nologin bco
+sudo adduser --system --shell /usr/sbin/nologin bco
 sudo addgroup --system bco
 sudo usermod -a -G bco bco
 ```
