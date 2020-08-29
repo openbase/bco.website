@@ -1,6 +1,6 @@
 ---
 ---
-# How to setup BCO on Raspberry PI
+# How to setup BCO on Raspberry PI via Docker
 
 ## Hardware Requirements
 
@@ -69,7 +69,9 @@ sudo usermod -a -G openhab ${DEFAULT_USER}
 ```
 
 ### Setup Z-Wave USB Stick
-**Skip this step is you do not have a Z-Wave USB Stick**.
+::: warning INFO
+Skip this step if you do not have a Z-Wave USB Stick!
+:::
 At this point, make sure your Z-Wave USB Stick is plugged in and that it is available under the following path:
 ```
 export ZWAVE_STICK=--device=/dev/ttyACM0
@@ -164,26 +166,29 @@ sudo docker run \
 ```
 After the installation has finished, you can access portainer via port 9000 (e.g.: [http://raspberrypi:9000](http://raspberrypi:9000))
 
+# How to setup BCO directly on Raspberry PI OS
 
-# Troubleshooting
+## Compile and Install the Spread Middleware
 
-## Install Middleware
+### PI Base Setup
+Set up base Raspberry PI OS from https://www.raspberrypi.org/downloads/ and follow the instructions.
 
-### base setup
-* set up base Raspbian from https://www.raspberrypi.org/downloads/ and follow the instructions
-* `sudo apt install bison`
 ### Manually compile and install Spread directly on the PI
 * download from http://www.spread.org/download/spread-src-5.0.1.tar.gz (or newer, adapt file/dir names below in those cases) and copy file to Pi
-* `tar xvf spread-src-5.0.1.tar`
-* `cd spread-src-5.0.1`
-* `./configure`
-* `make -j4`
-* `sudo make install`
-### install OpenHAB
+```bash
+sudo apt install bison
+tar xvf spread-src-5.0.1.tar
+cd spread-src-5.0.1
+./configure
+make -j4
+sudo make install
+```
+
+### Directly install OpenHAB on Pi
 * follow instructions from https://www.openhab.org/docs/installation/openhabian.html#other-linux-systems-add-openhabian-just-like-any-other-software
 * `sudo chmod ug+rws /etc/openhab2/sitemaps`
 
-## Register openbase Debian Repository
+## Directly install BaseCubeOne on Pi
 
 Register the repository public key
 * `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AAF438A589C2F541`
@@ -197,11 +202,7 @@ In case you want to support the development of openbase applications as beta-tes
 Update your package list
 * `sudo apt update`
 
-## Install BCO
+### Install BCO
 
 * `sudo apt install bco`
-
-## First Start
-
-## Setup Autostart via PM2
-
+* 
