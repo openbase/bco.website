@@ -40,7 +40,7 @@ sudo usermod -aG docker ${DEFAULT_USER}
 
 ### Create Docker Container
 ```bash
-docker run \
+sudo docker run \
         --name spread \
         --net=host \
         -p 4803:4803 \
@@ -53,24 +53,24 @@ docker run \
 
 Openhab User und Gruppe anlegen
 ```bash
-/sbin/adduser --system --shell /sbin/nologin openhab
-/sbin/addgroup --system openhab
-/sbin/usermod -a -G openhab openhab
+sudo /sbin/adduser --system --shell /sbin/nologin openhab
+sudo /sbin/addgroup --system openhab
+sudo /sbin/usermod -a -G openhab openhab
 ```
 enable the openhab user to access usb gateways such as zwave or zigbee sticks
 ```bash
-/sbin/usermod -a -G dialout openhab
-/sbin/usermod -a -G tty openhab
+sudo /sbin/usermod -a -G dialout openhab
+sudo /sbin/usermod -a -G tty openhab
 ```
 
 ### Add default user to openhab group
 ```bash
-usermod -a -G openhab ${DEFAULT_USER}
+sudo usermod -a -G openhab ${DEFAULT_USER}
 ```
 
 ### Create Openhab Docker
 ```bash
-docker run \
+sudo docker run \
     --name openhab \
     --net=host \
     -v /etc/localtime:/etc/localtime:ro \
@@ -90,19 +90,19 @@ docker run \
 
 ### BCO User und Gruppe anlegen
 ```bash
-/sbin/adduser --system --shell /sbin/nologin bco
-/sbin/addgroup --system bco
-/sbin/usermod -a -G bco bco
+sudo /sbin/adduser --system --shell /sbin/nologin bco
+sudo /sbin/addgroup --system bco
+sudo /sbin/usermod -a -G bco bco
 ```
 
 ### Add default user to bco group
 ```bash
-usermod -a -G bco ${DEFAULT_USER}
+sudo usermod -a -G bco ${DEFAULT_USER}
 ```
 
 ### Create BCO Core Docker
 ```bash
-docker run \
+sudo docker run \
     --name bco \
     --net=host \
     --volume /etc/localtime:/etc/localtime:ro \
@@ -118,7 +118,7 @@ docker run \
 
 ### Create BCO Device Manager Openhab Docker
 ```bash
-docker run \
+sudo docker run \
     --name bco-device-manager-openhab \
     --net=host \
     --volume /etc/localtime:/etc/localtime:ro \
@@ -137,8 +137,8 @@ docker run \
 ### enable bco to access the sitemap directory in order to generate or update sitemaps
 Make bco a member of the openhab group
 ```bash
-chmod -R g+rwX /var/lib/docker/volumes/openhab_conf/_data/sitemaps
-chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
+sudo chmod -R g+rwX /var/lib/docker/volumes/openhab_conf/_data/sitemaps
+sudo chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 ```
 
 # Outdated Stuff
