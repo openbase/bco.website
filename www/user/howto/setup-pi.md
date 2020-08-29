@@ -53,14 +53,14 @@ sudo docker run \
 
 Openhab User und Gruppe anlegen
 ```bash
-sudo /sbin/adduser --system --shell /sbin/nologin openhab
-sudo /sbin/addgroup --system openhab
-sudo /sbin/usermod -a -G openhab openhab
+sudo adduser --system --shell /sbin/nologin openhab
+sudo addgroup --system openhab
+sudo usermod -a -G openhab openhab
 ```
 enable the openhab user to access usb gateways such as zwave or zigbee sticks
 ```bash
-sudo /sbin/usermod -a -G dialout openhab
-sudo /sbin/usermod -a -G tty openhab
+sudo usermod -a -G dialout openhab
+sudo usermod -a -G tty openhab
 ```
 
 ### Add default user to openhab group
@@ -90,9 +90,9 @@ sudo docker run \
 
 ### BCO User und Gruppe anlegen
 ```bash
-sudo /sbin/adduser --system --shell /sbin/nologin bco
-sudo /sbin/addgroup --system bco
-sudo /sbin/usermod -a -G bco bco
+sudo adduser --system --shell /sbin/nologin bco
+sudo addgroup --system bco
+sudo usermod -a -G bco bco
 ```
 
 ### Add default user to bco group
@@ -140,6 +140,10 @@ Make bco a member of the openhab group
 sudo chmod -R g+rwX /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 sudo chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 ```
+
+## Setup Portainer as Docker Management Tool
+
+https://www.portainer.io/installation/
 
 # Outdated Stuff
 
