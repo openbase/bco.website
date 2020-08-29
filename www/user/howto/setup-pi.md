@@ -158,14 +158,14 @@ sudo docker run \
 After the installation has finished, you can access portainer via port 9000 (e.g.: [http://raspberrypi:9000](http://raspberrypi:9000))
 
 
-# Outdated Stuff
+# Troubleshooting
 
 ## Install Middleware
 
 ### base setup
 * set up base Raspbian from https://www.raspberrypi.org/downloads/ and follow the instructions
-* `sudo apt install screen bison`
-### install spread
+* `sudo apt install bison`
+### Manually compile and install Spread directly on the PI
 * download from http://www.spread.org/download/spread-src-5.0.1.tar.gz (or newer, adapt file/dir names below in those cases) and copy file to Pi
 * `tar xvf spread-src-5.0.1.tar`
 * `cd spread-src-5.0.1`
