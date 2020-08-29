@@ -150,7 +150,7 @@ sudo chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 
 ## Setup Portainer as Docker Management Tool
 
-The official installation can be found at: (https://www.portainer.io/installation/)
+The official installation can be found at: [Portainer Doc](https://www.portainer.io/installation/)
 Or use this shortcut for the pi: 
 ```bash
 sudo docker volume create portainer_data
