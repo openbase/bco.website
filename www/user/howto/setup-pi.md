@@ -72,7 +72,7 @@ sudo usermod -a -G openhab ${DEFAULT_USER}
 **Skip this step is you do not have a Z-Wave USB Stick**.
 At this point, make sure your Z-Wave USB Stick is plugged in and that it is available under the following path:
 ```
-export $ZWAVE_STICK=--device=/dev/ttyACM0
+export ZWAVE_STICK=--device=/dev/ttyACM0
 ```
 
 ### Create Openhab Docker
