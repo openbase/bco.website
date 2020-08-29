@@ -69,7 +69,7 @@ sudo usermod -a -G openhab ${DEFAULT_USER}
 ```
 
 ### Setup Z-Wave USB Stick
-Skip this step is you do not have a Z-Wave USB Sticke.
+**Skip this step is you do not have a Z-Wave USB Stick**.
 At this point, make sure your Z-Wave USB Stick is plugged in and that it is available under the following path:
 ```
 export $ZWAVE_STICK=--device=/dev/ttyACM0
