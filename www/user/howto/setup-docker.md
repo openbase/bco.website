@@ -19,15 +19,6 @@ export DEFAULT_USER=$(whoami)
    * Short summary for the pi:
      1. `curl -fsSL https://get.docker.com -o get-docker.sh`
      2. `sudo sh get-docker.sh`
-   * Short summary for Debian based OS:
-     1. `sudo apt-get remove docker docker-engine docker.io containerd runc`
-     2. `sudo apt-get update`
-     3. `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
-     4. `curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -`
-     5. `sudo apt-key fingerprint 0EBFCD88`
-     6. `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"`
-     7. `sudo apt-get update`
-     8. `sudo apt-get install docker-ce docker-ce-cli containerd.io`
 2. Add default user to docker group
 ```bash
 sudo usermod -aG docker ${DEFAULT_USER}
