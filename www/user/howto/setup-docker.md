@@ -31,7 +31,6 @@ sudo usermod -aG docker ${DEFAULT_USER}
 sudo docker run \
         --name spread \
         --net=host \
-        -p 4803:4803 \
         -d \
         --restart=always \
         openbaseorg/spread:latest
