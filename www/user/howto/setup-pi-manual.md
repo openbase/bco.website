@@ -7,8 +7,8 @@ This installation description is in its early stage and any feedback welcome!
 
 ## Compile and Install the Spread Middleware
 
-## PI Preperations
-1. Install a fresh Raspberry PI OS (previously called Raspbian) on your PI [Install Paspberry Pi OS](https://www.raspberrypi.org/downloads/)
+## PI Preparation
+1. Install a fresh Raspberry PI OS (previously called Raspbian) on your PI [Install Raspberry PI OS](https://www.raspberrypi.org/downloads/)
 2. Make sure you have SSH access enabled on your PI. [Enable SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 3. Login via ssh to your PI
    1. Default ```ssh pi@raspberrypi```
@@ -32,6 +32,5 @@ sudo make install
 sudo chmod ug+rws /etc/openhab2/sitemaps
 ```
 
-## Directly install BaseCubeOne on Pi
-
-Follow the [Debian Installation Guide](/user/installation.md#on-debian-based-systems).
+## Next Step
+Directly install BaseCubeOne on PI by following the [Debian Installation Guide](/user/howto/setup-debian.md#setup-the-openbase-debian-repository).

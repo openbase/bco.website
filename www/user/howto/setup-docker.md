@@ -154,6 +154,6 @@ sudo docker run \
 After the installation has finished, you can access portainer via port 9000
 for example: [http://yourhostname:9000](http://yourhostname:9000)
 
-## Next Steps
+## Next Step
 
 Now, the docker setup is finished and you can continue with the [initial openHAB setup](/user/howto/setup-openhab.md).

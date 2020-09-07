@@ -28,6 +28,6 @@ sudo apt update
 sudo apt install bco
 ``` 
 
-## Next Steps
+## Next Step
 
 Now, the docker setup is finished and you can continue with the [initial openHAB setup](/user/howto/setup-openhab.md).
