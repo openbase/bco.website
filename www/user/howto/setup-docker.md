@@ -1,25 +1,13 @@
 ---
 ---
-# How to setup BCO on Raspberry PI via Docker
+# How to setup BCO via Docker
 
 ::: warning
 This installation description is in its early stage and any feedback welcome!
 :::
-
-## Hardware Requirements
-
-* Pi 4 with at least 4GB is recommended.
-* SD Card with at least 16 GB (In order to store some historical data).
-* Direct ethernet connection to your router is recommended.
   
-## PI Preperations
-1. Install a fresh Raspberry PI OS (previously called Raspbian) on your PI [Install Paspberry Pi OS](https://www.raspberrypi.org/downloads/)
-2. Make sure you have SSH access enabled on your PI. [Enable SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/)
-3. Login via ssh to your PI
-   1. Default ```ssh pi@raspberrypi```
-
 ## Define Default User
-If you what to keep the PI user as default user just execute the following command, otherwise store the name of the default user in the following variable:
+If you what to use the current user as default one just execute the following command, otherwise store the name of the default user in the following variable:
 
 ```bash
 export DEFAULT_USER=$(whoami)
@@ -27,15 +15,20 @@ export DEFAULT_USER=$(whoami)
 
 ## Setup Docker Environment
 
-Follow the official setup guidelines at [Docker Docs](https://docs.docker.com/engine/install/debian/)
-or follow this short summary:
-
-```bash
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-```
-
-Add default user to docker group
+1. Follow the official setup guidelines at [Docker Docs](https://docs.docker.com/engine/install/debian/)
+   * Short summary for the pi:
+     1. `curl -fsSL https://get.docker.com -o get-docker.sh`
+     2. `sudo sh get-docker.sh`
+   * Short summary for Debian based OS:
+     1. `sudo apt-get remove docker docker-engine docker.io containerd runc`
+     2. `sudo apt-get update`
+     3. `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
+     4. `curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -`
+     5. `sudo apt-key fingerprint 0EBFCD88`
+     6. `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"`
+     7. `sudo apt-get update`
+     8. `sudo apt-get install docker-ce docker-ce-cli containerd.io`
+2. Add default user to docker group
 ```bash
 sudo usermod -aG docker ${DEFAULT_USER}
 ```
@@ -50,7 +43,7 @@ sudo docker run \
         -p 4803:4803 \
         -d \
         --restart=always \
-        openbaseorg/spread:version-5.0.2-armhf
+        openbaseorg/spread:latest
 ```
 
 ## Openhab Setup
@@ -157,7 +150,7 @@ sudo chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 ## Setup Portainer as Docker Management Tool
 
 The official installation can be found at: [Portainer Doc](https://www.portainer.io/installation/)
-Or use this shortcut for the pi: 
+Or use this shortcut: 
 ```bash
 sudo docker volume create portainer_data
 sudo docker run \
@@ -169,42 +162,8 @@ sudo docker run \
     -v portainer_data:/data portainer/portainer
 ```
 After the installation has finished, you can access portainer via port 9000
-In case you did not change your PI`s hostname try: [http://raspberrypi:9000](http://raspberrypi:9000)
+for example: [http://yourhostname:9000](http://yourhostname:9000)
+
+## Next Steps
 
 Now, the docker setup is finished and you can continue with the [initial openHAB setup](/user/howto/setup-openhab.md).
-
-# How to setup BCO directly on Raspberry PI OS
-::: warning
-This installation description is in its early stage and any feedback welcome!
-:::
-
-## Compile and Install the Spread Middleware
-
-## PI Preperations
-1. Install a fresh Raspberry PI OS (previously called Raspbian) on your PI [Install Paspberry Pi OS](https://www.raspberrypi.org/downloads/)
-2. Make sure you have SSH access enabled on your PI. [Enable SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/)
-3. Login via ssh to your PI
-   1. Default ```ssh pi@raspberrypi```
-
-### Manually compile and install Spread directly on the PI
-1. [Download Spread](http://www.spread.org/download/spread-src-5.0.1.tar.gz) and copy the file to the PI.
-2. Compile and Install Spread
-```bash
-sudo apt install bison
-tar xvf spread-src-5.0.1.tar
-cd spread-src-5.0.1
-./configure
-make -j4
-sudo make install
-```
-
-### Directly install OpenHAB on Pi
-1. Follow instructions from https://www.openhab.org/docs/installation/openhabian.html#other-linux-systems-add-openhabian-just-like-any-other-software
-2. Make sure the sitemap folder is writeable:
-```bash
-sudo chmod ug+rws /etc/openhab2/sitemaps
-```
-
-## Directly install BaseCubeOne on Pi
-
-Follow the [Debian Installation Guide](/user/installation.md#on-debian-based-systems).

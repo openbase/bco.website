@@ -2,34 +2,13 @@
 ---
 # Installation
 
-## On Debian based Systems
+## Recommended Setup Guides
 
-### Setup the openbase Debian Repository
+* [Docker](/user/howto/setup-docker.md)
+* [Pi - Docker](/user/howto/setup-pi-docker.md)
+* [Debian based OS](/user/howto/setup-debian.md)
 
-Register the repository public key
-```bash
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AAF438A589C2F541
-```
+## More enhanced Setup Guides
 
-Register the repository (adjust distribution name if required to one of the following: `wheezy`, `stretch`, `bionic`, `buster`)
-```bash
-echo "deb https://dl.bintray.com/openbase/deb buster main" | sudo tee -a /etc/apt/sources.list
-```
-
-In case you want to support the development of openbase applications as beta-tester, you can register the testing repo in order to receive alpha and beta releases. Those are maybe not that stable but feedback is always welcome.
-```bash
-echo "deb https://dl.bintray.com/openbase/deb buster testing" | sudo tee -a /etc/apt/sources.list
-```
-
-Update your package list
-```bash
-sudo apt update
-```
-
-### Install BCO
-
-```bash
-sudo apt install bco
-``` 
-
-In case you want to setup the entire tool chain for development just continue with the [Developer Installation Guide](/developer/installation.md).
+* [Pi - Manual](/user/howto/setup-pi-manual.md)
+* [Developer Installation Guide](/developer/installation.md).
