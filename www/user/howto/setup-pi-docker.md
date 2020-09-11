@@ -18,10 +18,6 @@ This installation description is in its early stage and any feedback welcome!
 3. Login via ssh to your PI
    1. Default ```ssh pi@raspberrypi```
 
-## Define Default User
-If you what to keep the PI user as default user just execute the following command, otherwise store the name of the default user in the following variable:
-
-
 ## Next Step
 
 Now, you can follow the [docker setup guide](/user/howto/setup-docker.md).
