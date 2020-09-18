@@ -149,7 +149,7 @@ sudo docker run \
     --name portainer \
     --restart=always \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v portainer_data:/data portainer/portainer
+    -v portainer_data:/data portainer/portainer-ce
 ```
 After the installation has finished, you can access portainer via port 9000
 for example: [http://yourhostname:9000](http://yourhostname:9000)
