@@ -140,7 +140,7 @@ sudo chgrp bco /var/lib/docker/volumes/openhab_conf/_data/sitemaps
 ## Setup Portainer as Docker Management Tool
 
 The official installation can be found at: [Portainer Doc](https://www.portainer.io/installation/)
-Or use this shortcut: 
+or use this shortcut: 
 ```bash
 sudo docker volume create portainer_data
 sudo docker run \
@@ -151,8 +151,54 @@ sudo docker run \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data portainer/portainer-ce
 ```
-After the installation has finished, you can access portainer via port 9000
+After the installation has finished, you can access portainer via port ```9000```
 for example: [http://yourhostname:9000](http://yourhostname:9000)
+
+## Setup auto update service with watchtower
+
+Watchtower can be used to automatically keep your docker containers up-to-date.
+The following modifications has been applied:
+* ```WATCHTOWER_CLEANUP``` cleans up images that has been replaced by newer ones.
+* ```WATCHTOWER_INCLUDE_STOPPED``` even update stopped containers.
+* ```WATCHTOWER_TIMEOUT``` give components more time to perform a proper container shutdown.
+* ```-v /etc/timezone:/etc/timezone:ro``` use the timezone of the hosts system.
+
+Checkout the [watchtower documentation](https://containrrr.dev/watchtower/) for more details.
+
+### Setup Watchtower as a daemon service
+
+Once watchtower is deployed as a daemon service, it will check every 300 seconds for new container images.
+In case a new image is available, the container will be stopped, updated and started after the update has finished.
+
+Use the following command to setup watchtower as a daemon:
+```bash
+docker run -d \
+    --name watchtower \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /etc/timezone:/etc/timezone:ro \
+    --env WATCHTOWER_CLEANUP=true \
+    --env WATCHTOWER_INCLUDE_STOPPED=true \
+    --env WATCHTOWER_TIMEOUT=60 \
+    containrrr/watchtower:latest
+```
+
+### Setup Watchtower as a one shot service
+
+In case you still want to be the one who is in change when updates should be performed,
+you can setup watchtower as a one shot service. Therefore, updates are only checked in case you manually start the watchtower container.
+Once started, watchtower will update all containers and stop itself afterwards again.
+
+Use the following command to setup watchtower as aon shot service.
+```bash
+docker run -d \
+    --name watchtower \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /etc/timezone:/etc/timezone:ro \
+    --env WATCHTOWER_CLEANUP=true \
+    --env WATCHTOWER_INCLUDE_STOPPED=true \
+    --env WATCHTOWER_TIMEOUT=60 \
+    containrrr/watchtower:latest
+```
 
 ## Next Step
 
