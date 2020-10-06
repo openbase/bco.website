@@ -197,6 +197,7 @@ docker run -d \
     --env WATCHTOWER_CLEANUP=true \
     --env WATCHTOWER_INCLUDE_STOPPED=true \
     --env WATCHTOWER_TIMEOUT=60 \
+    --env WATCHTOWER_RUN_ONCE=true \
     containrrr/watchtower:latest
 ```
 
