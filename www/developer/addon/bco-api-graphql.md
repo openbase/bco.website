@@ -7,8 +7,15 @@
 Service Name ```bco-api-graphql```
 
 ## Supported Queries
+* `login(username: String, password: String): String` - Retrieve an authentication token (see [Authentication](#Authenticaiton))
 
 ## Supported Mutations
+
+
+## Authentication
+The authentication over the GraphQL API works with a token approach.
+First, you have to retrieve a token for a user using the [login query](#Supported-Queries).
+Then, you should add an `Authorization` header with the retrieved token as its value to all your requests to the API.
 
 ## Used Tools
 
