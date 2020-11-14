@@ -10,6 +10,7 @@ Service Name ```bco-api-graphql```
 * `login(username: String, password: String): String` - Retrieve an authentication token (see [Authentication](#Authenticaiton))
 
 ## Supported Mutations
+* `changePassword(username: String, oldPassword: String, newPassword: String): Boolean` - Note: the return value will always be true since an exception is thrown if changing the password fails
 
 
 ## Authentication
