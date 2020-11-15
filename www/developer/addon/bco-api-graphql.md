@@ -10,7 +10,14 @@ Service Name ```bco-api-graphql```
 * `login(username: String!, password: String!): String` - Retrieve an authentication token (see [Authorization Header](#supported-headers))
 
 ## Supported Mutations
-* `changePassword(username: String!, oldPassword: String!, newPassword: String!): Boolean` - Note: the return value will always be true since an exception is thrown if changing the password fails
+* `changePassword(username: String!, oldPassword: String!, newPassword: String!): Boolean` - Note: the return value will always be true since an exception is thrown if changing the password fails.
+* `updateLabel(unitId: String, label: String): Label` - Update the label of a unit. Note: this will update the first label considering the current language code which can be provided with the [Accept-Language Header](#supported-headers).
+* `updateLocation(unitId: String, locationId: String): PlacementConfig` - Update the location of a unit.
+* `updateFloorPlan(locationId: String, shape: Shape): Shape` - Clear the floor list of the current location and replace it with the list in the provided shape. Note: the rejoiner framework does not allow passing lists as arguments so you have to provide a complete shape from which only the floor list is considered.
+* `updatePose(unitId: String, pose: Pose): Pose` - Replace the pose of a unit.
+* `registerUnitConfig(unitConfig: UnitConfig): UnitConfig` - Register a new unit.
+* `removeUnitConfig(unitId: String): UnitConfig` - Remove a unit by its id.
+* `updateUnitConfig(unitConfig: UnitConfig): UnitConfig` - Update a unit config. Note: the values of the provided unit config will be merged into the current one (retrieved through the provided id). This means that all values which are lists will just be appended to the current list.
 
 ## Supported Headers
 The GraphQL API Server will process the following HTTP headers on requests:
