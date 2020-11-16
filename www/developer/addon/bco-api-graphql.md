@@ -19,6 +19,7 @@ Service Name ```bco-api-graphql```
 * `registerUnitConfig(unitConfig: UnitConfig): UnitConfig` - Register a new unit.
 * `removeUnitConfig(unitId: String): UnitConfig` - Remove a unit by its id.
 * `updateUnitConfig(unitConfig: UnitConfig): UnitConfig` - Update a unit config. Note: the values of the provided unit config will be merged into the current one (retrieved through the provided id). This means that all values which are lists will just be appended to the current list.
+* `updateMetaConfig(unitId: String, entry: Entry): MetaConfig` - Update an entry in the toplevel meta config of a unit config.
 
 ## Supported Headers
 The GraphQL API Server will process the following HTTP headers on requests:
