@@ -6,6 +6,11 @@
 
 Service Name ```bco-api-graphql```
 
+## Default Settings
+Suffix: ```graphql```
+Port: ```13781```
+Example Endpoint: ```http://localhost:13781/graphql```
+
 ## Supported Queries
 * `login(username: String!, password: String!): String` - Retrieve an authentication token (see [Authorization Header](#supported-headers))
 * `verifyToken(token: String): Boolean`
