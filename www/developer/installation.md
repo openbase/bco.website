@@ -219,6 +219,7 @@ activity-template-db
 agent-class-db
 app-class-db
 device-class-db
+gateway-class-db
 service-template-db
 unit-template-db
 ```
