@@ -3,11 +3,11 @@
 # How to setup BCO via Docker
 
 ::: warning
-This installation description is in its early stage and any feedback welcome!
+This installation instruction is in an early stage and any feedback is welcome!
 :::
   
 ## Define Default User
-If you what to use the current user as default one just execute the following command, otherwise store the name of the default user in the following variable:
+If you want to use the current user as the default one, just execute the following command. Otherwise store the name of the default user in the following variable:
 
 ```bash
 export DEFAULT_USER=$(whoami)
@@ -50,7 +50,7 @@ sudo usermod -a -G dialout openhab
 sudo usermod -a -G tty openhab
 ```
 
-### Add the default user to openHAB group
+### Add the default user to the openHAB group
 ```bash
 sudo usermod -a -G openhab ${DEFAULT_USER}
 ```
@@ -84,7 +84,7 @@ sudo docker run \
 
 ## BCO Setup
 
-### BCO User und Gruppe anlegen
+### Create BCO user and group
 ```bash
 sudo adduser --system --shell /usr/sbin/nologin bco
 sudo addgroup --system bco
@@ -130,7 +130,7 @@ sudo docker run \
     openbaseorg/bco-device-manager-openhab:experimental
 ```
 
-### Enable BCO to access the sitemap directory in order to generate or update sitemaps
+### Enable BCO to access the openHAB sitemap directory in order to generate or update sitemaps
 Make BCO user a member of the openHAB group
 ```bash
 sudo chmod -R g+rwX /var/lib/docker/volumes/openhab_conf/_data/sitemaps
