@@ -209,28 +209,14 @@ Once bco is started you can add further units by adding them via the ``bco-regis
 
 In general bco takes care of all class and template database entries. Those will be updated during each startup of bco as long as an internet connection is provided.
 In case you want to backup your individual setup entries just create a local git repository in the database folder and upload it to any git remote repository of your choice.
-::: warning INFO
-In general we recommend to use GIT to versioning your database. But please make sure the external BCO maintained DBs (template/class) are excluded via ```.gitignore```.
-:::
-However, please make sure that the bco class and template repositories are not part of the git. Do to so, just create the following ```.gitignore``` file.    
-```
-// ~/.config/bco/var/registry/db/.gitignore
-activity-template-db
-agent-class-db
-app-class-db
-device-class-db
-gateway-class-db
-service-template-db
-unit-template-db
-```
 
 ### How to setup a Demo Database
-Sometimes its useful during development to play around with an already complex environment setup.
-The following steps explain how to setup such an example database. 
+Sometimes during development its useful to play around with an already complex environment setup.
+The following steps explain how to setup the bco demo database that already entails a bunch of devices and units. 
 ```
 mkdir -p ~/.config/bco/var/registry
 cd ~/.config/bco/var/registry
-git clone https://github.com/csra/bco.registry.csra-db db
+git clone https://github.com/openbase/bco.registry.demo-db db
 ```
 
 ### How to Restore a Backup
