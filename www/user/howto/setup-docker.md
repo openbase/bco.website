@@ -172,7 +172,7 @@ In case a new image is available, the container will be stopped, updated and sta
 
 Use the following command to setup watchtower as a daemon:
 ```bash
-docker run -d \
+sudo docker run -d \
     --name watchtower \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /etc/timezone:/etc/timezone:ro \
@@ -190,7 +190,7 @@ Once started, watchtower will update all containers and stop itself afterwards a
 
 Use the following command to setup watchtower as aon shot service.
 ```bash
-docker run -d \
+sudo docker run -d \
     --name watchtower \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /etc/timezone:/etc/timezone:ro \
