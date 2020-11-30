@@ -184,7 +184,7 @@ cd ~/workspace/openbase/bco
 all ./install.sh
 ```
 ::: tip INFO
-The initial installation can take a while, so grab a coffee and relax while the scripts to the hard work.
+The initial installation can take a while, so grab a coffee and relax while the scripts do the hard work.
 :::
 
 Now everything should be ready to start the development of new bco components and apps. We recommend to use IntelliJ as IDE for BCO.
@@ -205,10 +205,10 @@ This database is placed at ```~/.config/bco/var/registry/db``` and only contains
 ::: warning INFO
 Please do not modify any database entries by hand as long as you exactly know what you are doing since manual modifications can lead into an inconsistent database.
 :::
-Once bco is started you can add further units by adding them via the ``bco-registry-editor``. User accounts can be created and passwords changed via ``bco-console``. 
+Once bco is started you can add further units by adding them via the ``bco-registry-editor``. User accounts can be created and passwords changed via ```bco-console```. 
 
 In general bco takes care of all class and template database entries. Those will be updated during each startup of bco as long as an internet connection is provided.
-In case you want to backup your individual setup entries just create a local git repository in the database folder and upload it to any git remote repository of your choice.
+In case you want to backup your individual setup entries just create a local git repository in the database folder ```git init```, link it to any git remote repository of your choice ```git remote add origin https://github.com/$YOUR_ACCOUNT/bco.registry.$YOUR_HOME_ID-db.git```, and upload the db via ```git push --set-upstream origin master```.
 
 ### How to setup a Demo Database
 Sometimes during development its useful to play around with an already complex environment setup.
@@ -222,13 +222,3 @@ git clone https://github.com/openbase/bco.registry.demo-db db
 ### How to Restore a Backup
 
 To restore an already existing bco setup, just place the related ```db``` directory within ```~/.config/bco/var/registry```.
-
-## Additional Tools
-
-### RSB Libs and Tools (Optional)
-
-The rsb python and c++ libs can be installed via the cor-lab debian repository as well as the rsb developer tools:
-```
-sudo apt-get install librsc0.18 librsb0.18 rsb0.18 rst0.18 cl-rsb rsb-tools-cpp0.18 rsb-tools-cl0.18
-```
-
