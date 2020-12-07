@@ -7,12 +7,14 @@
 Service Name ```bco-api-graphql```
 
 ## Default Settings
-Suffix: ```graphql```
-Port: ```13781```
-Example Endpoint: ```http://localhost:13781/graphql```
+* Suffix: ```graphql```
+* Port: ```13781```
+* Example Endpoint: ```http://localhost:13781/graphql```
 
 ## Supported Queries
-* `login(username: String!, password: String!): String` - Retrieve an authentication token (see [Authorization Header](#supported-headers))
+* `login(username: String!, passwordHash: String!): String` - Retrieve an authentication token (see [Authorization Header](#supported-headers))
+  * Default admin password token: `R+gZ+PFuauhav8rRVa3XlWXXSEyi5BcdrbeXLEY3tDQ=`
+  * Checkout [how to generate the password hash on client side](#how-to-generate-the-password-hash-on-client-side) for more details. 
 * `verifyToken(token: String): Boolean`
 
 ## Supported Mutations
@@ -39,6 +41,27 @@ If you set the accept-language header to a language code, the GraphQL API will r
 On queries the text matching the language code are returned and on mutations the values matching your language code are modified.
 It this header is not set, the default of the server running the GraphQL API is used.
 
+## How to generate the password hash on client side
+
+The `passwordHash` needs to be generated as follows:
+1. Encoding the plain text password as `UTF16`
+2. Compute a hash of the `UTF16` bytes by using the `SHA-256` hash generator algorithm
+3. Encode the result as `Base64` and pass it to the login method as `passwordHash`.
+
+Dart Example:
+   ```dart
+   final hashedPassword = base64.encode(
+      sha256.convert(
+         encodeUtf16(plainPassword)
+      ).bytes);
+   ```
+Java Example:
+   ```java
+   final String hashedPassword = Base64.getEncoder()
+      .encodeToString(
+         EncryptionHelper.hash("plainPassword")
+      );
+   ```
 ## Used Tools
 
 1. [GraphQL](https://graphql.org/)
