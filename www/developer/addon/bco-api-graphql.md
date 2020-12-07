@@ -13,7 +13,7 @@ Service Name ```bco-api-graphql```
 
 ## Supported Queries
 * `login(username: String!, passwordHash: String!): String` - Retrieve an authentication token (see [Authorization Header](#supported-headers))
-  * Default admin password token: `R+gZ+PFuauhav8rRVa3XlWXXSEyi5BcdrbeXLEY3tDQ=`
+  * Default admin base64 password hash: `R+gZ+PFuauhav8rRVa3XlWXXSEyi5BcdrbeXLEY3tDQ=`
   * Checkout [how to generate the password hash on client side](#how-to-generate-the-password-hash-on-client-side) for more details. 
 * `verifyToken(token: String): Boolean`
 
