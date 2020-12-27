@@ -79,7 +79,7 @@ sudo docker run \
     -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
     $ZWAVE_STICK \
-    openhab/openhab:latest
+    openhab/openhab:2.5.11
 ```
 
 ## BCO Setup
