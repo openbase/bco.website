@@ -2,9 +2,7 @@
 ---
 # How to setup BCO via Docker
 
-::: warning
-This installation instruction is in an early stage and any feedback is welcome!
-:::
+Just follow the instructions step by step in order to setup your own home cube.
   
 ## Define Default User
 If you want to use the current user as the default one, just execute the following command. Otherwise store the name of the default user in the following variable:
@@ -56,7 +54,7 @@ sudo usermod -a -G openhab ${DEFAULT_USER}
 ```
 
 ### Setup Z-Wave USB Stick
-::: warning INFO
+::: tip INFO
 Skip this step if you do not have a Z-Wave USB Stick!
 :::
 At this point, make sure your Z-Wave USB Stick is plugged in and that it is available under the following path:
@@ -64,7 +62,7 @@ At this point, make sure your Z-Wave USB Stick is plugged in and that it is avai
 export ZWAVE_STICK=--device=/dev/ttyACM0
 ```
 
-### Create Openhab Docker
+### Deploy the openHAB Docker
 ```bash
 sudo docker run \
     --name openhab \
@@ -96,7 +94,7 @@ sudo usermod -a -G bco bco
 sudo usermod -a -G bco ${DEFAULT_USER}
 ```
 
-### Create BCO Core Docker
+### Deploy the BCO Core Docker
 ```bash
 sudo docker run \
     --name bco \
@@ -112,7 +110,7 @@ sudo docker run \
     openbaseorg/bco:experimental
 ```
 
-### Create BCO Device Manager Openhab Docker
+### Deploy the BCO Device Manager openHAB Docker
 ```bash
 sudo docker run \
     --name bco-device-manager-openhab \
@@ -128,6 +126,25 @@ sudo docker run \
     --restart=always \
     -t \
     openbaseorg/bco-device-manager-openhab:experimental
+```
+
+### Deploy the BCO Webapp Docker
+The docker deploys a local webserver thats serving the BCO webapp within your local network.
+This supports an installation free control of your home environment on any device thats offers a web browser.
+::: tip INFO
+If port `80` is already in use you can alter the `X` in `--publish X:80` in order to refer
+to another port.
+:::
+```bash
+sudo docker run \
+    --name bco-webapp \
+    --publish 8080:80 \
+    --volume /etc/localtime:/etc/localtime:ro \
+    --volume /etc/timezone:/etc/timezone:ro \
+    --detach \
+    --restart=always \
+    -t \
+    opaal/bco-ui-albiorix:latest
 ```
 
 ### Enable BCO to access the openHAB sitemap directory in order to generate or update sitemaps
