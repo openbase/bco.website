@@ -13,10 +13,17 @@ This installation description is in its early stage and any feedback welcome!
 * Direct ethernet connection to your router is recommended.
   
 ## PI Preparation
-1. Install a fresh Raspberry PI OS (previously called Raspbian) on your PI [Install Raspberry PI OS](https://www.raspberrypi.org/downloads/)
-2. Make sure you have SSH access enabled on your PI. [Enable SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/)
-3. Login via ssh to your PI
-   1. Default ```ssh pi@raspberrypi```
+1. Install a fresh Ubuntu Server 64-bit on your PI [Install Ubuntu Server](https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview)
+2. Login via ssh to your PI (the installation guide includes description on how to get the ip-address)
+   1. Default ```ssh ubuntu@<ip-address>```
+3. (Optional) Create a new user:
+   1. `sudo adduser <username>`
+   2. `sudo usermod -aG sudo <username>`
+   3. Close ssh session `CTRL-D` and reconnect `ssh <username>@<ip-address>`
+
+::: tip
+We recommend 64-bit operating systems to run BCO.
+:::
 
 ## Next Step
 
