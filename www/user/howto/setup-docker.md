@@ -24,16 +24,20 @@ export DEFAULT_USER=$(whoami)
 sudo usermod -aG docker ${DEFAULT_USER}
 ```
 
-## Spread Setup
+## MQTT Broker Setup
 
 ### Create Docker Container
 ```bash
 sudo docker run \
-        --name spread \
-        --net=host \
-        -d \
-        --restart=always \
-        openbaseorg/spread:latest
+  --name vernemq \
+  -d \
+  --restart=always \
+  -e "DOCKER_VERNEMQ_ACCEPT_EULA=yes" \
+  -e "DOCKER_VERNEMQ_LISTENER.tcp.allowed_protocol_versions=5" \
+  -e "DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on" \
+  -p 1883:1883 \
+  -p 8888:8888 \
+  vernemq/vernemq
 ```
 
 ## Openhab Setup
