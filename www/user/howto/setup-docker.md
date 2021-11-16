@@ -28,16 +28,13 @@ sudo usermod -aG docker ${DEFAULT_USER}
 
 ### Create Docker Container
 ```bash
-sudo docker run \
-  --name vernemq \
-  -d \
-  --restart=always \
-  -e "DOCKER_VERNEMQ_ACCEPT_EULA=yes" \
-  -e "DOCKER_VERNEMQ_LISTENER.tcp.allowed_protocol_versions=5" \
-  -e "DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on" \
-  -p 1883:1883 \
-  -p 8888:8888 \
-  vernemq/vernemq
+echo "allow_anonymous true\nlistener 1883" >> $HOME/.mosquitto.conf
+docker run \
+  --name mosquitto \
+  --publish 1883:1883 \
+  --volume \
+  $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
+  eclipse-mosquitto
 ```
 
 ## Openhab Setup
