@@ -28,8 +28,8 @@ sudo usermod -aG docker ${DEFAULT_USER}
 
 ### Create Docker Container
 ```bash
-echo "allow_anonymous true\nlistener 1883" >> $HOME/.mosquitto.conf
-docker run \
+echo -e "allow_anonymous true\nlistener 1883" >> $HOME/.mosquitto.conf && \
+sudo docker run \
   --name mosquitto \
   --publish 1883:1883 \
   --volume \
