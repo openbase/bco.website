@@ -1,6 +1,4 @@
 # Initial openHAB Setup
-The setup differs for different OpenHAB versions.
-Look only at the specific steps required for you version.
 
 ## OpenHAB 3.x.x
 
@@ -15,15 +13,7 @@ Then your generated API token of the form `oh.bco.<token>` should be displayed.
 Copy this token and add the following entry to the meta config of the OpenHAB gateway config with the registry editor: 
 `TOKEN=oh.bco.<token>`
 
-## OpenHAB 2.x.x
-
-Please make sure the Simple Mode of openHAB is disabled before connecting BCO to openHAB.
-
-PaperUI → Configuration → System → Item Linking → Simple Mode → Disable
-
-After Deactivation, please make sure that all existing items are marked as editable.
-To do so, checkout the item list and validate that for each item entry the Trash Bin Symbol is displayed next to the Pencil Symbol.
-If this is not the case you should [remove all items ](./setup-openhab.md#how-to-remove-all-item-entries)(BCO will recreate them anyway later on).
+## Troubleshooting
 
 ### How to remove all item entries
 

@@ -22,16 +22,17 @@ export DEFAULT_USER=$(whoami)
 sudo usermod -aG docker ${DEFAULT_USER}
 ```
 
-## Spread Setup
+## MQTT Broker Setup
 
 ### Create Docker Container
 ```bash
+echo -e "allow_anonymous true\nlistener 1883" >> $HOME/.mosquitto.conf && \
 sudo docker run \
-        --name spread \
-        --net=host \
-        -d \
-        --restart=always \
-        openbaseorg/spread:latest
+  --name mosquitto \
+  --publish 1883:1883 \
+  --volume \
+  $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
+  eclipse-mosquitto
 ```
 
 ## Openhab Setup
@@ -77,7 +78,7 @@ sudo docker run \
     -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
     $ZWAVE_STICK \
-    openhab/openhab:2.5.11
+    openhab/openhab:3.1.1
 ```
 
 ## BCO Setup
@@ -107,7 +108,7 @@ sudo docker run \
     --env GROUP_ID=$(getent group bco | cut -d: -f3) \
     --restart=always \
     -t \
-    openbaseorg/bco:experimental
+    openbaseorg/bco:stable
 ```
 
 ### Deploy the BCO Device Manager openHAB Docker
@@ -125,7 +126,7 @@ sudo docker run \
     --env OPENHAB_GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
     -t \
-    openbaseorg/bco-device-manager-openhab:experimental
+    openbaseorg/bco-device-manager-openhab:stable
 ```
 
 ### Deploy the BCO Webapp Docker
