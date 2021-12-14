@@ -1,9 +1,6 @@
 ---
 ---
 # How to setup BCO directly on Raspberry PI OS
-::: warning
-This installation description is in its early stage and any feedback welcome!
-:::
 
 ## Compile and Install the Spread Middleware
 
