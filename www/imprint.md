@@ -7,8 +7,8 @@
 <res/>
 
 Marian Pohling<br>
-Schillerstr. 1<br>
-33609 Bielefeld<br>
+Stodieks Hof. 51<br>
+33790 Bielefeld<br>
 
 :phone:  +49521-3039167<br>
 :email: support@openbase.org<br>
@@ -21,8 +21,8 @@ Schillerstr. 1<br>
 
 ## Responsible for Journalistic-Editorial Contents
 Marian Pohling<br>
-Schillerstr. 1<br>
-33609 Bielefeld<br>
+Stodieks Hof. 51<br>
+33790 Bielefeld<br>
 
 *Information provided according to Sec. 55, para. 2 German Federal Broadcasting Agreement (RStV)*
 

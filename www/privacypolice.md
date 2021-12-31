@@ -76,10 +76,9 @@ is not possible.
 The party responsible for processing data on this website is:
 
 Marian Pohling<br>
-Schillerstr. 1<br>
-33609 Bielefeld<br>
+Stodieks Hof. 51<br>
+33790 Bielefeld<br>
 
-:phone:  +49521-3039167<br>
 :email: support@openbase.org<br>
 :globe_with_meridians: [openbase.org](https://openbase.org)
 

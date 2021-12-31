@@ -3,7 +3,7 @@
 This examples can be used as kick-off before jumping into the bco development. They pick up the basic functions like how to query, control and access any units.
 
 ::: tip Note
-Please make sure spread and bco are started within your network before executing the howtos.
+Please make sure an mqtt broker and bco are started within your network before performing the howtos.
 :::
 
 ## Java DAL Remote
@@ -14,12 +14,12 @@ For running any java examples you only need to include the dal remote dependency
 <dependency>
     <groupId>org.openbase</groupId>
     <artifactId>bco.dal.remote</artifactId>
-    <version>[2.0-SNAPSHOT,2.1-alpha)</version>
+    <version>[3.0-SNAPSHOT,3.1-alpha)</version>
 </dependency>
 ```
 
 ### How to query unit configurations
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToQueryUnits.java)
+* [Complete Code Example](https://github.com/openbase/bco/blob/stable/module/dal/example/src/main/java/org/openbase/bco/dal/example/HowToQueryUnits.java)
 
 Query units
 ```java
@@ -29,7 +29,7 @@ final List<UnitConfig> lightUnitConfigList =
 ```
 
 ### How to activate a scene
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToActivateASceneViaDAL.java)
+* [Complete Code Example](https://github.com/openbase/bco/blob/stable/module/dal/example/src/main/java/org/openbase/bco/dal/example/HowToActivateASceneViaDAL.java)
 
 Request the unit
 ```java
@@ -43,7 +43,7 @@ testScene.setActivationState(ActivationState.State.ACTIVE);
 ```
 
 ### How to control a colorable light
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToControlAColorableLightUnitViaDAL.java)
+* [Complete Code Example](https://github.com/openbase/bco/blob/stable/module/dal/example/src/main/java/org/openbase/bco/dal/example/HowToControlAColorableLightUnitViaDAL.java)
 
 Request the unit
 ```java
@@ -60,13 +60,13 @@ testLight.setColor(HSBColor.newBuilder().setHue(0d).setSaturation(1d).setBrightn
 ```
 
 ### How to observe a location specific reed contact
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToObserveLocationSpecificReedContactsViaDAL.java)
+* [Complete Code Example](https://github.com/openbase/bco/blob/stable/module/dal/example/src/main/java/org/openbase/bco/dal/example/HowToObserveLocationSpecificReedContactsViaDAL.java)
 
 ### How to observe service state changes
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToObserveServiceStateChangesViaDAL.java)
+* [Complete Code Example](https://github.com/openbase/bco/blob/stable/module/dal/example/src/main/java/org/openbase/bco/dal/example/HowToObserveServiceStateChangesViaDAL.java)
 
 ### How to observe motion states of rooms
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToObserveMotionStatesOfAllRooms.java)
+* [Complete Code Example](https://github.com/openbase/bco/blob/stable/module/dal/example/src/main/java/org/openbase/bco/dal/example/HowToObserveMotionStatesOfAllRooms.java)
 
 Observe a locations motion state
 ```java
@@ -78,7 +78,7 @@ location.addServiceStateObserver(ServiceTempus.CURRENT, ServiceType.MOTION_STATE
 ```
 
 ### How to resolve units via its label
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToResolveUnitsViaItsLabelForVerbalInteraction.java)
+* [Complete Code Example](https://github.com/openbase/bco/blob/stable/module/dal/example/src/main/java/org/openbase/bco/dal/example/HowToResolveUnitsViaItsLabelForVerbalInteraction.java)
 
 Resolve the label
 ```java
@@ -99,8 +99,3 @@ unit.isInfrastructure();
 RemoteAction action = new RemoteAction(...);
 action.getTargetUnit().isInfrastructure();
 ```
-
-## Python RSB
-
-### How to request, control and observe units
-* [Complete Code Example](https://github.com/openbase/bco.dal/blob/master/example/src/main/python/org/openbase/bco/dal/example/HowToGivePowerConsumptionColorFeedbackViaRSB.py)

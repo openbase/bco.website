@@ -19,7 +19,6 @@ module.exports = {
     themeConfig: {
         logo: '/images/bco_logo_simple_white.png',
         nav: [
-            {text: 'Download', link: '/user/download'},
             {text: 'Installation', link: '/user/installation'},
             {text: 'User', link: '/user/'},
             {text: 'Developer', link: '/developer/'},
@@ -48,7 +47,6 @@ module.exports = {
             /* fallback */
             '/': [
                 '', /* / */
-                '/user/download',
                 '/user/installation',
                 '/user/',
                 '/developer/'

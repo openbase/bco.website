@@ -15,8 +15,7 @@ features:
 ![GUI Overview](/images/bcozy/bcozy.png)
 
 # Platform Integrations
-* [openHAB 2](https://openhab.org)
-* [Google Assistant](https://assistant.google.com)
+* [openHAB 3](https://openhab.org)
 
 # Supported by
 * [openbase](https://openbase.org)
@@ -24,5 +23,5 @@ features:
   
 # Based on
 * [Google Protocol Buffer](https://developers.google.com/protocol-buffers/)
-* [Robotics Service Bus](http://docs.cor-lab.de//rsb-manual/0.17/html/index.html)
+* [MQTT](https://mqtt.org/)
 <Footer/>

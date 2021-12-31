@@ -2,7 +2,7 @@
 ---
 # How to setup BCO via Docker
 
-Just follow the instructions step by step in order to setup your own home cube.
+Follow the instructions step by step in order to setup your own home cube.
   
 ## Define Default User
 If you want to use the current user as the default one, just execute the following command. Otherwise store the name of the default user in the following variable:

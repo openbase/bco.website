@@ -4,11 +4,9 @@
 
 ## Recommended Setup Guides
 
-* [Docker](/user/howto/setup-docker.md)
-* [Pi - Docker](/user/howto/setup-pi-docker.md)
-* [Debian based OS](/user/howto/setup-debian.md)
+* [Setup BCO on a PI](/user/howto/setup-pi-docker.md)
+* [Setup BCO via plain Docker](/user/howto/setup-docker.md)
 
-## More enhanced Setup Guides
+## Development Setup Guides
 
-* [Pi - Manual](/user/howto/setup-pi-manual.md)
-* [Developer Installation Guide](/developer/installation.md).
+* [Setup Toolchain](/developer/installation.md).

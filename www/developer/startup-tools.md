@@ -1,17 +1,8 @@
 ### How to start BCO
 
-#### Provide a Spread Daemon
+#### Provide a MQTT Broker
 
-First of all we need at least one running spread daemon in your network to provide the communication between all distributed bco components.
-You can choose to start your own spread daemon or to connect to an already running instance.
-
-* Start a new spread daemon on your localhost machine
-    * just execute ```spread```
-* Connect to an already running instance
-    * Make sure the external spread host is properly defined in the rsb configuration. 
-        * Example: If there is a spread instance running on host ```spider``` your config file should provide the following entry.
-            * ```~/.config/rsb.conf``` should contain ```host    = spider```
-        * More details about the rsb configuration can be found at the [developer installation](installation.md) section.
+First of all we need at mqtt broker in your network to provide the communication between all distributed bco components.
 
 #### Start BCO
 

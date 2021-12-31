@@ -9,9 +9,4 @@
         * <https://developers.google.com/protocol-buffers>
 * JUL [https://github.com/openbase/jul](https://github.com/openbase/jul)
     * A java utility library.
-    
-### Libraries from Citec (Bielefeld University)
-
-* RSB <http://docs.cor-lab.de/rsb-manual/0.18/html/examples.html>
-    * The middleware used for platform independent network communication.
 

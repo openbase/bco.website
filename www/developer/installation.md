@@ -18,70 +18,31 @@
       * Update Index: ```sudo apt-get update```
       * Install: ```sudo apt-get install zulu-11```
       * Make Default: ```echo 'export JAVA_HOME="/usr/lib/jvm/zulu-11-amd64/"' >> ~/.bashrc && . ~/.bashrc```
-* Maven
-    * ```sudo apt-get install maven```
 * Git
     * ```sudo apt-get install git```
 
 ##  Toolchain Setup
 
-Define where to install the bco distribution via the prefix variable.
+Define where to install the bco distribution via the `BCO_DIST` variable.
 ```
-echo 'export prefix="$HOME/local/bco"' >> ~/.bashrc
+echo 'export BCO_DIST="$HOME/usr/bco"' >> ~/.bashrc
 ```
 Add the ```bin``` folder to your global ```$PATH``` variable to support direct binary execution.
 ```
-echo 'export PATH="$PATH:$prefix/bin:$prefix/usr/bin"' >> ~/.bashrc
+echo 'export PATH="$PATH:$BCO_DIST/bin"' >> ~/.bashrc
 ```
 Reload your bash configuration
 ```
 . ~/.bashrc
 ```
-Make sure the ```$prefix``` folder exists.
+Make sure the ```$BCO_DIST``` folder exists.
 ```
-mkdir -p $prefix
+mkdir -p $BCO_DIST
 ```
-Make sure you have right permissions to ```$prefix```
+Make sure you have right permissions to ```$BCO_DIST```
 ```
-sudo chown -R $USER $prefix
-chmod -R 750 $prefix
-```
-
-## Setup Cor-Lab Debian Repository
-
-This repository provides a collection of pre-compiled libs and tools for rsb. This includes transport layers like spread as well as dev-libs for using rsb in python or c++. To register the repository to your local debian package manager follow the instructions on [http://packages.cor-lab.de/](http://packages.cor-lab.de/)
-* example for ubuntu xenial
-  ```
-  echo 'deb http://packages.cor-lab.de/ubuntu/ xenial main' | sudo tee -a /etc/apt/sources.list
-  echo 'deb http://packages.cor-lab.de/ubuntu/ xenial testing' | sudo tee -a /etc/apt/sources.list
-  wget -q http://packages.cor-lab.de/keys/cor-lab.asc -O- | sudo apt-key add -
-  sudo apt-get update
-  ```
-
-## Spread Installation
-
-[Spread](http://www.spread.org/download.html) is the recommended and most stable transport protocol for bco.
-
-* Installation via Cor-Lab Debian Repository
-    * ```sudo apt-get install spread```
-* Official Installation Guide
-    * <http://www.spread.org/download.html>
-
-## RSB Configuration
-
-By default, all bco components try to establish a connection to a spread daemon running on your local machine. The following steps are required to connect to a spread daemon running on a remote machine:
-Create the configuration file ```touch ~/.config/rsb.conf``` and add the following lines to deactivate the socket, enable the spread transport protocol and to define the spread host (by set up its IP in the lines below).
-::: warning INFO
-Set the IP in the line ```host    = 192.168.x.x``` to match your spread host.
-It can also be set to ```localhost``` if you run everything locally (```host    = localhost```).
-:::
-```
-[transport.socket]
-enabled = 0
-    
-[transport.spread]
-enabled = 1
-host    = 192.168.x.x
+sudo chown -R $USER $BCO_DIST
+chmod -R 750 $BCO_DIST
 ```
 
 ## BCO Installation
@@ -112,17 +73,16 @@ cd ~/workspace/openbase
 git clone -b master https://github.com/openbase/bco.git
 ```
 ::: tip INFO
-We recommend to checkout and install the ```master``` branch in case you start the development of new components.
-The ```latest-stable``` branch is still linking against BCO 1.6 which will be soon replaced by BCO 2.0.
-Be aware to [setup the snapshot repository](#setup-snapshot-repository) before building the ```master``` branch.
+We recommend to checkout and install the ```dev``` branch in order to start the development of new components.
+Be aware to [setup the snapshot repository](#setup-snapshot-repository) before building the ```dev``` branch.
 :::
 
 ### Setup Snapshot Repository
 ::: tip INFO
-This step is only required if you are using a non release branch (e.g. master) or link against it.
+This step is only required if you are using a non release branch (e.g. dev) or link against it.
 :::
 
-BCO is using maven as build tool. All dependencies are deployed at the central maven repositories and will be downloaded without any specific configuration for stable releases.
+BCO is using gradle as build tool. All dependencies are deployed at the central maven repositories and will be downloaded without any specific configuration for stable releases.
 In case you want to build a bco nightly release or your project depends on any snapshots you have to add the following public repository configuration profile to your maven settings file (```~/.m2/settings.xml```).
 
 ```xml
@@ -167,32 +127,29 @@ In case you want to build a bco nightly release or your project depends on any s
 
 ### Download and Prepare BCO Submodules
 
-BCO is split into different sub-module and each of these sub-module is stored in its own repository while the main repository just bundles all sub-module repositories via ```git-modules```. The ```./prepare.sh``` script supports you to download the sourcecode of each sub-modules.
+BCO is based on the openbase Java Utility Library (JUL) and on the openbase Type Library. Both dependencies are linked as git sub-module in the `lib` folder. The ```./prepare.sh``` stored in the BCO repo root folder downloads the source-code of each dependency.
 Therefore, please execute
 ```
 cd ~/workspace/openbase/bco
 ./prepare.sh
 ./update.sh
 ```
-in order to prepare all sub-modules and download their sourcecode. Once the preperation is done, all sub-modules should be available in the  ```module``` directory.
 
-If the workspace is prepared, we can use the ```all``` script provided by the developer tools to ease all submodule operations.
-The ```all``` command just executes the given command for all sub-modules.
-Therefore, the following command can be used to compile all submodule and to install their binaries into the target directory defined by the ```$prefix``` variable.
+If the workspace is prepared, we can use the ```all``` script provided by the developer tools to build the dependencies:
 ```
 cd ~/workspace/openbase/bco
 all ./install.sh
 ```
 ::: tip INFO
-The initial installation can take a while, so grab a coffee and relax while the scripts do the hard work.
+The initial installation can take a while, so grab a coffee and relax while the scripts do the work.
 :::
 
 Now everything should be ready to start the development of new bco components and apps. We recommend to use IntelliJ as IDE for BCO.
-The main repository includes an IntelliJ project configuration so just open ```~/workspace/openbase/bco``` in the IDE or just execute ```idea ~/workspace/openbase/bco``` in case IntelliJ is provided by your shell.
+Open ```~/workspace/openbase/bco``` in the IDE or just execute ```idea ~/workspace/openbase/bco``` in case IntelliJ is provided by your shell.
 
 ### Update
 
-You can update bco including all sub-modules by executing ```./update.sh```. Just make sure all local changes are committed and pushed before performing the update. After updating all components you can compile and install all changes via the ```./install.sh``` script. Therefore, a full update can be performed as followed:
+You can update bco including its dependencies by executing ```./update.sh```. Just make sure all local changes are committed and pushed before performing the update. After updating all components you can compile and install all changes via the ```./install.sh``` script. Therefore, a full update can be performed as followed:
 ```
 ./update.sh
 ./install.sh
