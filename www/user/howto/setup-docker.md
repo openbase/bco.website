@@ -26,12 +26,13 @@ sudo usermod -aG docker ${DEFAULT_USER}
 
 ### Create Docker Container
 ```bash
-echo -e "allow_anonymous true\nlistener 1883" >> $HOME/.mosquitto.conf && \
+echo -e "allow_anonymous true\nlistener 1883" > $HOME/.mosquitto.conf && \
 sudo docker run \
   --name mosquitto \
   --publish 1883:1883 \
-  --volume \
-  $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
+  --volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
+  --restart=always \
+  -d \
   eclipse-mosquitto
 ```
 
