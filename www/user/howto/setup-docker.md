@@ -36,6 +36,25 @@ sudo docker run \
   eclipse-mosquitto
 ```
 
+## Demo Server Setup
+
+In case you just want to play around with BCO without actual smart home devices being involved, you can setup a demo server.
+In this case you can skip all further steps of this installation guide and instead setup the demo server with the following docker command: 
+
+```
+ sudo docker run \
+    --name bco-demo \
+    --net=host \
+    --volume /etc/localtime:/etc/localtime:ro \
+    --volume /etc/timezone:/etc/timezone:ro \
+    --detach \
+    --restart=always \
+    -t \
+    openbaseorg/bco-demo:stable
+```
+
+Be aware that the demo server does not persist any data, which means all configuration changes are discarded after a service restart.
+
 ## Openhab Setup
 
 Create a new openHAB user + group
@@ -74,7 +93,7 @@ sudo docker run \
     -v openhab_conf:/openhab/conf \
     -v openhab_userdata:/openhab/userdata \
     -v openhab_addons:/openhab/addons \
-    -d \
+    --detach \
     -e USER_ID=$(id -u openhab) \
     -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
