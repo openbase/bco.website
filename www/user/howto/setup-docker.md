@@ -50,6 +50,7 @@ In this case you can skip all further steps of this installation guide and inste
     --volume /etc/timezone:/etc/timezone:ro \
     --detach \
     --restart=always \
+    --log-driver=local \
     -t \
     openbaseorg/bco-demo:stable
 ```
