@@ -32,6 +32,7 @@ sudo docker run \
   --publish 1883:1883 \
   --volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
   --restart=always \
+  --log-driver=local \
   -d \
   eclipse-mosquitto
 ```
@@ -78,6 +79,7 @@ sudo docker run \
     -e USER_ID=$(id -u openhab) \
     -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
+    --log-driver=local \
     $ZWAVE_STICK \
     openhab/openhab:3.1.1
 ```
@@ -108,6 +110,7 @@ sudo docker run \
     --env USER_ID=$(id -u bco) \
     --env GROUP_ID=$(getent group bco | cut -d: -f3) \
     --restart=always \
+    --log-driver=local \
     -t \
     openbaseorg/bco:stable
 ```
@@ -126,6 +129,7 @@ sudo docker run \
     --env GROUP_ID=$(getent group bco | cut -d: -f3) \
     --env OPENHAB_GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
+    --log-driver=local \
     -t \
     openbaseorg/bco-device-manager-openhab:stable
 ```
@@ -145,6 +149,7 @@ sudo docker run \
     --volume /etc/timezone:/etc/timezone:ro \
     --detach \
     --restart=always \
+    --log-driver=local \
     -t \
     opaal/bco-ui-albiorix:latest
 ```
@@ -167,6 +172,7 @@ sudo docker run \
     -p 9000:9000 \
     --name portainer \
     --restart=always \
+    --log-driver=local \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data portainer/portainer-ce
 ```
@@ -195,6 +201,7 @@ sudo docker run -d \
     --name watchtower \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /etc/timezone:/etc/timezone:ro \
+    --log-driver=local \
     --env WATCHTOWER_CLEANUP=true \
     --env WATCHTOWER_INCLUDE_STOPPED=true \
     --env WATCHTOWER_TIMEOUT=60 \
@@ -213,6 +220,7 @@ sudo docker run -d \
     --name watchtower \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /etc/timezone:/etc/timezone:ro \
+    --log-driver=local \
     --env WATCHTOWER_CLEANUP=true \
     --env WATCHTOWER_INCLUDE_STOPPED=true \
     --env WATCHTOWER_TIMEOUT=60 \
