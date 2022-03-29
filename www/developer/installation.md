@@ -60,7 +60,7 @@ There exist different openbase tools which help to to simplify the installation 
 Therefore, before downloading bco we should install those tools via:
 ```
 cd ~/workspace/openbase
-git clone -b master https://github.com/openbase/developer.tools.git
+git clone -b stable https://github.com/openbase/developer.tools.git
 cd developer.tools
 ./install.sh
 ```
@@ -70,60 +70,12 @@ cd developer.tools
 Download the bco main repository into your development workspace.
 ```
 cd ~/workspace/openbase
-git clone -b master https://github.com/openbase/bco.git
+git clone -b stable https://github.com/openbase/bco.git
 ```
 ::: tip INFO
 We recommend to checkout and install the ```dev``` branch in order to start the development of new components.
 Be aware to [setup the snapshot repository](#setup-snapshot-repository) before building the ```dev``` branch.
 :::
-
-### Setup Snapshot Repository
-::: tip INFO
-This step is only required if you are using a non release branch (e.g. dev) or link against it.
-:::
-
-BCO is using gradle as build tool. All dependencies are deployed at the central maven repositories and will be downloaded without any specific configuration for stable releases.
-In case you want to build a bco nightly release or your project depends on any snapshots you have to add the following public repository configuration profile to your maven settings file (```~/.m2/settings.xml```).
-
-```xml
-<?xml version="1.0"?>
-<settings>
-<!-- ... -->
-    <profiles>
-        <profile>
-            <id>openbase</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <downloadJavadocs>true</downloadJavadocs>
-                <downloadSources>true</downloadSources>
-            </properties>
-        </profile>
-        <profile>
-            <id>sonatype</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>sonatype-oss-public</id>
-                    <url>https://oss.sonatype.org/content/groups/public/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>daily</updatePolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>interval:60</updatePolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-        </profile>
-    </profiles>
-<!-- ... -->
-</settings>
-```
 
 ### Download and Prepare BCO Submodules
 
@@ -165,7 +117,7 @@ Please do not modify any database entries by hand as long as you exactly know wh
 Once bco is started you can add further units by adding them via the ``bco-registry-editor``. User accounts can be created and passwords changed via ```bco-console```. 
 
 In general bco takes care of all class and template database entries. Those will be updated during each startup of bco as long as an internet connection is provided.
-In case you want to backup your individual setup entries just create a local git repository in the database folder ```git init```, link it to any git remote repository of your choice ```git remote add origin https://github.com/$YOUR_ACCOUNT/bco.registry.$YOUR_HOME_ID-db.git```, and upload the db via ```git push --set-upstream origin master```.
+In case you want to backup your individual setup entries just create a local git repository in the database folder ```git init```, link it to any git remote repository of your choice ```git remote add origin https://github.com/$YOUR_ACCOUNT/bco.registry.$YOUR_HOME_ID-db.git```, and upload the db via ```git push --set-upstream origin main```.
 
 ### How to setup a Demo Database
 Sometimes during development its useful to play around with an already complex environment setup.
