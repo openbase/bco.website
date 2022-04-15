@@ -8,7 +8,8 @@ Download and run the docker container via:
 sudo docker run \
   --name influxdb \
   --publish 8086:8086 \
-  --volume influx_data:/root/.influxdb2 \
+  --volume influx_data:/var/lib/influxdb2 \
+  --volume influx_config:/etc/influxdb2 \
   --restart=always \
   --log-driver=local \
   -d \
