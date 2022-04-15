@@ -13,24 +13,9 @@ Then your generated API token of the form `oh.bco.<token>` should be displayed.
 Copy this token and add the following entry to the meta config of the OpenHAB gateway config with the registry editor: 
 `TOKEN=oh.bco.<token>`
 
-## Troubleshooting
+## Next Step
 
-### How to remove all item entries
-
-Enter the openHAB client console of your openHAB docker container
-```
-docker exec -it openhab /openhab/runtime/bin/client
-```
-::: tip
-The default password for the login is: `habopen`
-:::
-
-Use the following command within the openHAB console in order to remove all items: 
-```
-smarthome:links clear
-smarthome:items clear
-```
-Afterwards, just restart the BCO openHAB Device Manager container in order to recreate all items.
+Setup recording of historical data via the [influxdb setup](/developer/addon/bco-persistence.md).
 
 
 

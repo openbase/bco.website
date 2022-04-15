@@ -1,22 +1,36 @@
 # BCO Persistence
 
-This section introduces how ```InfluxDB ``` and the ```BCO Influxdb Connector``` app can be used to store the history of unit service state changes. This can for example be useful to compute and monitor the current economy level of the smart environment.
+This section introduces how [InfluxDB](https://docs.influxdata.com/influxdb/v2.2/get-started/) and the ```BCO Influxdb Connector``` app can be used to store the history of unit service state changes. This can for example be useful to persist and monitor the current economy level of your smart environment.
 
-## How to setup InfluxDB
-
-[Get started](https://v2.docs.influxdata.com/v2.0/get-started/) with InfluxDB v2.0 to collect your data.  
-After you setup your initial user, bucket and organization you are able to use the database.
-::: tip INFO
-Please choose ```bco-persistence```  as bucket name and ```openbase``` as organization name to simplify this setup.
+## How to setup InfluxDB via docker
+Download and run the docker container via:
+```
+sudo docker run \
+  --name influxdb \
+  --publish 8086:8086 \
+  --volume influx_data:/root/.influxdb2 \
+  --restart=always \
+  --log-driver=local \
+  -d \
+  influxdb:latest
+```
+::: tip HINT
+Choose ```openbase``` as organization name and ```bco-persistence``` as bucket name to simplify this setup.
 :::
+![add_unit](/images/persistence/influxdb_welcome.png)
+After the container spins up, please follow the onboarding via [homecube](http://homecube:8086) by 
+setup your initial user, bucket and organization.
+![add_unit](/images/persistence/influxdb_onbording.png)
+Once done, influxdb is up and running and you can press `Configure Later` to continue with the bco setup.
+![add_unit](/images/persistence/influxdb_onbording_done.png)
 
 ##  How to setup the BCO Influxdb Connector App.
 
-The ```BCO Influxdb Connector``` is a BCO app which stores all unit changes into the influxdb.
+The ```BCO Influxdb Connector``` is a BCO app that persists all unit changes into influxdb.
 
-### 1. Register the new App at the UnitRegistry  
+### 1. Register the new App via the UnitRegistry  
 To install the InfluxDbConnector you need to register it by using the ```bco-registry-editor```.
-So please make sure you are connected to your BCO instance and start the ```bco-registry-editor```.
+So please make sure you are connected to your BCO instance and start the ```bco-registry-editor --host homecube```.
 Than, you need to navigate to: UnitRegistry → App  
 
 ![add_unit](/images/persistence/add_unit.png)
@@ -28,10 +42,24 @@ To add the InfluxDB connector class to the new unit, select InfluxDB Connector a
 ![add_unit_class](/images/persistence/new_unit.png)
    
 ### 2. Authenticate and Configure the App via Meta Configs
-Next, you have to setup a authentication token in order to be able to store new data into influxdb.
-Therefore lookup the token via the Chronograf interface (default: <http://localhost:9999> ). You will find your tokens here:
-![influxd_token](/images/persistence/influxd_token.png)
-Then copy the token and past it into a new MetaConfig entry of the ```BCO Influxdb Connector``` via the ```bco-registry-editor``` e.g. ```INFLUXDB_TOKEN = PASTE_TOKEN_HERE```
+
+Switch to the token overview and create a new (READ/WRITE) API token to grant BCO write access.
+
+![influxdb_create_token](/images/persistence/influxdb_create_token.png)
+![influxdb_config_token](/images/persistence/influxdb_config_token.png)
+
+Don't forget to select the `bco-persistence` buckets.
+
+![influx_config_token_permission](/images/persistence/influx_config_token_permission.png)
+
+Finally open the token menu...
+
+![influxdb_select_token](/images/persistence/influxdb_select_token.png)
+
+... and copy the key
+
+![influxdb_copy_token](/images/persistence/influxdb_copy_token.png)
+Transfer the token to a new MetaConfig entry of the ```BCO Influxdb Connector``` via the ```bco-registry-editor``` e.g. ```INFLUXDB_TOKEN = <PASTE_TOKEN_HERE>```
 
 ::: tip INFO
 In case you choose the default values during the influxdb setup and you run influxdb on the same host as influxdb is running, all values except ```INFLUXDB_TOKEN``` are optionally.
@@ -39,7 +67,7 @@ In case you choose the default values during the influxdb setup and you run infl
 
 Further configurable meta config entries are:
   * ```INFLUXDB_URL``` → Url of your InfluxDB  
-       DEFAULT: ```INFLUXDB_URL = http://localhost:9999```
+       DEFAULT: ```INFLUXDB_URL = http://localhost:8086```
   * ```INFLUXDB_BUCKET``` → Name of the bucket where your data will be stored  
        DEFAULT: ```INFLUXDB_BUCKET = bco-persistence```
   * ```INFLUXDB_BATCH_TIME``` → Time limit(ms) after your batch is written to the database  
@@ -51,17 +79,17 @@ Further configurable meta config entries are:
   * ```INFLUXDB_TOKEN``` → Token with read and write access to your database  
 
 ## How to query influx db.
-InfluxDB 2.0 uses Flux as a functional data scripting language.
+InfluxDB 2 uses Flux as a functional data scripting language.
 A good guide how to get started with Flux is provided by the official [Influxdb Documentation](https://v2.docs.influxdata.com/v2.0/query-data/get-started/).
 
 ## How to create a Query 
 Chronograf is the user interface and administrative component of the InfluxDB platform.
-It is already included in influxdb 2.0.
+It is already included in influxdb 2
 With Chronograf you can quickly see your data and build dashboards.  
 
 Therefore, you need to log in into the Chronograf webview and select the Data Explorer.
 
-If you  have run ```bco-test --simulate``` and collected some data in your bucket, you should see some measurements.
+If you have run ```bco-test --simulate``` and collected some data in your bucket, you should see some measurements.
 ![query_data](/images/persistence/chronograf_explorer.png)
 
 This query selects from the measurement ```power_consumption_state_service``` the field ```consumption``` data from the tag alias ```PowerConsumptionSensor-11```.  
@@ -74,7 +102,7 @@ You can also save your graphs into dashboards.
 If you want know about the possibilities of chronograf you can have a look at the official documentation here [Chronograf Documentation](https://docs.influxdata.com/chronograf/v1.7/)
    
 ## Heartbeat
-The database contains a measurement 'heartbeat' with the field 'alive'. If the influxdb connector app is started, the value one is written into this field. Every 15 minutes the value one is written into the field again. When the app is closed a zero value is written into the field.  This can be used to check when the database was functional and stored data.
+The database contains a measurement 'heartbeat' with the field 'alive'. If the influxdb connector app is started, the value one is written into this field. Every 15 minutes the value one is written into the field again. When the app is closed a zero value is written into the field. This can be used to check whether the database was functional and stored data.
 So you can consider possible downtimes during queries and calculations. 
 
 [Source Code](https://github.com/openbase/bco.app/tree/master/influxdbconnector)
@@ -84,7 +112,7 @@ It is possible to perform a service aggregation via the function ```queryAggrega
 Important attributes of the ```QueryType``` for the service aggregation are:
 
   * measurement 
-  * service type
+  * service_type
   * time_range_stop
   * time_range_stop
   * aggregation_window
@@ -122,7 +150,6 @@ AggregatedServiceStateType.AggregatedServiceState aggregatedEnumServiceState = t
 
 The full example how to query an aggregated service state is available over here: [HowToQueryAggregatedState](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToQueryAggregatedState.java)
 
-
 ## Query Database
 You can also send raw queries to the database via the units with the ```queryRecord``` function.
 This function needs also a [QueryType](https://github.com/openbase/type/blob/master/src/main/proto/openbase/type/domotic/database/Query.proto) as a parameter. However, the only attribute that must be filled is the raw_query.
@@ -139,9 +166,3 @@ RecordCollectionType.RecordCollection recordCollection = testLocation.queryRecor
 ```
 
 The full example how to query a database record is available over here: [HowToQueryUnitLongTermStateUpdates](https://github.com/openbase/bco.dal/blob/master/example/src/main/java/org/openbase/bco/dal/example/HowToQueryUnitLongTermStateUpdates.java).
-
-
-
-
-
-

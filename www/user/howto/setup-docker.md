@@ -37,25 +37,9 @@ sudo docker run \
   eclipse-mosquitto
 ```
 
-## Demo Server Setup
-
-In case you just want to play around with BCO without actual smart home devices being involved, you can setup a demo server.
-In this case you can skip all further steps of this installation guide and instead setup the demo server with the following docker command: 
-
-```
- sudo docker run \
-    --name bco-demo \
-    --net=host \
-    --volume /etc/localtime:/etc/localtime:ro \
-    --volume /etc/timezone:/etc/timezone:ro \
-    --detach \
-    --restart=always \
-    --log-driver=local \
-    -t \
-    openbaseorg/bco-demo:stable
-```
-
-Be aware that the demo server does not persist any data, which means all configuration changes are discarded after a service restart.
+::: tip HINT
+At this stage, you can follow the [bco demo setup](/user/howto/bco-demo.md) in case you just want to play around with BCO without any smart home devices being involved.
+:::
 
 ## Openhab Setup
 
@@ -78,7 +62,7 @@ sudo usermod -a -G openhab ${DEFAULT_USER}
 
 ### Setup Z-Wave USB Stick
 ::: tip INFO
-Skip this step if you do not have a Z-Wave USB Stick!
+Skip this subsection if you do not have a Z-Wave USB Stick!
 :::
 At this point, make sure your Z-Wave USB Stick is plugged in and that it is available under the following path:
 ```bash
