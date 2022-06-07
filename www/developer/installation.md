@@ -87,10 +87,10 @@ cd ~/workspace/openbase/bco
 ./update.sh
 ```
 
-If the workspace is prepared, we can use the ```all``` script provided by the developer tools to build the dependencies:
+If the workspace is prepared, we can build bco by using the ```install``` script:
 ```
 cd ~/workspace/openbase/bco
-all ./install.sh
+./install.sh
 ```
 ::: tip INFO
 The initial installation can take a while, so grab a coffee and relax while the scripts do the work.
