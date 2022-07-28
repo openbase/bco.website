@@ -22,6 +22,10 @@ export DEFAULT_USER=$(whoami)
 sudo usermod -aG docker ${DEFAULT_USER}
 ```
 
+::: warning HINT
+All following docker commands are performed as root via the `sudo` prefix since this is the default for the PI. In case you setup BCO in a rootless docker environment, then you have to remove the `sudo` prefix before performing each docker command. Otherwise it could happen that all containers are deployed to the docker v1 environment of the root user. 
+:::
+
 ## MQTT Broker Setup
 
 ### Create Docker Container
@@ -143,12 +147,12 @@ The docker deploys a local webserver thats serving the BCO webapp within your lo
 This supports an installation free control of your home environment on any device thats offers a web browser.
 ::: tip INFO
 If port `80` is already in use you can alter the `X` in `--publish X:80` in order to refer
-to another port.
+to another port (e. g. `--publish 8282:80`).
 :::
 ```bash
 sudo docker run \
     --name bco-webapp \
-    --publish 8080:80 \
+    --publish 80:80 \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
     --detach \
@@ -205,6 +209,7 @@ sudo docker run -d \
     --name watchtower \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /etc/timezone:/etc/timezone:ro \
+    --restart=always \
     --log-driver=local \
     --env WATCHTOWER_CLEANUP=true \
     --env WATCHTOWER_INCLUDE_STOPPED=true \
