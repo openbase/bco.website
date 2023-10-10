@@ -29,7 +29,7 @@ All following docker commands are performed as root via the `sudo` prefix since 
 ### Setup Network
 Setup a dedicated bco network for security reasons.
 ```
-docker network create bco_net
+docker network create bco-net
 ```
 
 ## MQTT Broker Setup
@@ -39,7 +39,7 @@ docker network create bco_net
 echo -e "allow_anonymous true\nlistener 1883" > $HOME/.mosquitto.conf && \
 docker run \
 --name mosquitto \
---net=bco_net \
+--net=bco-net \
 --publish 1883:1883 \
 --volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
 --restart=always \
@@ -84,7 +84,7 @@ export ZWAVE_STICK=--device=/dev/ttyACM0
 ```bash
 sudo docker run \
     --name openhab \
-    --net=bco_net \
+    --net=bco-net \
     -v /etc/localtime:/etc/localtime:ro \
     -v /etc/timezone:/etc/timezone:ro \
     -v openhab_conf:/openhab/conf \
