@@ -26,19 +26,26 @@ sudo usermod -aG docker ${DEFAULT_USER}
 All following docker commands are performed as root via the `sudo` prefix since this is the default for the PI. In case you setup BCO in a rootless docker environment, then you have to remove the `sudo` prefix before performing each docker command. Otherwise it could happen that all containers are deployed to the docker v1 environment of the root user. 
 :::
 
+### Setup Network
+Setup a dedicated bco network for security reasons.
+```
+docker network create bco_net
+```
+
 ## MQTT Broker Setup
 
 ### Create Docker Container
 ```bash
 echo -e "allow_anonymous true\nlistener 1883" > $HOME/.mosquitto.conf && \
-sudo docker run \
-  --name mosquitto \
-  --publish 1883:1883 \
-  --volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
-  --restart=always \
-  --log-driver=local \
-  -d \
-  eclipse-mosquitto
+docker run \
+--name mosquitto \
+--net=bco_net \
+--publish 1883:1883 \
+--volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
+--restart=always \
+--log-driver=local \
+-d \
+eclipse-mosquitto
 ```
 
 ::: tip HINT
@@ -77,7 +84,7 @@ export ZWAVE_STICK=--device=/dev/ttyACM0
 ```bash
 sudo docker run \
     --name openhab \
-    --net=host \
+    --net=bco_net \
     -v /etc/localtime:/etc/localtime:ro \
     -v /etc/timezone:/etc/timezone:ro \
     -v openhab_conf:/openhab/conf \
@@ -110,7 +117,8 @@ sudo usermod -a -G bco ${DEFAULT_USER}
 ```bash
 sudo docker run \
     --name bco \
-    --net=host \
+    --net=bco_net \
+    --publish 13781:13781 \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
     --volume bco_data:/home/bco/data \
@@ -127,7 +135,7 @@ sudo docker run \
 ```bash
 sudo docker run \
     --name bco-device-manager-openhab \
-    --net=host \
+    --net=bco_net \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
     --volume bco_data:/home/bco/data \
