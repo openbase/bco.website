@@ -4,7 +4,7 @@ In case you just want to play around with BCO without actual smart home devices 
 
 
 ```
-docker run \
+sudo docker run \
 --name bco-demo \
 --net=bco-net \
 --publish 13781:13781 \
