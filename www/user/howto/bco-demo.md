@@ -10,7 +10,7 @@ sudo docker run \
 --publish 13781:13781 \
 --volume /etc/localtime:/etc/localtime:ro \
 --volume /etc/timezone:/etc/timezone:ro \
---env BCO_OPTIONS='--db /tmp/bco/db --simulate --host mosquitto' \
+--env BCO_OPTIONS='--db /tmp/bco/db --simulate --host mqtt-broker' \
 --detach \
 --restart=always \
 --log-driver=local \
