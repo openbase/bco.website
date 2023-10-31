@@ -38,7 +38,7 @@ docker network create bco-net
 ```bash
 echo -e "allow_anonymous true\nlistener 1883" > $HOME/.mosquitto.conf && \
 sudo docker run \
---name mosquitto \
+--name mqtt-broker \
 --net=bco-net \
 --publish 1883:1883 \
 --volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
