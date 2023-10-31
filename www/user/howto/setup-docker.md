@@ -28,7 +28,7 @@ All following docker commands are performed as root via the `sudo` prefix since 
 
 ### Setup Network
 Setup a dedicated bco network for security reasons.
-```
+```bash
 docker network create bco-net
 ```
 
@@ -38,14 +38,14 @@ docker network create bco-net
 ```bash
 echo -e "allow_anonymous true\nlistener 1883" > $HOME/.mosquitto.conf && \
 sudo docker run \
---name mqtt-broker \
---net=bco-net \
---publish 1883:1883 \
---volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
---restart=always \
---log-driver=local \
--d \
-eclipse-mosquitto
+    --name mqtt-broker \
+    --net=bco-net \
+    --publish 1883:1883 \
+    --volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
+    --restart=always \
+    --log-driver=local \
+    --detach \
+    eclipse-mosquitto
 ```
 
 ::: tip HINT
@@ -85,14 +85,14 @@ export ZWAVE_STICK=--device=/dev/ttyACM0
 sudo docker run \
     --name openhab \
     --net=bco-net \
-    -v /etc/localtime:/etc/localtime:ro \
-    -v /etc/timezone:/etc/timezone:ro \
-    -v openhab_conf:/openhab/conf \
-    -v openhab_userdata:/openhab/userdata \
-    -v openhab_addons:/openhab/addons \
+    --volume /etc/localtime:/etc/localtime:ro \
+    --volume /etc/timezone:/etc/timezone:ro \
+    --volume openhab_conf:/openhab/conf \
+    --volume openhab_userdata:/openhab/userdata \
+    --volume openhab_addons:/openhab/addons \
     --detach \
-    -e USER_ID=$(id -u openhab) \
-    -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
+    --env USER_ID=$(id -u openhab) \
+    --env GROUP_ID=$(getent group openhab | cut -d: -f3) \
     --restart=always \
     --log-driver=local \
     $ZWAVE_STICK \
@@ -125,9 +125,10 @@ sudo docker run \
     --detach \
     --env USER_ID=$(id -u bco) \
     --env GROUP_ID=$(getent group bco | cut -d: -f3) \
+    --env BCO_OPTIONS='--host mqtt-broker' \
     --restart=always \
     --log-driver=local \
-    -t \
+    --tty \
     openbaseorg/bco:stable
 ```
 
@@ -144,9 +145,10 @@ sudo docker run \
     --env USER_ID=$(id -u bco) \
     --env GROUP_ID=$(getent group bco | cut -d: -f3) \
     --env OPENHAB_GROUP_ID=$(getent group openhab | cut -d: -f3) \
+    --env BCO_OPTIONS='--host mqtt-broker' \
     --restart=always \
     --log-driver=local \
-    -t \
+    --tty \
     openbaseorg/bco-device-manager-openhab:stable
 ```
 
