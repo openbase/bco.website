@@ -135,7 +135,7 @@ sudo docker run \
 ```bash
 sudo docker run \
     --name bco-device-manager-openhab \
-    --net=bco_net \
+    --net=bco-net \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
     --volume bco_data:/home/bco/data \
