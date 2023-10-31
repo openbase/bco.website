@@ -117,7 +117,7 @@ sudo usermod -a -G bco ${DEFAULT_USER}
 ```bash
 sudo docker run \
     --name bco \
-    --net=bco_net \
+    --net=bco-net \
     --publish 13781:13781 \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
