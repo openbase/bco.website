@@ -15,7 +15,7 @@ sudo docker run \
 --restart=always \
 --log-driver=local \
 -t \
-openbaseorg/bco-demo:beta
+openbaseorg/bco-demo:stable
 ```
 
 Be aware that the demo server does not persist any data, which means all configuration changes are discarded after a service restart.
