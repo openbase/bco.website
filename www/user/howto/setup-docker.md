@@ -29,7 +29,7 @@ All following docker commands are performed as root via the `sudo` prefix since 
 ### Setup Network
 Setup a dedicated bco network for security reasons.
 ```bash
-docker network create bco-net
+sudo docker network create bco-net
 ```
 
 ## MQTT Broker Setup
