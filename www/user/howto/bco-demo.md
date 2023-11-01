@@ -6,7 +6,7 @@ In case you just want to play around with BCO without actual smart home devices 
 ```bash
 sudo docker run \
     --name bco-demo \
-    --net=bco-net \
+    --network=bco-net \
     --publish 13781:13781 \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \

@@ -4,15 +4,16 @@ This section introduces how [InfluxDB](https://docs.influxdata.com/influxdb/v2.2
 
 ## How to setup InfluxDB via docker
 Download and run the docker container via:
-```
+```bash
 sudo docker run \
   --name influxdb \
+  --network=bco-net \
   --publish 8086:8086 \
   --volume influx_data:/var/lib/influxdb2 \
   --volume influx_config:/etc/influxdb2 \
   --restart=always \
   --log-driver=local \
-  -d \
+  --detach \
   influxdb:latest
 ```
 ::: tip HINT
@@ -68,7 +69,7 @@ In case you choose the default values during the influxdb setup and you run infl
 
 Further configurable meta config entries are:
   * ```INFLUXDB_URL``` → Url of your InfluxDB  
-       DEFAULT: ```INFLUXDB_URL = http://localhost:8086```
+       DEFAULT: ```INFLUXDB_URL = http://influxdb:8086```
   * ```INFLUXDB_BUCKET``` → Name of the bucket where your data will be stored  
        DEFAULT: ```INFLUXDB_BUCKET = bco-persistence```
   * ```INFLUXDB_BATCH_TIME``` → Time limit(ms) after your batch is written to the database  
