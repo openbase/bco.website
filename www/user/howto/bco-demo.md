@@ -2,17 +2,19 @@
 
 In case you just want to play around with BCO without actual smart home devices being involved, you can setup a demo server.
 
-```
- sudo docker run \
+
+```bash
+sudo docker run \
     --name bco-demo \
-    --net=host \
+    --network=bco-net \
+    --publish 13781:13781 \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
-    --env BCO_OPTIONS='--db /tmp/bco/db --simulate' \
+    --env BCO_OPTIONS='--db /tmp/bco/db --simulate --host mqtt-broker' \
     --detach \
     --restart=always \
     --log-driver=local \
-    -t \
+    --tty \
     openbaseorg/bco-demo:stable
 ```
 
