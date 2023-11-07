@@ -99,7 +99,7 @@ sudo docker run \
     --restart=always \
     --log-driver=local \
     $ZWAVE_STICK \
-    openhab/openhab:4.0.3
+    openhab/openhab:4.0.4
 ```
 
 ## BCO Setup
