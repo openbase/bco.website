@@ -28,8 +28,8 @@ All following docker commands are performed as root via the `sudo` prefix since 
 
 ### Setup Network
 Setup a dedicated bco network for security reasons.
-```
-docker network create bco-net
+```bash
+sudo docker network create bco-net
 ```
 
 ## MQTT Broker Setup
@@ -37,15 +37,15 @@ docker network create bco-net
 ### Create Docker Container
 ```bash
 echo -e "allow_anonymous true\nlistener 1883" > $HOME/.mosquitto.conf && \
-docker run \
---name mosquitto \
---net=bco-net \
---publish 1883:1883 \
---volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
---restart=always \
---log-driver=local \
--d \
-eclipse-mosquitto
+sudo docker run \
+    --name mqtt-broker \
+    --network=bco-net \
+    --publish 1883:1883 \
+    --volume $HOME/.mosquitto.conf:/mosquitto/config/mosquitto.conf \
+    --restart=always \
+    --log-driver=local \
+    --detach \
+    eclipse-mosquitto
 ```
 
 ::: tip HINT
@@ -84,19 +84,22 @@ export ZWAVE_STICK=--device=/dev/ttyACM0
 ```bash
 sudo docker run \
     --name openhab \
-    --net=bco-net \
-    -v /etc/localtime:/etc/localtime:ro \
-    -v /etc/timezone:/etc/timezone:ro \
-    -v openhab_conf:/openhab/conf \
-    -v openhab_userdata:/openhab/userdata \
-    -v openhab_addons:/openhab/addons \
+    --network=bco-net \
+    --publish 8080:8080 \
+    --publish 8443:8443 \
+    --volume /etc/localtime:/etc/localtime:ro \
+    --volume /etc/timezone:/etc/timezone:ro \
+    --volume openhab_conf:/openhab/conf \
+    --volume openhab_userdata:/openhab/userdata \
+    --volume openhab_addons:/openhab/addons \
     --detach \
-    -e USER_ID=$(id -u openhab) \
-    -e GROUP_ID=$(getent group openhab | cut -d: -f3) \
+    --env USER_ID=$(id -u openhab) \
+    --env GROUP_ID=$(getent group openhab | cut -d: -f3) \
+    --env CRYPTO_POLICY=unlimited \
     --restart=always \
     --log-driver=local \
     $ZWAVE_STICK \
-    openhab/openhab:3.1.1
+    openhab/openhab:4.0.4
 ```
 
 ## BCO Setup
@@ -117,7 +120,7 @@ sudo usermod -a -G bco ${DEFAULT_USER}
 ```bash
 sudo docker run \
     --name bco \
-    --net=bco_net \
+    --network=bco-net \
     --publish 13781:13781 \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
@@ -125,9 +128,10 @@ sudo docker run \
     --detach \
     --env USER_ID=$(id -u bco) \
     --env GROUP_ID=$(getent group bco | cut -d: -f3) \
+    --env BCO_OPTIONS='--host mqtt-broker' \
     --restart=always \
     --log-driver=local \
-    -t \
+    --tty \
     openbaseorg/bco:stable
 ```
 
@@ -135,7 +139,7 @@ sudo docker run \
 ```bash
 sudo docker run \
     --name bco-device-manager-openhab \
-    --net=bco_net \
+    --network=bco-net \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume /etc/timezone:/etc/timezone:ro \
     --volume bco_data:/home/bco/data \
@@ -144,9 +148,10 @@ sudo docker run \
     --env USER_ID=$(id -u bco) \
     --env GROUP_ID=$(getent group bco | cut -d: -f3) \
     --env OPENHAB_GROUP_ID=$(getent group openhab | cut -d: -f3) \
+    --env BCO_OPTIONS='--host mqtt-broker --openhab-url http://openhab:8080' \
     --restart=always \
     --log-driver=local \
-    -t \
+    --tty \
     openbaseorg/bco-device-manager-openhab:stable
 ```
 
