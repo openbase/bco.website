@@ -1,76 +1,90 @@
-module.exports = {
+import { defaultTheme } from 'vuepress'
+// import { docsearchPlugin } from '@vuepress/plugin-docsearch'
+
+export default {
     title: 'Base Cube One',
     description: 'Smart Environment Automation Framework',
-    head: [
-        ['link', {rel: 'icon', href: '/images/bco_logo_simple_small.png'}],
-    ],
-    plugins: [
-    [
-      'vuepress-plugin-mathjax',
-      {
-        target: 'svg',
-        macros: {
-          '*': '\\times',
-          '\\Z': '\\mathbb{Z}'
-        },
-      },
-    ],
-    ],
-    themeConfig: {
-        logo: '/images/bco_logo_simple_white.png',
-        nav: [
+    theme: defaultTheme({
+        // default theme config
+        logo: '/images/bco_logo_simple_small.png',
+        logoDark: '/images/bco_logo_simple_white.png',
+        navbar: [
             {text: 'Installation', link: '/user/installation'},
             {text: 'User', link: '/user/'},
             {text: 'Developer', link: '/developer/'},
             {text: 'Openbase', link: 'https://openbase.org'}
+
         ],
-        displayAllHeaders: false,
+        //displayAllHeaders: false,
         sidebar: {
-            '/user/': [
-                '',
+          '/user/': [
+            {
+              text: 'User',
+              children: [
                 '/user/bcozy',
                 '/user/bcomfy'
-            ],
-
-            '/developer/': [
-                '',
+              ],
+            },
+          ],
+          '/developer/': [
+            {
+              text: 'Developer',
+              children: [
                 '/developer/installation',
                 '/developer/startup-tools',
                 '/developer/directory-structure',
-                '/developer/architecture',
-                '/developer/authentication/',
-                '/developer/contribution',
-                '/developer/code-examples',
-                '/developer/ui/'
-            ],
+                 '/developer/architecture',
+                 '/developer/authentication/',
+                 '/developer/contribution',
+                 '/developer/code-examples',
+                 '/developer/ui/'
+                 ],
+            },
+           ],
 
-            /* fallback */
-            '/': [
-                '', /* / */
+           // fallback
+           '/': [
+            {
+                text: ' ',
+                children: [
+                '',
                 '/user/installation',
                 '/user/',
                 '/developer/'
-            ]
+                ],
+            },
+           ],
         },
+        // plugins: [
+        //   docsearchPlugin({
+        //     appId: '1VCFHJF1L1',
+        //     apiKey: 'd4761fd2ef0a03d40066142bb969b6b9',
+        //     indexName: 'BCO Website',
+        //     locales: {
+        //       '/': {
+        //         placeholder: 'Search Documentation',
+        //         translations: {
+        //           button: {
+        //             buttonText: 'Search Documentation',
+        //           },
+        //         },
+        //       },
+        //       '/zh/': {
+        //         placeholder: '搜索文档',
+        //         translations: {
+        //           button: {
+        //             buttonText: '搜索文档',
+        //           },
+        //         },
+        //       },
+        //     },
+        //   }),
+        // ],
         lastUpdated: 'Last Updated',
         repo: 'openbase',
-        // if your docs are in a different repo from your main project:
         docsRepo: 'openbase/bco.website',
         docsDir: 'www',
         editLinks: true,
-        serviceWorker: {
-            updatePopup: true // Boolean | Object, default to undefined.
-            // If set to true, the default text config will be:
-            // updatePopup: {
-            //    message: "New content is available.",
-            //    buttonText: "Refresh"
-            // }
-        }
-    },
-    markdown: {
-        lineNumbers: true
-    },
 
-    //sidebar: 'auto',
-    serviceWorker: true
+    }),
 }

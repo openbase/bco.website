@@ -1,15 +1,23 @@
 {
+  "name": "bco.website.new2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "serve": "vuepress dev www",
-    "build": "vuepress build www"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.2",
-    "@fortawesome/free-solid-svg-icons": "^5.2.0",
-    "@fortawesome/vue-fontawesome": "^0.1.1",
-    "vuepress": "^0.14.10"
+    "@vuepress/client": "2.0.0-rc.0",
+    "stylus": "^0.62.0",
+    "vue": "^3.3.8",
+    "vuepress": "2.0.0-rc.0"
   },
   "dependencies": {
-    "yarn": "^1.13.0"
+    "@vuepress/theme-default": "2.0.0-rc.0"
   }
 }

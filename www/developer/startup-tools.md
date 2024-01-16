@@ -1,4 +1,4 @@
-### How to start BCO
+# How to start BCO
 
 #### Provide a MQTT Broker
 
