@@ -1,12 +1,12 @@
 {
-  "name": "bco.website.new2",
+  "name": "bco.website",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "serve": "vuepress dev www",
+    "build": "vuepress build www"
   },
   "keywords": [],
   "author": "",
