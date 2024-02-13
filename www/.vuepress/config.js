@@ -15,7 +15,6 @@ export default {
             {text: 'Openbase', link: 'https://openbase.org'}
 
         ],
-        //displayAllHeaders: false,
         sidebar: {
           '/user/': [
             {
