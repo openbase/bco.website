@@ -56,6 +56,7 @@ export default {
            ],
         },
         // plugins: [
+          // Sadly, the docsearch plugin is not working with the current version of vuepress (said copilot)
         //   docsearchPlugin({
         //     appId: '1VCFHJF1L1',
         //     apiKey: 'd4761fd2ef0a03d40066142bb969b6b9',
