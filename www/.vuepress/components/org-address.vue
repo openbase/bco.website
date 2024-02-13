@@ -2,7 +2,7 @@
     <div class="address">
         Marian Pohling<br>
         Schillerstr. 1<br>
-        33609 Bielefeld
+        33609 Bielefeld<br>
         <br><br>
     </div>
 </template>
